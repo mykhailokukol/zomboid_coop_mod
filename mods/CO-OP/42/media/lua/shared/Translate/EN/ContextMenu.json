@@ -1,0 +1,9 @@
+{
+    "ContextMenu_BooksAtHome": "Books at home",
+    "ContextMenu_BooksAtHome_Mark": "Mark as at home",
+    "ContextMenu_BooksAtHome_Unmark": "Unmark (not at home)",
+    "ContextMenu_BooksAtHome_EditNote": "Set location note...",
+    "ContextMenu_BooksAtHome_MarkAll": "Mark all %1 as at home",
+    "ContextMenu_BooksAtHome_UnmarkAll": "Unmark all %1",
+    "ContextMenu_BooksAtHome_OpenList": "Open the list"
+}

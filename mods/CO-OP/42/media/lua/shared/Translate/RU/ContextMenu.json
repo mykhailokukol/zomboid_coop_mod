@@ -1,0 +1,9 @@
+{
+    "ContextMenu_BooksAtHome": "Книги дома",
+    "ContextMenu_BooksAtHome_Mark": "Отметить: дома",
+    "ContextMenu_BooksAtHome_Unmark": "Снять отметку (нет дома)",
+    "ContextMenu_BooksAtHome_EditNote": "Указать, где лежит...",
+    "ContextMenu_BooksAtHome_MarkAll": "Отметить все (%1): дома",
+    "ContextMenu_BooksAtHome_UnmarkAll": "Снять отметку со всех (%1)",
+    "ContextMenu_BooksAtHome_OpenList": "Открыть список"
+}
