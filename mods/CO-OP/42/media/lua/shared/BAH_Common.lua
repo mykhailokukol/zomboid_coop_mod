@@ -2,6 +2,8 @@
 -- CO-OP / Books at home - shared constants and helpers.
 --
 
+require "COOP_Common"
+
 BAH = BAH or {}
 
 BAH.MODULE = "BooksAtHome"          -- client/server command module
@@ -37,33 +39,16 @@ function BAH.cleanNote(_note)
     return note
 end
 
--- In-game calendar stamp, e.g. "12 Jul, 14:20". Safe to call from either side.
+-- In-game calendar stamp, e.g. "12/07/1993 14:20". Safe to call from either side.
 function BAH.gameDateString()
-    local ok, stamp = pcall(function()
-        local gt = getGameTime()
-        return string.format("%02d/%02d/%d %02d:%02d",
-                gt:getDay() + 1, gt:getMonth() + 1, gt:getYear(),
-                gt:getHour(), gt:getMinutes())
-    end)
-    if ok and stamp then return stamp end
-    return "?"
+    return COOP.gameDateString()
 end
 
 function BAH.worldAgeHours()
-    local ok, hours = pcall(function() return getGameTime():getWorldAgeHours() end)
-    if ok and hours then return hours end
-    return 0
+    return COOP.worldAgeHours()
 end
 
 -- Best available name for a player: MP username, otherwise the character's forename.
 function BAH.playerName(_playerObj)
-    if _playerObj == nil then return "?" end
-    local name = nil
-    local okUser, user = pcall(function() return _playerObj:getUsername() end)
-    if okUser and user and user ~= "" then name = tostring(user) end
-    if name == nil then
-        local okDesc, forename = pcall(function() return _playerObj:getDescriptor():getForename() end)
-        if okDesc and forename and forename ~= "" then name = tostring(forename) end
-    end
-    return name or "?"
+    return COOP.playerName(_playerObj)
 end

@@ -110,6 +110,7 @@ end
 local function awardXp(_character, _item, _srcContainer, _destContainer)
     if _character == nil or _item == nil then return end
     if _character ~= getPlayer() then return end
+    if not COOP.featureEnabled(COOP.F_ORGANIZATION) then return end
 
     -- Organising is moving things through storage: into it, out of it, or from one
     -- container straight into another. Shuffling inside your own bags, or throwing
@@ -125,6 +126,7 @@ local function awardXp(_character, _item, _srcContainer, _destContainer)
     if not ok or weight == nil or weight <= 0 then return end
 
     local amount = weight * COOPOrg.XP_PER_KG
+            * COOP.numberOption("OrganizationXpRate", 1.0, 0.1, 10.0)
     local level, leveledUp = COOPOrg.addXp(_character, amount)
 
     if COOPOrg.debug then

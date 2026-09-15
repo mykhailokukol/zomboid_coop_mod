@@ -5,5 +5,7 @@
     "ContextMenu_BooksAtHome_EditNote": "Указать, где лежит...",
     "ContextMenu_BooksAtHome_MarkAll": "Отметить все (%1): дома",
     "ContextMenu_BooksAtHome_UnmarkAll": "Снять отметку со всех (%1)",
+    "ContextMenu_BooksAtHome_MarkContainer": "Отметить всё как «дома» (%1)",
+    "ContextMenu_BooksAtHome_UnmarkContainer": "Снять отметку со всего (%1)",
     "ContextMenu_BooksAtHome_OpenList": "Открыть список"
 }

@@ -44,6 +44,7 @@ local function patch()
         self.bahWhiteTick = false
 
         if originalIsLiteratureRead(self, _playerObj, _item) then return true end
+        if not COOP.featureEnabled(COOP.F_BOOKS) then return false end
         if _item == nil or _playerObj == nil then return false end
 
         -- Books and magazines by item type, VHS tapes by the recording they hold.

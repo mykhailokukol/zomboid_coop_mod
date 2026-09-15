@@ -353,6 +353,8 @@ Events.OnGameStart.Add(function()
 end)
 
 function BooksAtHomeWindow.toggle()
+    if not COOP.featureEnabled(COOP.F_BOOKS) then return end
+
     local window = BooksAtHomeWindow.instance
     if window ~= nil and window:getIsVisible() then
         window:close()
