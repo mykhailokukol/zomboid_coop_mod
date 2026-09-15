@@ -1,10 +1,15 @@
 --
 -- CO-OP - where new items go.
 --
--- One setting decides where items the player just produced end up: their hands, a worn
--- bag, a container next to them, or the ground. It covers
+-- Where items the player just produced end up: their hands, a worn bag, a container
+-- next to them, or the ground. It covers
 --   * crafting          (ISHandcraftAction:performRecipe)
 --   * vehicle parts     (ISUninstallVehiclePart, ISTakeEngineParts)
+--
+-- The destination is chosen per kind of work - cooking, carpentry, car mechanics and
+-- smithing each have their own, and everything else follows the default one. The client
+-- resolves all of them and sends the whole set; the side that performs the action works
+-- out which kind of work it is and picks the matching entry.
 --
 -- Both of those run on the server in multiplayer, so the placement lives in shared/
 -- and the client only stamps the chosen destination onto the action.
@@ -28,15 +33,33 @@ COOPOutput.BAG = "bag"
 COOPOutput.NEARBY = "nearby"
 COOPOutput.GROUND = "ground"
 
+-- Where the work is sorted into. "default" catches everything the rules below miss, and
+-- is also what a category set to COOPOutput.GLOBAL falls back to.
+COOPOutput.DEFAULT_CATEGORY = "default"
+COOPOutput.COOKING = "cooking"
+COOPOutput.CARPENTRY = "carpentry"
+COOPOutput.MECHANICS = "mechanics"
+COOPOutput.SMITHING = "smithing"
+COOPOutput.CATEGORIES = {
+    COOPOutput.COOKING, COOPOutput.CARPENTRY, COOPOutput.MECHANICS, COOPOutput.SMITHING,
+}
+
+-- A category may be left following the default one instead of naming a destination.
+COOPOutput.GLOBAL = "global"
+
 -- How far the target container may be from the player when the server resolves it.
 COOPOutput.MAX_DISTANCE = 3
 
 -- Set to true to trace every placement in console.txt / coop-console.txt.
 COOPOutput.debug = false
 
--- Destinations the clients told us about, by username. Custom fields set on a timed
--- action do NOT survive the trip to the server, so in multiplayer the client sends its
--- destination over the command channel and the server reads it from here.
+-- Destinations the clients told us about, by username: one table of
+-- category -> destination per player. Custom fields set on a timed action do NOT survive
+-- the trip to the server (only the named parameters of the class's `new` are sent), so in
+-- multiplayer the client pushes the whole set over the command channel and the server
+-- reads it from here. Sending every category at once rather than only the one for the
+-- action being created matters: a player can queue a carpentry craft and a cooking craft
+-- before either of them runs, and the server must still place each output correctly.
 COOPOutput.destinations = {}
 
 COOPOutput.MODULE = "CO-OP"
@@ -48,21 +71,110 @@ function COOPOutput.isModeValid(_mode)
 end
 
 local function isRedirecting(_destination)
+    -- the single gate for the whole feature: with it off nothing is ever redirected and
+    -- every production site keeps whatever vanilla did
+    if not COOP.featureEnabled(COOP.F_OUTPUT) then return false end
+
     local mode = _destination and _destination.coopOutputMode or nil
     return COOPOutput.isModeValid(mode) and mode ~= COOPOutput.HANDS
 end
 
--- Where this character's new items should go: the action carries it in single player,
--- the client sends it ahead in multiplayer.
-function COOPOutput.resolveDestination(_action, _character)
-    if _action ~= nil and COOPOutput.isModeValid(_action.coopOutputMode) then
-        return _action
+-- ---------------------------------------------------------------------------
+-- what kind of work a recipe is
+-- ---------------------------------------------------------------------------
+
+-- A recipe's `category` is the group it is filed under in the crafting window, which is
+-- about presentation and does not always match the craft: all 89 vanilla Cooking recipes
+-- declare no skill at all, while eighteen filed under "Tools" need Blacksmith 4. So both
+-- are consulted. `involvesSkill` is the engine's own answer to "is this recipe about that
+-- skill" - it checks the required skills, the XP awards and the autolearn lists - and
+-- vanilla's CraftRecipe.isSmithing() is exactly this pair of tests, category first.
+local CATEGORY_RULES = {
+    {
+        name = COOPOutput.COOKING,
+        categories = { Cooking = true },
+        perks = { "Cooking" },
+    },
+    {
+        name = COOPOutput.CARPENTRY,
+        categories = { Carpentry = true, Furniture = true },
+        perks = { "Woodwork" },
+    },
+    {
+        name = COOPOutput.MECHANICS,
+        categories = { Vehicle = true, Mechanics = true },
+        perks = { "Mechanics" },
+    },
+    {
+        -- the forge/kiln bucket: blacksmithing, pottery and glassmaking, plus the
+        -- neighbouring hot-and-hard-material work that would otherwise scatter
+        name = COOPOutput.SMITHING,
+        categories = {
+            Blacksmithing = true, Pottery = true, Glassmaking = true,
+            Metalworking = true, Welding = true, Masonry = true, Knapping = true,
+        },
+        perks = {
+            "Blacksmith", "Pottery", "Glassmaking",
+            "MetalWelding", "Masonry", "FlintKnapping",
+        },
+    },
+}
+
+local perkCache = {}
+
+local function perkNamed(_name)
+    if perkCache[_name] == nil then
+        local ok, perk = pcall(function() return Perks.FromString(_name) end)
+        perkCache[_name] = (ok and perk) or false
     end
+    if perkCache[_name] == false then return nil end
+    return perkCache[_name]
+end
+
+function COOPOutput.categoryForRecipe(_recipe)
+    if _recipe == nil then return COOPOutput.DEFAULT_CATEGORY end
+
+    local named = nil
+    pcall(function() named = _recipe:getCategory() end)
+    if named ~= nil then
+        for _, rule in ipairs(CATEGORY_RULES) do
+            if rule.categories[named] then return rule.name end
+        end
+    end
+
+    for _, rule in ipairs(CATEGORY_RULES) do
+        for _, perkName in ipairs(rule.perks) do
+            local perk = perkNamed(perkName)
+            if perk ~= nil then
+                local ok, involved = pcall(function() return _recipe:involvesSkill(perk) end)
+                if ok and involved == true then return rule.name end
+            end
+        end
+    end
+
+    return COOPOutput.DEFAULT_CATEGORY
+end
+
+-- Where this character's new items should go for that kind of work: the action carries
+-- the whole set in single player, the client sends it ahead in multiplayer. A category
+-- with nothing of its own falls back to the default one.
+function COOPOutput.resolveDestination(_action, _character, _category)
+    local category = _category or COOPOutput.DEFAULT_CATEGORY
+
+    local function pick(_set)
+        if _set == nil then return nil end
+        return _set[category] or _set[COOPOutput.DEFAULT_CATEGORY]
+    end
+
+    -- single player is one Lua state, so the table the client stamped is right here
+    local stamped = pick(_action ~= nil and _action.coopOutputDestinations or nil)
+    if stamped ~= nil then return stamped end
+
     if _character == nil then return nil end
 
     local ok, username = pcall(function() return _character:getUsername() end)
     if ok and username ~= nil then
-        return COOPOutput.destinations[tostring(username)]
+        return pick(COOPOutput.destinations[tostring(username)])
     end
     return nil
 end
@@ -275,7 +387,8 @@ local function install()
     -- the duration of the call so all the bookkeeping around it stays vanilla.
     any = hook(ISHandcraftAction, "performRecipe", "performRecipe", function(_original)
         return function(self)
-            local destination = COOPOutput.resolveDestination(self, self.character)
+            local category = COOPOutput.categoryForRecipe(self.craftRecipe)
+            local destination = COOPOutput.resolveDestination(self, self.character, category)
             if not isRedirecting(destination) then return _original(self) end
 
             local originalAddOrDropItem = Actions.addOrDropItem
@@ -301,7 +414,7 @@ local function install()
     any = hook(ISUninstallVehiclePart, "complete", "uninstallPart", function(_original)
         return function(self)
             if isClient() then return _original(self) end
-            local destination = COOPOutput.resolveDestination(self, self.character)
+            local destination = COOPOutput.resolveDestination(self, self.character, COOPOutput.MECHANICS)
             return withInventoryRedirect(destination, self.character, function()
                 return _original(self)
             end)
@@ -311,7 +424,7 @@ local function install()
     any = hook(ISTakeEngineParts, "complete", "takeEngineParts", function(_original)
         return function(self)
             if isClient() then return _original(self) end
-            local destination = COOPOutput.resolveDestination(self, self.character)
+            local destination = COOPOutput.resolveDestination(self, self.character, COOPOutput.MECHANICS)
             return withInventoryRedirect(destination, self.character, function()
                 return _original(self)
             end)
@@ -331,7 +444,11 @@ local function onClientCommand(_module, _command, _playerObj, _args)
 
     COOPOutput.destinations[tostring(username)] = _args
     if COOPOutput.debug then
-        COOP.log("destination from " .. tostring(username) .. ": " .. tostring(_args.coopOutputMode))
+        local parts = {}
+        for category, destination in pairs(_args) do
+            table.insert(parts, tostring(category) .. "=" .. tostring(destination.coopOutputMode))
+        end
+        COOP.log("destinations from " .. tostring(username) .. ": " .. table.concat(parts, " "))
     end
 end
 

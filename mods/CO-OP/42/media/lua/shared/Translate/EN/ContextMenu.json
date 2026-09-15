@@ -5,5 +5,7 @@
     "ContextMenu_BooksAtHome_EditNote": "Set location note...",
     "ContextMenu_BooksAtHome_MarkAll": "Mark all %1 as at home",
     "ContextMenu_BooksAtHome_UnmarkAll": "Unmark all %1",
+    "ContextMenu_BooksAtHome_MarkContainer": "Mark all as at home (%1)",
+    "ContextMenu_BooksAtHome_UnmarkContainer": "Unmark all (%1)",
     "ContextMenu_BooksAtHome_OpenList": "Open the list"
 }

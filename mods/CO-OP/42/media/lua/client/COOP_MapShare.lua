@@ -26,6 +26,8 @@ local patched = false
 
 -- On by default; the choice is remembered per character.
 function COOPMapShare.isEnabled()
+    if not COOP.featureEnabled(COOP.F_MAPSHARE) then return false end
+
     local player = getPlayer()
     if player == nil then return true end
     local stored = player:getModData()[MODDATA_KEY]
@@ -90,6 +92,7 @@ local function patch()
 
         -- Same condition as the vanilla Sharing button: nothing to share in solo play.
         if not isClient() then return end
+        if not COOP.featureEnabled(COOP.F_MAPSHARE) then return end
 
         local anchor = self.sharingBtn or self.removeBtn
         if anchor == nil then return end

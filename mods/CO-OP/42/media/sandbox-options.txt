@@ -1,0 +1,105 @@
+VERSION = 1,
+
+option COOP.BooksAtHome
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_BooksAtHome,
+}
+
+option COOP.MapShare
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_MapShare,
+}
+
+option COOP.ItemOutput
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_ItemOutput,
+}
+
+option COOP.Organization
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Organization,
+}
+
+option COOP.Pings
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Pings,
+}
+
+option COOP.Todo
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Todo,
+}
+
+option COOP.HotbarStatus
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_HotbarStatus,
+}
+
+option COOP.PingDuration
+{
+    type = integer,
+    min = 3,
+    max = 60,
+    default = 12,
+    page = COOP,
+    translation = COOP_PingDuration,
+}
+
+option COOP.PingCooldown
+{
+    type = double,
+    min = 0.5,
+    max = 10.0,
+    default = 1.5,
+    page = COOP,
+    translation = COOP_PingCooldown,
+}
+
+option COOP.PingChatLine
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_PingChatLine,
+}
+
+option COOP.OrganizationXpRate
+{
+    type = double,
+    min = 0.1,
+    max = 10.0,
+    default = 1.0,
+    page = COOP,
+    translation = COOP_OrganizationXpRate,
+}
+
+option COOP.TodoMaxEntries
+{
+    type = integer,
+    min = 20,
+    max = 500,
+    default = 200,
+    page = COOP,
+    translation = COOP_TodoMaxEntries,
+}

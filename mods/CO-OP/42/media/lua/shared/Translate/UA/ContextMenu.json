@@ -5,5 +5,7 @@
     "ContextMenu_BooksAtHome_EditNote": "Вказати, де лежить...",
     "ContextMenu_BooksAtHome_MarkAll": "Позначити всі (%1): вдома",
     "ContextMenu_BooksAtHome_UnmarkAll": "Зняти позначку з усіх (%1)",
+    "ContextMenu_BooksAtHome_MarkContainer": "Позначити все як «вдома» (%1)",
+    "ContextMenu_BooksAtHome_UnmarkContainer": "Зняти позначку з усього (%1)",
     "ContextMenu_BooksAtHome_OpenList": "Відкрити список"
 }

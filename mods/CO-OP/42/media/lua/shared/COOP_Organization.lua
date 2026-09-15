@@ -40,7 +40,7 @@ COOPOrg.DISORGANIZED_LEVEL = 0
 COOPOrg.FAST_LEVEL = 6   -- at or above: Dextrous
 COOPOrg.SLOW_LEVEL = 1   -- at or below: All Thumbs
 
-COOPOrg.XP_PER_KG = 10   -- tuning knob: XP for one kilogram moved
+COOPOrg.XP_PER_KG = 10   -- base XP for one kilogram moved; the sandbox rate scales it
 COOPOrg.debug = false    -- set true to trace XP and capacity changes in the console
 COOPOrg.XP_LEVELS = { 75, 150, 300, 750, 1500, 3000, 6000, 12000, 24000, 48000 }
 
@@ -255,6 +255,9 @@ function COOPOrg.getLevel(_character)
 end
 
 function COOPOrg.getMultiplier(_character)
+    -- 1.0 is "no effect", and requestCapacity already declines to ask for that, so this
+    -- one line switches the capacity half of the perk off
+    if not COOP.featureEnabled(COOP.F_ORGANIZATION) then return 1.0 end
     return COOPOrg.MULTIPLIER[COOPOrg.getLevel(_character)] or 1.0
 end
 
@@ -264,6 +267,7 @@ end
 
 function COOPOrg.applyTraits(_character, _level)
     if _character == nil then return end
+    if not COOP.featureEnabled(COOP.F_ORGANIZATION) then return end
 
     local ok, err = pcall(function()
         local traits = _character:getCharacterTraits()
