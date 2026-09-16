@@ -7,5 +7,15 @@
     "ContextMenu_BooksAtHome_UnmarkAll": "Зняти позначку з усіх (%1)",
     "ContextMenu_BooksAtHome_MarkContainer": "Позначити все як «вдома» (%1)",
     "ContextMenu_BooksAtHome_UnmarkContainer": "Зняти позначку з усього (%1)",
-    "ContextMenu_BooksAtHome_OpenList": "Відкрити список"
+    "ContextMenu_BooksAtHome_OpenList": "Відкрити список",
+    "ContextMenu_COOP_Mixer": "Бетонозмішувач",
+    "ContextMenu_COOP_Mixer_Open": "Відкрити",
+    "ContextMenu_COOP_Mixer_PickUp": "Підняти",
+    "ContextMenu_COOP_Mixer_PickUp_tt": "Спершу злийте воду та заберіть усе з барабана.",
+    "ContextMenu_COOP_Push": "Штовхати",
+    "ContextMenu_COOP_PushStop": "Перестати штовхати",
+    "ContextMenu_COOP_Clay": "Копати глину",
+    "ContextMenu_COOP_Clay_NoShovel": "Потрібна лопата.",
+    "ContextMenu_COOP_Clay_WaitDays": "Тут уже копали - лишилося приблизно %1 дн.",
+    "ContextMenu_COOP_Clay_WaitHours": "Тут уже копали - лишилося приблизно %1 год."
 }

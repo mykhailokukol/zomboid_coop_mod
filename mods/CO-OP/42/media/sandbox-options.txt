@@ -56,6 +56,22 @@ option COOP.HotbarStatus
     translation = COOP_HotbarStatus,
 }
 
+option COOP.ConcreteMixer
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_ConcreteMixer,
+}
+
+option COOP.PushVehicle
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_PushVehicle,
+}
+
 option COOP.PingDuration
 {
     type = integer,
@@ -94,6 +110,14 @@ option COOP.OrganizationXpRate
     translation = COOP_OrganizationXpRate,
 }
 
+option COOP.TodoChatLine
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_TodoChatLine,
+}
+
 option COOP.TodoMaxEntries
 {
     type = integer,
@@ -102,4 +126,72 @@ option COOP.TodoMaxEntries
     default = 200,
     page = COOP,
     translation = COOP_TodoMaxEntries,
+}
+
+option COOP.PushSpeedLight
+{
+    type = double,
+    min = 0.5,
+    max = 20.0,
+    default = 10.0,
+    page = COOP,
+    translation = COOP_PushSpeedLight,
+}
+
+option COOP.PushSpeedMedium
+{
+    type = double,
+    min = 0.5,
+    max = 20.0,
+    default = 7.0,
+    page = COOP,
+    translation = COOP_PushSpeedMedium,
+}
+
+option COOP.PushSpeedHeavy
+{
+    type = double,
+    min = 0.5,
+    max = 20.0,
+    default = 4.0,
+    page = COOP,
+    translation = COOP_PushSpeedHeavy,
+}
+
+option COOP.ClayDigging
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_ClayDigging,
+}
+
+option COOP.ClayCooldownDays
+{
+    type = double,
+    min = 0.0,
+    max = 60.0,
+    default = 7.0,
+    page = COOP,
+    translation = COOP_ClayCooldownDays,
+}
+
+option COOP.ClayDigXp
+{
+    type = double,
+    min = 0.0,
+    max = 200.0,
+    default = 10.0,
+    page = COOP,
+    translation = COOP_ClayDigXp,
+}
+
+option COOP.ClayYieldRate
+{
+    type = double,
+    min = 0.1,
+    max = 5.0,
+    default = 1.0,
+    page = COOP,
+    translation = COOP_ClayYieldRate,
 }

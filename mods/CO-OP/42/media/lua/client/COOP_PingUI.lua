@@ -133,35 +133,14 @@ local function detach(_ping)
     end
 end
 
--- ISChat only ever calls getTextWithPrefix() and getAuthor() on a message, and its one
--- other consumer (updateChatPrefixSettings, when the timestamp setting changes) calls
--- getTextWithPrefix() again - so a small Lua stand-in is enough. There is no Lua-side
--- way to build a real ChatMessage: its constructor wants a ChatBase, and ChatManager,
--- which owns showServerChatMessage, is not in LuaManager$Exposer's list at all.
+-- For when you were looking at your inventory. COOP.sayInChat carries the stand-in
+-- ChatMessage; the ping's own colour makes whose it is readable at a glance.
 local function sayInChat(_ping)
     if COOP.option("PingChatLine", true) == false then return end
 
-    pcall(function()
-        local chat = ISChat.instance
-        if chat == nil or chat.tabs == nil then return end
-
-        local hasMainTab = false
-        for _, tab in ipairs(chat.tabs) do
-            if tab ~= nil and tab.tabID == 1 then hasMainTab = true; break end
-        end
-        if not hasMainTab then return end
-
-        local kind = getText(KIND_TEXT[_ping.kind] or KIND_TEXT[COOPPing.SPOT])
-        local text = string.format("<RGB:%.2f,%.2f,%.2f> ", _ping.r, _ping.g, _ping.b)
-                .. getText("UI_COOP_Ping_Chat", _ping.by, kind, _ping.x, _ping.y)
-
-        local message = {}
-        function message:getTextWithPrefix() return text end
-        function message:getAuthor() return nil end
-        function message:setText(_newText) end
-
-        ISChat.addLineInChat(message, 1)
-    end)
+    local kind = getText(KIND_TEXT[_ping.kind] or KIND_TEXT[COOPPing.SPOT])
+    COOP.sayInChat(getText("UI_COOP_Ping_Chat", _ping.by, kind, _ping.x, _ping.y),
+            _ping.r, _ping.g, _ping.b)
 end
 
 function COOPPing.show(_x, _y, _z, _kind, _by)

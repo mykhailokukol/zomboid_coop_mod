@@ -7,5 +7,15 @@
     "ContextMenu_BooksAtHome_UnmarkAll": "Unmark all %1",
     "ContextMenu_BooksAtHome_MarkContainer": "Mark all as at home (%1)",
     "ContextMenu_BooksAtHome_UnmarkContainer": "Unmark all (%1)",
-    "ContextMenu_BooksAtHome_OpenList": "Open the list"
+    "ContextMenu_BooksAtHome_OpenList": "Open the list",
+    "ContextMenu_COOP_Mixer": "Concrete mixer",
+    "ContextMenu_COOP_Mixer_Open": "Open",
+    "ContextMenu_COOP_Mixer_PickUp": "Pick up",
+    "ContextMenu_COOP_Mixer_PickUp_tt": "Empty the drum of water and everything in it first.",
+    "ContextMenu_COOP_Push": "Push",
+    "ContextMenu_COOP_PushStop": "Stop pushing",
+    "ContextMenu_COOP_Clay": "Dig for clay",
+    "ContextMenu_COOP_Clay_NoShovel": "You need a shovel.",
+    "ContextMenu_COOP_Clay_WaitDays": "Dug out already - about %1 days left",
+    "ContextMenu_COOP_Clay_WaitHours": "Dug out already - about %1 hours left"
 }
