@@ -194,8 +194,30 @@ function COOPClay.isWaterSquare(_square)
     return ok and wet == true
 end
 
+-- Open water proper, as opposed to the wet edge of it.
+--
+-- This is the distinction the first version of the shore test missed. Only four vanilla
+-- tiles carry IsoFlagType.water - blends_natural_02_0, _5, _6 and _7, the open surface
+-- you cannot stand on. The shoreline blends around them carry FloorMaterial = Water and
+-- no flag, and those are the wet sand and mud you walk on at the edge of a river: the
+-- brown strip between the grass and the water. Somewhere you very much can put a shovel.
+function COOPClay.isDeepWater(_square)
+    if _square == nil then return false end
+
+    local ok, deep = pcall(function()
+        local floor = _square:getFloor()
+        return floor ~= nil and floor:hasProperty(IsoFlagType.water)
+    end)
+    return ok and deep == true
+end
+
 -- A square you could stand on at the edge of the water: it has a floor, that floor is
--- not part of the water surface, and nothing solid is in the way.
+-- not the open water surface, and nothing solid is in the way.
+--
+-- Note what this deliberately allows: the wet shoreline blends. They answer true to
+-- isWaterSquare, because that is the FloorMaterial test, and rejecting everything it
+-- calls water - which is what this function used to do - threw away the bank itself and
+-- left the option appearing only on the dry ground a step further back, if at all.
 function COOPClay.isShoreSquare(_square)
     if _square == nil then return false end
 
@@ -206,7 +228,7 @@ function COOPClay.isShoreSquare(_square)
     end)
     if not ok or shore ~= true then return false end
 
-    return not COOPClay.isWaterSquare(_square)
+    return not COOPClay.isDeepWater(_square)
 end
 
 -- Open water within `_reach` tiles of a shore square. At the default reach of 1 this is
@@ -216,6 +238,10 @@ end
 function COOPClay.hasWaterNear(_square, _reach)
     if _square == nil then return false end
     if not COOPClay.isShoreSquare(_square) then return false end
+
+    -- A square that is itself one of the wet shoreline blends is not *near* the water,
+    -- it is the water's edge, so there is nothing further to look for.
+    if COOPClay.isWaterSquare(_square) then return true end
 
     local reach = _reach or COOPClay.WATER_REACH
 
