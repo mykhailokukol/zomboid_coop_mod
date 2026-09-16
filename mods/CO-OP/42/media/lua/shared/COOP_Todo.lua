@@ -31,6 +31,27 @@ COOPTodo.CMD_EDIT = "todoEdit"
 COOPTodo.CMD_TOGGLE = "todoToggle"
 COOPTodo.CMD_REMOVE = "todoRemove"
 COOPTodo.CMD_CLEAR_DONE = "todoClearDone"
+COOPTodo.CMD_NOTICE = "todoNotice"
+
+-- What a notice is about. The delta that carries the state change stays a pure state
+-- message; this is the human-readable half, sent once per thing a player did rather
+-- than once per entry, so clearing ten finished lines is one line in chat and not ten.
+COOPTodo.ACT_ADD = "add"
+COOPTodo.ACT_EDIT = "edit"
+COOPTodo.ACT_DONE = "done"
+COOPTodo.ACT_UNDONE = "undone"
+COOPTodo.ACT_REMOVE = "remove"
+COOPTodo.ACT_CLEAR = "clear"
+
+-- The chat wording for each, by action.
+COOPTodo.ACT_TEXT = {
+    [COOPTodo.ACT_ADD] = "UI_COOP_Todo_Chat_Added",
+    [COOPTodo.ACT_EDIT] = "UI_COOP_Todo_Chat_Edited",
+    [COOPTodo.ACT_DONE] = "UI_COOP_Todo_Chat_Done",
+    [COOPTodo.ACT_UNDONE] = "UI_COOP_Todo_Chat_Undone",
+    [COOPTodo.ACT_REMOVE] = "UI_COOP_Todo_Chat_Removed",
+    [COOPTodo.ACT_CLEAR] = "UI_COOP_Todo_Chat_Cleared",
+}
 
 -- Trims a line to something safe to store and draw: no control characters, no runaway
 -- length, and nil when nothing readable is left.

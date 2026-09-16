@@ -117,6 +117,42 @@ function COOPTodoState.clearDone()
     request(COOPTodo.CMD_CLEAR_DONE, {})
 end
 
+-- One line in chat per change somebody else made. A shared list nobody looks at is a
+-- list nobody uses, and the window is behind a key. Your own changes are skipped: you
+-- are looking at the list you just edited.
+--
+-- Trimmed harder than the stored text, which can run to TEXT_MAX and would push the
+-- rest of the chat line out of view.
+local CHAT_TEXT_MAX = 60
+
+local function announce(_args)
+    if _args == nil or _args.action == nil then return end
+    if not COOP.featureEnabled(COOP.F_TODO) then return end
+    if COOP.option("TodoChatLine", true) == false then return end
+
+    local by = tostring(_args.by or "?")
+    if by == COOP.playerName(getPlayer()) then return end
+
+    local key = COOPTodo.ACT_TEXT[_args.action]
+    if key == nil then return end
+
+    local what = _args.text
+    if what ~= nil then
+        what = tostring(what)
+        if #what > CHAT_TEXT_MAX then what = string.sub(what, 1, CHAT_TEXT_MAX) .. "..." end
+    else
+        what = tostring(_args.count or 0)
+    end
+
+    -- the same colour this player's pings use, so a name reads the same wherever it
+    -- shows. Not required: the line is readable in the chat's own colour without it.
+    local r, g, b
+    if COOPPing ~= nil and COOPPing.colourFor ~= nil then
+        r, g, b = COOPPing.colourFor(by)
+    end
+    COOP.sayInChat(getText(key, by, what), r, g, b)
+end
+
 local function onServerCommand(_module, _command, _args)
     if _module ~= COOPTodo.MODULE then return end
 
@@ -133,6 +169,8 @@ local function onServerCommand(_module, _command, _args)
             cache[_args.id] = _args.entry
         end
         bump()
+    elseif _command == COOPTodo.CMD_NOTICE then
+        announce(_args)
     end
 end
 

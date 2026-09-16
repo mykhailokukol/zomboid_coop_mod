@@ -517,7 +517,8 @@ local function install()
     end) or any
 
     -- The parameter names below are NOT the mod's usual _underscore style on purpose,
-    -- and they must keep matching the vanilla ones exactly. In multiplayer the engine
+    -- and they must keep matching the vanilla ones exactly, per class - the two vehicle
+    -- actions do not even use the same name for the work time. In multiplayer the engine
     -- ships a timed action to the server by reflecting over the class's `new`:
     -- NetTimedAction.set() takes new's Prototype, walks locvars[0..numParams-1], and for
     -- each parameter name rawgets a field of that name off the action instance. Vanilla
@@ -526,6 +527,12 @@ local function install()
     -- null, the server rebuilt the action as ISUninstallVehiclePart:new(nil, nil, nil),
     -- its complete() printed "no such vehicle id= nil", the transaction was rejected and
     -- the client force-stopped the action a moment after it started.
+    --
+    -- Getting only the last name wrong fails later and much more quietly: with
+    -- ISTakeEngineParts:new's fourth parameter renamed from maxTimeInit to workTime the
+    -- server rebuilt the action with maxTime = nil, so its getDuration() answered nil,
+    -- the server side never completed and the client played the whole 300-tick animation
+    -- and then did nothing at all - no items, no error in either log.
     any = hook(ISUninstallVehiclePart, "new", "uninstallNew", function(_original)
         return function(self, character, part, workTime)
             return COOPOutput.stampAction(_original(self, character, part, workTime))
@@ -533,8 +540,8 @@ local function install()
     end) or any
 
     any = hook(ISTakeEngineParts, "new", "takeEnginePartsNew", function(_original)
-        return function(self, character, part, item, workTime)
-            return COOPOutput.stampAction(_original(self, character, part, item, workTime))
+        return function(self, character, part, item, maxTimeInit)
+            return COOPOutput.stampAction(_original(self, character, part, item, maxTimeInit))
         end
     end) or any
 

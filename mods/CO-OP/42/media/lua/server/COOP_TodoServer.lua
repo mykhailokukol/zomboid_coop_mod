@@ -30,6 +30,20 @@ local function broadcast(_id, _entry)
     })
 end
 
+-- Tells everyone what somebody just did, so a shared list is noticed without opening
+-- it. One notice per action, not per entry. The text travels with it because a removal
+-- leaves nothing in the state for the receiving client to name - and the name is the
+-- server's, never the client's, exactly as it is for pings.
+local function notify(_playerObj, _action, _text, _count)
+    if not isServer() then return end
+    sendServerCommand(COOPTodo.MODULE, COOPTodo.CMD_NOTICE, {
+        action = _action,
+        by = COOP.playerName(_playerObj),
+        text = _text,
+        count = _count,
+    })
+end
+
 -- Allows a burst (ticking several lines off at once) but not a flood.
 local function rateLimited(_playerObj)
     local key = COOP.playerName(_playerObj)
@@ -80,6 +94,7 @@ function COOPTodoServer.add(_playerObj, _text)
     data.entries[id] = entry
 
     broadcast(id, entry)
+    notify(_playerObj, COOPTodo.ACT_ADD, text)
     COOP.log(entry.by .. " added to-do #" .. id .. ": " .. text)
     return true
 end
@@ -96,6 +111,7 @@ function COOPTodoServer.edit(_playerObj, _id, _text)
 
     entry.text = text
     broadcast(id, entry)
+    notify(_playerObj, COOPTodo.ACT_EDIT, text)
     return true
 end
 
@@ -122,6 +138,7 @@ function COOPTodoServer.setDone(_playerObj, _id, _done)
     end
 
     broadcast(id, entry)
+    notify(_playerObj, done and COOPTodo.ACT_DONE or COOPTodo.ACT_UNDONE, entry.text)
     return true
 end
 
@@ -130,11 +147,13 @@ function COOPTodoServer.remove(_playerObj, _id)
     if id == nil then return false end
 
     local data = ensureData()
-    if data.entries[id] == nil then return false end
+    local entry = data.entries[id]
+    if entry == nil then return false end
     if rateLimited(_playerObj) then return false end
 
     data.entries[id] = nil
     broadcast(id, nil)
+    notify(_playerObj, COOPTodo.ACT_REMOVE, entry.text)
     COOP.log(COOP.playerName(_playerObj) .. " removed to-do #" .. id)
     return true
 end
@@ -153,6 +172,7 @@ function COOPTodoServer.clearDone(_playerObj)
         data.entries[id] = nil
         broadcast(id, nil)
     end
+    notify(_playerObj, COOPTodo.ACT_CLEAR, nil, #removed)
 
     COOP.log(COOP.playerName(_playerObj) .. " cleared " .. #removed .. " finished to-do lines")
     return true

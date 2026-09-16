@@ -45,6 +45,55 @@ function COOP.worldAgeHours()
 end
 
 -- ---------------------------------------------------------------------------
+-- chat
+-- ---------------------------------------------------------------------------
+
+-- Writes one line into the player's own chat window. Local to this client: nothing is
+-- sent anywhere, the caller has already received whatever it is announcing.
+--
+-- There is no Lua-side way to build a real ChatMessage - its constructor wants a
+-- ChatBase, and ChatManager, which owns showServerChatMessage, is not in
+-- LuaManager$Exposer's list at all. But ISChat only ever calls getTextWithPrefix() and
+-- getAuthor() on a message, and its one other consumer (updateChatPrefixSettings, when
+-- the timestamp setting changes) calls getTextWithPrefix() again - so a small Lua
+-- stand-in is enough.
+--
+-- _r/_g/_b are optional and colour the whole line.
+function COOP.sayInChat(_text, _r, _g, _b)
+    if _text == nil then return false end
+
+    local ok, sent = pcall(function()
+        if ISChat == nil then return false end
+
+        local chat = ISChat.instance
+        if chat == nil or chat.tabs == nil then return false end
+
+        -- The main tab has to exist: addLineInChat drops the message otherwise, and on a
+        -- server with the general channel off there is nowhere to put it.
+        local hasMainTab = false
+        for _, tab in ipairs(chat.tabs) do
+            if tab ~= nil and tab.tabID == 1 then hasMainTab = true; break end
+        end
+        if not hasMainTab then return false end
+
+        local text = tostring(_text)
+        if _r ~= nil and _g ~= nil and _b ~= nil then
+            text = string.format("<RGB:%.2f,%.2f,%.2f> ", _r, _g, _b) .. text
+        end
+
+        local message = {}
+        function message:getTextWithPrefix() return text end
+        function message:getAuthor() return nil end
+        function message:setText(_newText) end
+
+        ISChat.addLineInChat(message, 1)
+        return true
+    end)
+
+    return ok and sent == true
+end
+
+-- ---------------------------------------------------------------------------
 -- sandbox options
 --
 -- Everything tunable lives in media/sandbox-options.txt under the COOP namespace, so a
@@ -64,6 +113,9 @@ COOP.F_ORGANIZATION = "Organization"
 COOP.F_PINGS = "Pings"
 COOP.F_TODO = "Todo"
 COOP.F_HOTBAR = "HotbarStatus"
+COOP.F_MIXER = "ConcreteMixer"
+COOP.F_PUSH = "PushVehicle"
+COOP.F_CLAY = "ClayDigging"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	CO-OP - the pose a character holds while pushing a vehicle.
+
+	setActionAnim("COOPPushVehicle") writes that string into the character's
+	PerformingAction variable; this node is the one whose condition matches it, and it
+	plays Bob_Shove - the bare-handed shove the melee system uses on a zombie.
+
+	The design asked for that animation held rather than played through. There is no way
+	to seek an animation to a frame from Lua, and a speed scale of zero would freeze it
+	on frame one, which is a plain standing pose because Bob_Shove starts from idle. So
+	it is slowed to a crawl and looped instead: the arms are out and on the bodywork for
+	most of the cycle, which is the held shove the design was after, and the slow drift
+	reads as effort rather than as a stuck animation.
+
+	media/AnimSets is resolved across the game and every active mod
+	(AnimationSet.Load -> ZomboidFileSystem.resolveAllDirectories -> walkGameAndModFiles),
+	so this file does not override anything - it adds one node next to the vanilla ones.
+-->
+<animNode>
+	<m_Name>COOPPushVehicle</m_Name>
+	<m_AnimName>Bob_Shove</m_AnimName>
+	<m_Looped>true</m_Looped>
+	<m_BlendTime>0.30</m_BlendTime>
+	<m_SpeedScale>0.12</m_SpeedScale>
+	<m_SyncTrackingEnabled>false</m_SyncTrackingEnabled>
+	<m_Conditions x_name="c00p0001-9b41-4f2a-a5d7-0c0f5ee17a10">
+		<m_Name>PerformingAction</m_Name>
+		<m_Type>STRING</m_Type>
+		<m_Value>COOPPushVehicle</m_Value>
+	</m_Conditions>
+</animNode>
