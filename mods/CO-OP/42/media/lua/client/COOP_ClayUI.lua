@@ -126,7 +126,7 @@ end
 -- shipped to the server and rebuilt there by reflecting over the parameter names of its
 -- `new`, and would then run its `complete` on both sides - which for us would mean two
 -- lots of clay for one hole. The work is in `perform` and the request goes over the
--- command channel, exactly as COOPMixerAction and the push action do.
+-- command channel, exactly as the push action does.
 -- ---------------------------------------------------------------------------
 
 COOPClayAction = ISBaseTimedAction:derive("COOPClayAction")
