@@ -203,3 +203,11 @@ option COOP.RecipeInfo
     page = COOP,
     translation = COOP_RecipeInfo,
 }
+
+option COOP.BatchCraft
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_BatchCraft,
+}

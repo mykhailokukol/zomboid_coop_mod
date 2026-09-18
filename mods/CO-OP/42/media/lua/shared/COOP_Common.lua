@@ -117,6 +117,7 @@ COOP.F_MIXER = "ConcreteMixer"
 COOP.F_PUSH = "PushVehicle"
 COOP.F_CLAY = "ClayDigging"
 COOP.F_RECIPEINFO = "RecipeInfo"
+COOP.F_BATCHCRAFT = "BatchCraft"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()
