@@ -79,5 +79,8 @@
     "UI_COOP_Push_Exhausted": "Слишком вымотан, чтобы толкать.",
     "UI_COOP_Clay_Dug": "Выкопано глины: %1.",
     "UI_COOP_Clay_Nothing": "Здесь только земля.",
-    "UI_COOP_Clay_Refused": "Здесь уже выкопали глину."
+    "UI_COOP_Clay_Refused": "Здесь уже выкопали глину.",
+    "UI_COOP_Cart_NoClimb": "Не с прицепленной тележкой.",
+    "UI_COOP_Cart_NoVehicle": "Сначала отцепите тележку.",
+    "UI_COOP_Cart_NoCarry": "Тележку можно только тянуть или поставить."
 }

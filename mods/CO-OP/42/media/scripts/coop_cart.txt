@@ -1,0 +1,79 @@
+module COOP
+{
+    imports
+    {
+        Base
+    }
+
+    /* The cart. A bag in every way the engine cares about - it is worn, and its body
+       is an ordinary item container - which is what makes it free of collision,
+       usable indoors and visible to other players without any syncing of our own.
+       Everything that makes it a cart rather than a bag (it never goes into the hands
+       or the main inventory, it slows you by what it carries, it will not go over a
+       fence) is in COOP_Cart.lua / COOP_CartUI.lua.
+
+       CanBeEquipped = coop:cart is a body location of its own, registered in
+       media/registries.lua, so a cart and a backpack can be worn together.
+
+       ClothingItem = Belt borrows vanilla's invisible clothing (no model, empty
+       texture). A worn item without one has no ItemVisual, and the server's
+       SyncClothing packet dies on it with a NullPointerException - the wear then never
+       reaches the client. What is drawn behind the player is the attached model, not
+       this.
+
+       Capacity 50 is the engine's ceiling for any container inside an item
+       (ItemContainer.getCapacity clamps it in Java), so it is also the most the
+       Organization skill could ever make of it - the skill leaves carts alone.
+       Parked, the load also counts against the 50 kg a floor square takes.
+
+       Weight 0: the cart itself weighs nothing, worn or parked, so all 50 kg of a
+       square are left for the load. WeightReduction 100: the puller carries none of
+       what is inside - it only slows them down (COOPCart.speedFactor).
+
+       RunSpeedModifier stays at 1: the vanilla bag slowdown punishes an empty bag
+       nearly as hard as a full one. The cart's slowdown follows the load instead,
+       through the COOPCart* animation nodes. */
+    item Cart
+    {
+        DisplayCategory = Bag,
+        ItemType = base:container,
+        DisplayName = Cart,
+        Weight = 0.0,
+        Capacity = 50,
+        WeightReduction = 100,
+        CanBeEquipped = coop:cart,
+        ClothingItem = Belt,
+        CanHaveHoles = false,
+        Icon = COOPCart,
+        StaticModel = COOPCartAttached,
+        WorldStaticModel = COOPCartWorld,
+        EquipSound = EquipBackpackLarge,
+        OpenSound = OpenBag,
+        CloseSound = CloseBag,
+        PutInSound = PutItemInBag,
+        RunSpeedModifier = 1.0,
+        Tooltip = Tooltip_COOP_Cart,
+    }
+
+    /* The vanilla utility trailer with two vanilla vehicle wheels under its fenders,
+       merged into one mesh (media/models_X/COOPCart.glb) with one texture
+       (media/textures/COOPCart_Tex.png) by tools/cart_model/build.py - an item gets one
+       mesh and one texture, and the trailer's own mesh has no wheels, vehicles draw
+       those separately. Units are centimetres with the bottom of the wheels at 0, so
+       a parked cart stands on the floor; 0.011 shrinks the trailer to a hand cart. */
+    model COOPCartWorld
+    {
+        mesh = COOPCart,
+        texture = COOPCart_Tex,
+        scale = 0.011,
+    }
+
+    /* The same mesh when it is being pulled. The position behind the player is the
+       coop_cart attachment COOP_CartUI adds to the body models, not this script. */
+    model COOPCartAttached
+    {
+        mesh = COOPCart,
+        texture = COOPCart_Tex,
+        scale = 0.011,
+    }
+}

@@ -115,6 +115,7 @@ COOP.F_TODO = "Todo"
 COOP.F_HOTBAR = "HotbarStatus"
 COOP.F_PUSH = "PushVehicle"
 COOP.F_CLAY = "ClayDigging"
+COOP.F_CART = "Cart"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()

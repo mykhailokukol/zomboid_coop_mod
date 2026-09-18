@@ -187,3 +187,11 @@ option COOP.ClayYieldRate
     page = COOP,
     translation = COOP_ClayYieldRate,
 }
+
+option COOP.Cart
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Cart,
+}

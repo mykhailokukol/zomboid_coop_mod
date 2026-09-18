@@ -41,5 +41,7 @@
     "Sandbox_COOP_ClayDigXp": "Clay: pottery XP per dig",
     "Sandbox_COOP_ClayDigXp_tooltip": "Pottery XP for one dig that finds clay.",
     "Sandbox_COOP_ClayYieldRate": "Clay: amount multiplier",
-    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level."
+    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level.",
+    "Sandbox_COOP_Cart": "Cart",
+    "Sandbox_COOP_Cart_tooltip": "A cart built out of planks, nails and two tires: pulled behind you like a bag, parked on the ground like any container."
 }

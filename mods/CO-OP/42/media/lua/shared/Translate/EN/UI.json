@@ -79,5 +79,8 @@
     "UI_COOP_Push_Exhausted": "Too exhausted to push.",
     "UI_COOP_Clay_Dug": "Dug up %1 clay.",
     "UI_COOP_Clay_Nothing": "Nothing but soil here.",
-    "UI_COOP_Clay_Refused": "The ground here has already been dug out."
+    "UI_COOP_Clay_Refused": "The ground here has already been dug out.",
+    "UI_COOP_Cart_NoClimb": "Not with a cart attached.",
+    "UI_COOP_Cart_NoVehicle": "Detach the cart first.",
+    "UI_COOP_Cart_NoCarry": "A cart can only be pulled or parked."
 }

@@ -79,5 +79,8 @@
     "UI_COOP_Push_Exhausted": "Надто виснажений, щоб штовхати.",
     "UI_COOP_Clay_Dug": "Викопано глини: %1.",
     "UI_COOP_Clay_Nothing": "Тут лише земля.",
-    "UI_COOP_Clay_Refused": "Тут уже викопали глину."
+    "UI_COOP_Clay_Refused": "Тут уже викопали глину.",
+    "UI_COOP_Cart_NoClimb": "Не з причепленим візком.",
+    "UI_COOP_Cart_NoVehicle": "Спершу відчепіть візок.",
+    "UI_COOP_Cart_NoCarry": "Візок можна лише тягнути або поставити."
 }

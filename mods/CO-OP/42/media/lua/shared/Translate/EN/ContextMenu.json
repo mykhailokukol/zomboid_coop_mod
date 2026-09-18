@@ -13,5 +13,10 @@
     "ContextMenu_COOP_Clay": "Dig for clay",
     "ContextMenu_COOP_Clay_NoShovel": "You need a shovel.",
     "ContextMenu_COOP_Clay_WaitDays": "Dug out already - about %1 days left",
-    "ContextMenu_COOP_Clay_WaitHours": "Dug out already - about %1 hours left"
+    "ContextMenu_COOP_Clay_WaitHours": "Dug out already - about %1 hours left",
+    "ContextMenu_COOP_Cart_Attach": "Attach cart",
+    "ContextMenu_COOP_Cart_Detach": "Detach cart",
+    "ContextMenu_COOP_Cart_AlreadyPulling": "You are already pulling a cart.",
+    "ContextMenu_COOP_Cart_NotParked": "The cart has to be on the ground.",
+    "ContextMenu_COOP_Cart_InVehicle": "Get out of the vehicle first."
 }

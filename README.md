@@ -3,7 +3,8 @@
 Co-op tools for a shared base: a shared checklist of skill books, magazines and VHS
 tapes, map marks shared automatically, pings everyone can see, a shared to-do list, a
 choice of where crafted and removed items land, an Organization skill that makes
-containers hold more, and wear colours behind the hotbar.
+containers hold more, a cart to pull loads home, and wear colours behind the
+hotbar.
 
 Every feature has its own on/off switch in the sandbox options, so you can take only
 the parts you want.
@@ -52,6 +53,15 @@ the parts you want.
   and gives you one to eleven lumps of clay depending on your Pottery, plus 10
   Pottery XP. A patch of bank you have dug gives nothing for a week, and everyone on
   the server shares that: two people cannot work the same spot twice.
+- **Cart** — build one out of 5 planks, 10 nails and two tires of the same
+  kind (Carpentry 5, Mechanics 1, with a hammer, a saw and a lug wrench). Right-click it
+  on the ground and **Attach cart**: it takes a slot of its own, so your backpack stays
+  on, and rolls along behind you, where everyone can see it. It weighs nothing itself
+  and holds 50 kg, none of which you carry — but every 20 kg inside slows you down by 15%. While it is attached you
+  cannot climb fences or windows or get into a car; **Detach cart** parks it where you
+  stand, and anyone can open it there. A cart is never carried in your hands or your
+  bags. Parked, the load still counts towards the 50 kg the game allows on one tile of
+  floor, so park it where nothing else is lying.
 - **Hotbar condition colours** — a hotbar slot holding a worn item gets its background
   split into a coloured column per state the item has: condition, head and sharpness,
   green above 75%, yellow down to 25%, red below. An item in good shape draws nothing,
@@ -195,6 +205,14 @@ are simply ignored once the mod is gone.
   шум — і дає від однієї до одинадцяти грудок глини залежно від гончарства, а також
   10 одиниць досвіду гончарства. Викопана ділянка берега тиждень нічого не дає, і це
   спільне для всього сервера: двоє не викопають одне й те саме місце двічі.
+- **Візок** — збирається з 5 дощок, 10 цвяхів і двох однакових шин (Теслярство 5,
+  Механіка 1, потрібні молоток, пила й балонний ключ). ПКМ по візку на землі →
+  **Причепити візок**: у нього власний слот, тож рюкзак лишається на спині, а візок
+  котиться позаду, і його бачать усі. Сам нічого не важить, вміщує 50 кг, і вантаж ви
+  не несете — зате кожні 20 кг вантажу сповільнюють на 15%. Поки візок причеплений, не можна лізти через паркани й вікна та
+  сідати в машину; **Відчепити візок** ставить його там, де ви стоїте, і тоді відкрити
+  його може будь-хто. У руках чи в сумці візок не носять. На землі вантаж рахується до
+  50 кг, які гра дозволяє на одну клітинку підлоги, тож ставте його там, де нічого не лежить.
 - **Смуги стану на панелі швидкого доступу** — комірка з надягнутим предметом ділить тло
   на кольорові смуги, по одній на кожен стан предмета: міцність, стан голівки та
   гострота, зелений понад 75%, жовтий до 25%, нижче червоний. Справний предмет не малює
@@ -339,6 +357,14 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
   и даёт от одной до одиннадцати горстей глины в зависимости от гончарного дела, плюс
   10 единиц опыта гончарного дела. Выкопанный участок берега неделю ничего не даёт, и
   это общее для всего сервера: двое не выкопают одно и то же место дважды.
+- **Тележка** — собирается из 5 досок, 10 гвоздей и двух одинаковых шин
+  (Плотничество 5, Механика 1, нужны молоток, пила и баллонный ключ). ПКМ по тележке на
+  земле → **Прицепить тележку**: у неё свой слот, так что рюкзак остаётся на спине, а
+  тележка катится сзади, и её видят все. Сама ничего не весит, вмещает 50 кг, и груз вы
+  не несёте — зато каждые 20 кг груза замедляют на 15%. Пока тележка прицеплена, нельзя лезть через заборы и окна и садиться в
+  машину; **Отцепить тележку** ставит её там, где вы стоите, и тогда открыть её может
+  кто угодно. В руках или в сумке тележку не носят. На земле груз считается в те 50 кг,
+  которые игра разрешает на одну клетку пола, так что ставьте её там, где ничего не лежит.
 - **Полосы состояния на панели быстрого доступа** — ячейка с надетым предметом делит фон
   на цветные полосы, по одной на каждое состояние предмета: прочность, состояние головки
   и заточка, зелёный выше 75%, жёлтый до 25%, ниже красный. Исправный предмет не рисует

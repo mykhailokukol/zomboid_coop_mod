@@ -339,6 +339,11 @@ end
 -- multiplies again on every open, which is how a level 6 crate grew past 200%.
 function COOPOrg.wantedCapacity(_container, _multiplier)
     if _container == nil or _multiplier == nil then return nil, nil end
+    -- a cart already holds the most any item container can (see COOP_Cart.lua)
+    if COOPCart ~= nil and COOPCart.isCartContainer(_container) then
+        COOPCart.trace("organization: left the cart's capacity alone (%s)", tostring(_container:getCapacity()))
+        return nil, nil
+    end
 
     local ok, wanted, base = pcall(function()
         local recorded = COOPOrg.getBaseCapacity(_container)

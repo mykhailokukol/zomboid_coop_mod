@@ -13,5 +13,10 @@
     "ContextMenu_COOP_Clay": "Копати глину",
     "ContextMenu_COOP_Clay_NoShovel": "Потрібна лопата.",
     "ContextMenu_COOP_Clay_WaitDays": "Тут уже копали - лишилося приблизно %1 дн.",
-    "ContextMenu_COOP_Clay_WaitHours": "Тут уже копали - лишилося приблизно %1 год."
+    "ContextMenu_COOP_Clay_WaitHours": "Тут уже копали - лишилося приблизно %1 год.",
+    "ContextMenu_COOP_Cart_Attach": "Причепити візок",
+    "ContextMenu_COOP_Cart_Detach": "Відчепити візок",
+    "ContextMenu_COOP_Cart_AlreadyPulling": "Ви вже тягнете візок.",
+    "ContextMenu_COOP_Cart_NotParked": "Візок має стояти на землі.",
+    "ContextMenu_COOP_Cart_InVehicle": "Спершу вийдіть з машини."
 }
