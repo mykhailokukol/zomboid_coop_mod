@@ -103,5 +103,9 @@
     "UI_COOP_Clay_Nothing": "Nothing but soil here.",
     "UI_COOP_Clay_Refused": "The ground here has already been dug out.",
     "UI_COOP_Mixer_NoDrum": "The drum is not usable",
-    "UI_COOP_Mixer_NoDrum_tt": "This mixer was in the world before the mod could give it a drum, and it could not be fixed up. Water still works."
+    "UI_COOP_Mixer_NoDrum_tt": "This mixer was in the world before the mod could give it a drum, and it could not be fixed up. Water still works.",
+    "UI_COOP_RecipeInfo_Xp": "XP",
+    "UI_COOP_RecipeInfo_OrOthers": "(or %1 more)",
+    "UI_COOP_RecipeInfo_TreeDamage": "Tree damage",
+    "UI_COOP_RecipeInfo_DoorDamage": "Door damage"
 }

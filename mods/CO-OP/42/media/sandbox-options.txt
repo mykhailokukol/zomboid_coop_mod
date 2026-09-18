@@ -195,3 +195,11 @@ option COOP.ClayYieldRate
     page = COOP,
     translation = COOP_ClayYieldRate,
 }
+
+option COOP.RecipeInfo
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_RecipeInfo,
+}

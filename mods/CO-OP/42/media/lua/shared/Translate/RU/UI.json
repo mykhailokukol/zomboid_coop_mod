@@ -103,5 +103,9 @@
     "UI_COOP_Clay_Nothing": "Здесь только земля.",
     "UI_COOP_Clay_Refused": "Здесь уже выкопали глину.",
     "UI_COOP_Mixer_NoDrum": "Барабан недоступен",
-    "UI_COOP_Mixer_NoDrum_tt": "Эта бетономешалка появилась в мире до того, как мод дал ей барабан, и починить её не удалось. Вода при этом работает."
+    "UI_COOP_Mixer_NoDrum_tt": "Эта бетономешалка появилась в мире до того, как мод дал ей барабан, и починить её не удалось. Вода при этом работает.",
+    "UI_COOP_RecipeInfo_Xp": "Опыт",
+    "UI_COOP_RecipeInfo_OrOthers": "(и ещё %1)",
+    "UI_COOP_RecipeInfo_TreeDamage": "Урон по деревьям",
+    "UI_COOP_RecipeInfo_DoorDamage": "Урон по дверям"
 }

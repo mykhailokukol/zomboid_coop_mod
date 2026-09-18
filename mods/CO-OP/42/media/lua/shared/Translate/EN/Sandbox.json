@@ -43,5 +43,7 @@
     "Sandbox_COOP_ClayDigXp": "Clay: pottery XP per dig",
     "Sandbox_COOP_ClayDigXp_tooltip": "Pottery XP for one dig that finds clay.",
     "Sandbox_COOP_ClayYieldRate": "Clay: amount multiplier",
-    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level."
+    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level.",
+    "Sandbox_COOP_RecipeInfo": "Crafting: show XP and item stats",
+    "Sandbox_COOP_RecipeInfo_tooltip": "Adds a row to the crafting window showing the XP a recipe awards and the stats of the item it will produce."
 }
