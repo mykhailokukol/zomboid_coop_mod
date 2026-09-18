@@ -26,8 +26,6 @@
     "Sandbox_COOP_TodoChatLine_tooltip": "Writes a line in chat when somebody else adds a line, ticks one off or removes one, so the shared list is noticed without opening it.",
     "Sandbox_COOP_TodoMaxEntries": "To-do list size limit",
     "Sandbox_COOP_TodoMaxEntries_tooltip": "How many lines the shared list will hold before it refuses new ones.",
-    "Sandbox_COOP_ConcreteMixer": "Concrete mixer",
-    "Sandbox_COOP_ConcreteMixer_tooltip": "Makes the concrete mixers standing around construction sites work: pick one up, fill it from the rain, store things in it and mix clay cement.",
     "Sandbox_COOP_PushVehicle": "Push a vehicle",
     "Sandbox_COOP_PushVehicle_tooltip": "The Push option in the vehicle radial menu, for rolling a car or a trailer by hand.",
     "Sandbox_COOP_PushSpeedLight": "Push speed, light vehicles (km/h)",

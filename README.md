@@ -3,7 +3,7 @@
 Co-op tools for a shared base: a shared checklist of skill books, magazines and VHS
 tapes, map marks shared automatically, pings everyone can see, a shared to-do list, a
 choice of where crafted and removed items land, an Organization skill that makes
-containers hold more, a working concrete mixer, and wear colours behind the hotbar.
+containers hold more, and wear colours behind the hotbar.
 
 Every feature has its own on/off switch in the sandbox options, so you can take only
 the parts you want.
@@ -40,10 +40,6 @@ the parts you want.
 - **Organization skill** — a skill from 0 to 10 replacing the Organized / Disorganized
   traits. It raises the capacity of containers you organise (permanently, for everyone)
   and how fast you move items. Trained by the weight you move through storage.
-- **Concrete mixer** — the mixer standing on building sites does nothing in the base
-  game. Now you can carry it home (30 kg, and only when it is empty), leave it in the
-  rain to fill, keep 30 kg of things in the drum, and mix clay cement out of what is
-  inside it — water, clay, a sandbag or a bundle of grass and a bucket — from one window.
 - **Push a vehicle** — stand at the front or the back of a car or a trailer, press
   **V** and pick **Push**. How fast it rolls depends on what it weighs — up to 10 km/h
   for a trailer or a small car, 7 for an ordinary one, 4 for a van or a truck — and you
@@ -141,7 +137,6 @@ if you switch it off later.
 | Open the to-do list | **[** (same section) |
 | Choose where items go | The drop-down under the **Craft** button, or under the part lists in the vehicle mechanics window |
 | Organization skill | In the character skills panel, under Crafting |
-| Use a concrete mixer | Right-click it → **Concrete mixer** → *Open* (or *Pick up*) |
 | Push a vehicle | Stand at its front or back → **V** → *Push*. **Esc** to let go |
 | Dig clay | Carry a shovel → right-click the ground within a tile of a river or lake → *Dig for clay* |
 | Turn a feature off | Sandbox options → **CO-OP** |
