@@ -103,5 +103,9 @@
     "UI_COOP_Clay_Nothing": "Тут лише земля.",
     "UI_COOP_Clay_Refused": "Тут уже викопали глину.",
     "UI_COOP_Mixer_NoDrum": "Барабан недоступний",
-    "UI_COOP_Mixer_NoDrum_tt": "Цей бетонозмішувач з'явився у світі до того, як мод дав йому барабан, і полагодити його не вдалося. Вода при цьому працює."
+    "UI_COOP_Mixer_NoDrum_tt": "Цей бетонозмішувач з'явився у світі до того, як мод дав йому барабан, і полагодити його не вдалося. Вода при цьому працює.",
+    "UI_COOP_RecipeInfo_Xp": "Досвід",
+    "UI_COOP_RecipeInfo_OrOthers": "(і ще %1)",
+    "UI_COOP_RecipeInfo_TreeDamage": "Шкода деревам",
+    "UI_COOP_RecipeInfo_DoorDamage": "Шкода дверям"
 }

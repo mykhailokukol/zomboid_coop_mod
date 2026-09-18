@@ -43,5 +43,9 @@
     "Sandbox_COOP_ClayDigXp": "Clay: pottery XP per dig",
     "Sandbox_COOP_ClayDigXp_tooltip": "Pottery XP for one dig that finds clay.",
     "Sandbox_COOP_ClayYieldRate": "Clay: amount multiplier",
-    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level."
+    "Sandbox_COOP_ClayYieldRate_tooltip": "Scales how much clay a dig gives. The base amount comes from your Pottery level.",
+    "Sandbox_COOP_RecipeInfo": "Crafting: show XP and item stats",
+    "Sandbox_COOP_RecipeInfo_tooltip": "Adds a row to the crafting window showing the XP a recipe awards and the stats of the item it will produce.",
+    "Sandbox_COOP_BatchCraft": "Crafting: batch clothing and bags",
+    "Sandbox_COOP_BatchCraft_tooltip": "Puts the quantity box back on recipes that make one thing at a time, chiefly tailoring. Repairs, filter swaps and anything that alters an item you already own are left alone."
 }
