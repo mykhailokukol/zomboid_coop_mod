@@ -111,6 +111,32 @@ on a dedicated server.
 5. Mods are remembered per save, so when you create or load a world, check
    **Choose Mods...** there too.
 
+### If you had the Steam Workshop version
+
+The mod used to be on the Workshop as *Coop Quality of Life*. That version is no longer
+updated, and it must go before you install this one: both are called `CO-OP`, the game
+loads only one of them, and it may well pick the old one - the new version then looks
+installed but none of its changes are there.
+
+1. Quit the game completely.
+2. In Steam, open the Workshop page of *Coop Quality of Life* and press
+   **Unsubscribe** (or Steam → Library → Project Zomboid → Workshop → *Coop Quality of
+   Life* → Unsubscribe).
+3. Delete the folder Steam may leave behind:
+   `C:\Program Files (x86)\Steam\steamapps\workshop\content\108600\3803601902`.
+4. If you ever uploaded the mod yourself, move `Zomboid/Workshop/CoopQoL` out of the
+   `Zomboid` folder: the game reads mods from there as well.
+5. On a hosted or dedicated server, empty the `WorkshopItems=` line in
+   `Zomboid/Server/<name>.ini` (keep `Mods=CO-OP`).
+6. Install as described above.
+
+Your world is safe: book marks, the to-do list and everything else live in the save,
+not in the mod folder, and the mod id has not changed.
+
+To check which copy the game loaded, open `Zomboid/console.txt` after the main menu
+appears: the `[CO-OP] ...` lines list the features that started, and
+`recipe info row installed` means it is the current version.
+
 ### Multiplayer
 
 Everyone needs the same folder — the mod is not on the Workshop, so it cannot download
@@ -162,8 +188,10 @@ if you switch it off later.
 
 ### Updating
 
-Replace the `CO-OP` folder with the new one and restart the game. On a server, restart
-the server too — it runs its own copy of the mod.
+Quit the game **to the desktop** - the mod's code is read when the game starts, so going
+back to the main menu is not enough - replace the `CO-OP` folder with the new one and
+start again. On a server, restart the server too: it runs its own copy of the mod. Every
+player needs the same version.
 
 ### Uninstalling
 
@@ -267,6 +295,32 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 5. Список модів зберігається для кожного світу окремо, тож під час створення або
    завантаження світу перевірте також **«Вибрати моди...»**.
 
+### Якщо у вас була версія зі Steam Workshop
+
+Раніше мод був у Workshop як *Coop Quality of Life*. Та версія більше не оновлюється, і
+її треба прибрати перед встановленням цієї: обидві називаються `CO-OP`, гра завантажує
+лише одну з них і цілком може обрати стару - тоді нова версія ніби встановлена, але
+жодних її змін у грі немає.
+
+1. Повністю вийдіть із гри.
+2. У Steam відкрийте сторінку *Coop Quality of Life* у Workshop і натисніть
+   **Відписатися** (або Steam → Бібліотека → Project Zomboid → Workshop → *Coop Quality
+   of Life* → Відписатися).
+3. Видаліть теку, яку Steam може залишити:
+   `C:\Program Files (x86)\Steam\steamapps\workshop\content\108600\3803601902`.
+4. Якщо ви колись самі завантажували мод у Workshop, перенесіть `Zomboid/Workshop/CoopQoL`
+   за межі теки `Zomboid`: гра читає моди і звідти.
+5. На своєму чи виділеному сервері очистьте рядок `WorkshopItems=` у
+   `Zomboid/Server/<назва>.ini` (`Mods=CO-OP` залиште).
+6. Встановіть мод, як описано вище.
+
+Світ не постраждає: позначки книг, список справ і все інше зберігаються у сейві, а не в
+теці мода, а ідентифікатор мода не змінився.
+
+Щоб перевірити, яку копію завантажила гра, відкрийте `Zomboid/console.txt`, коли
+з'явиться головне меню: рядки `[CO-OP] ...` перелічують функції, що запустилися, а
+`recipe info row installed` означає, що це поточна версія.
+
 ### Мультиплеєр
 
 Однакова тека потрібна всім — мода немає у Workshop, сам він не завантажиться, і без
@@ -318,8 +372,10 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 
 ### Оновлення
 
-Замініть теку `CO-OP` новою і перезапустіть гру. На сервері перезапустіть і сервер — він
-використовує власну копію мода.
+Вийдіть із гри **на робочий стіл** - код мода читається під час запуску гри, тож
+повернутися в головне меню недостатньо - замініть теку `CO-OP` новою і запустіть гру
+знову. На сервері перезапустіть і сервер: він використовує власну копію мода. Версія
+має бути однакова в усіх гравців.
 
 ### Видалення
 
@@ -422,6 +478,32 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 5. Список модов сохраняется для каждого мира отдельно, поэтому при создании или
    загрузке мира проверьте также **«Выбрать моды...»**.
 
+### Если у вас была версия из Steam Workshop
+
+Раньше мод был в Workshop как *Coop Quality of Life*. Та версия больше не обновляется, и
+её нужно убрать перед установкой этой: обе называются `CO-OP`, игра загружает только
+одну из них и вполне может выбрать старую - тогда новая версия вроде бы установлена, но
+никаких её изменений в игре нет.
+
+1. Полностью выйдите из игры.
+2. В Steam откройте страницу *Coop Quality of Life* в Workshop и нажмите
+   **Отписаться** (или Steam → Библиотека → Project Zomboid → Workshop → *Coop Quality
+   of Life* → Отписаться).
+3. Удалите папку, которую Steam может оставить:
+   `C:\Program Files (x86)\Steam\steamapps\workshop\content\108600\3803601902`.
+4. Если вы когда-то сами загружали мод в Workshop, перенесите `Zomboid/Workshop/CoopQoL`
+   за пределы папки `Zomboid`: игра читает моды и оттуда.
+5. На своём или выделенном сервере очистите строку `WorkshopItems=` в
+   `Zomboid/Server/<имя>.ini` (`Mods=CO-OP` оставьте).
+6. Установите мод, как описано выше.
+
+Мир не пострадает: отметки книг, список дел и всё остальное хранятся в сохранении, а не
+в папке мода, а идентификатор мода не изменился.
+
+Чтобы проверить, какую копию загрузила игра, откройте `Zomboid/console.txt`, когда
+появится главное меню: строки `[CO-OP] ...` перечисляют запустившиеся функции, а
+`recipe info row installed` значит, что это текущая версия.
+
 ### Мультиплеер
 
 Одинаковая папка нужна всем — мода нет в Workshop, сам он не скачается, и без него
@@ -473,8 +555,10 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 
 ### Обновление
 
-Замените папку `CO-OP` новой и перезапустите игру. На сервере перезапустите и сервер —
-он использует свою копию мода.
+Выйдите из игры **на рабочий стол** - код мода читается при запуске игры, поэтому
+вернуться в главное меню недостаточно - замените папку `CO-OP` новой и запустите игру
+снова. На сервере перезапустите и сервер: он использует свою копию мода. Версия должна
+быть одинаковой у всех игроков.
 
 ### Удаление
 
