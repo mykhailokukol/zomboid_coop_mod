@@ -1,0 +1,36 @@
+module COOP
+{
+    imports
+    {
+        Base
+    }
+
+    /* Building the cart.
+
+       IsExclusive on the tires is vanilla's "all of one kind" switch (the forge uses
+       it so a block is never half iron, half steel): the two wheels can be any tire,
+       but both the same one. */
+    craftRecipe MakeCOOPCart
+    {
+        timedAction = Making,
+        time = 400,
+        category = Carpentry,
+        Tags = AnySurfaceCraft;Carpentry,
+        SkillRequired = Woodwork:5;Mechanics:1,
+        xpAward = Woodwork:25;Mechanics:10,
+        Tooltip = Tooltip_COOP_Cart,
+        inputs
+        {
+            item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],
+            item 1 tags[base:saw;base:smallsaw;base:crudesaw] mode:keep flags[MayDegradeLight;Prop1],
+            item 1 tags[base:lugwrench] mode:keep,
+            item 5 [Base.Plank] flags[Prop2],
+            item 10 [Base.Nails],
+            item 2 [Base.OldTire1;Base.OldTire2;Base.OldTire3;Base.NormalTire1;Base.NormalTire2;Base.NormalTire3;Base.ModernTire1;Base.ModernTire2;Base.ModernTire3] flags[IsExclusive],
+        }
+        outputs
+        {
+            item 1 COOP.Cart,
+        }
+    }
+}

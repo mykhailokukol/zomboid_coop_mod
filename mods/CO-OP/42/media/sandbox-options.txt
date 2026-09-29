@@ -56,14 +56,6 @@ option COOP.HotbarStatus
     translation = COOP_HotbarStatus,
 }
 
-option COOP.ConcreteMixer
-{
-    type = boolean,
-    default = true,
-    page = COOP,
-    translation = COOP_ConcreteMixer,
-}
-
 option COOP.PushVehicle
 {
     type = boolean,
@@ -210,4 +202,12 @@ option COOP.BatchCraft
     default = true,
     page = COOP,
     translation = COOP_BatchCraft,
+}
+
+option COOP.Cart
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Cart,
 }

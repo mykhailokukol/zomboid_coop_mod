@@ -25,7 +25,7 @@ COOPClayServer = {}
 
 local writeBudget = {}
 
--- Same shape as the books, to-do and mixer lists: a burst is fine, a flood is not.
+-- Same shape as the books and to-do lists: a burst is fine, a flood is not.
 local function rateLimited(_playerObj)
     local key = COOP.playerName(_playerObj)
     local now = getTimestampMs()
@@ -158,8 +158,7 @@ function COOPClayServer.dig(_playerObj, _args, _action)
     local z = tonumber(_args.z)
     if x == nil or y == nil or z == nil then return 0, "where" end
 
-    -- Distance is checked here for the same reason the ping cooldown and the mixer's
-    -- reach are: a client must not be able to work a riverbank on the other side of the
+    -- Distance is checked here for the same reason the ping cooldown is: a client must not be able to work a riverbank on the other side of the
     -- map. One tile of slack over the client's own reach covers a player who took a step
     -- while the action finished.
     if math.abs(_playerObj:getX() - x) > COOPClay.REACH + 1

@@ -166,6 +166,7 @@ local function requestCapacity(_container, _character)
 
     local multiplier = COOPOrg.getMultiplier(_character)
     if multiplier <= 1.0 then return end
+    if COOPCart ~= nil and COOPCart.isCartContainer(_container) then return end
 
     local args = { multiplier = multiplier }
 

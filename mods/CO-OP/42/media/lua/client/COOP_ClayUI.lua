@@ -126,7 +126,7 @@ end
 -- shipped to the server and rebuilt there by reflecting over the parameter names of its
 -- `new`, and would then run its `complete` on both sides - which for us would mean two
 -- lots of clay for one hole. The work is in `perform` and the request goes over the
--- command channel, exactly as COOPMixerAction and the push action do.
+-- command channel, exactly as the push action does.
 -- ---------------------------------------------------------------------------
 
 COOPClayAction = ISBaseTimedAction:derive("COOPClayAction")
@@ -288,6 +288,12 @@ end
 
 local function onFillWorldObjectContextMenu(_playerNum, _context, _worldobjects, _test)
     if _test and ISWorldObjectContextMenu.Test then return true end
+
+    if COOPClay.debug and not _test then
+        COOP.log("clay: menu opened, feature " .. tostring(COOPClay.isEnabled())
+                .. ", objects clicked " .. tostring(#_worldobjects))
+    end
+
     if not COOPClay.isEnabled() then return end
 
     local player = getSpecificPlayer(_playerNum)
@@ -302,13 +308,39 @@ local function onFillWorldObjectContextMenu(_playerNum, _context, _worldobjects,
         local candidate = object:getSquare()
         if candidate ~= nil and not seen[candidate] then
             seen[candidate] = true
-            if withinReach(player, candidate, COOPClay.REACH)
-                    and COOPClay.canDigSquare(candidate) then
+            -- No distance test here, on purpose. Clicking the option walks the
+            -- player to the square first (onDig starts with walkAdj), exactly as
+            -- vanilla's own ground options do, so gating the menu on being close
+            -- already hid the option in the one case it was meant for: seeing a bank
+            -- from a few tiles away and going to dig it. The distance that matters is
+            -- checked twice where it can be trusted - the walk, then the server when
+            -- the dig is reported.
+            if COOPClay.canDigSquare(candidate) then
                 square = candidate
                 break
             end
         end
     end
+    -- Every test, for every square the click landed on, one line each. The option going
+    -- missing then has a single cause written down, which beats reasoning about it from
+    -- the outside.
+    if COOPClay.debug and not _test then
+        for candidate, _ in pairs(seen) do
+            local ok, line = pcall(function()
+                return string.format(
+                        "clay: %d,%d,%d reach=%s ground=%s deep=%s water=%s shore=%s near=%s",
+                        candidate:getX(), candidate:getY(), candidate:getZ(),
+                        tostring(withinReach(player, candidate, COOPClay.REACH)),
+                        tostring(COOPClay.isDiggableGround(candidate)),
+                        tostring(COOPClay.isDeepWater(candidate)),
+                        tostring(COOPClay.isWaterSquare(candidate)),
+                        tostring(COOPClay.isShoreSquare(candidate)),
+                        tostring(COOPClay.hasWaterNear(candidate, COOPClay.WATER_REACH)))
+            end)
+            COOP.log(ok and line or ("clay: could not report a square: " .. tostring(line)))
+        end
+    end
+
     if square == nil then return end
 
     if _test then return ISWorldObjectContextMenu.setTest() end

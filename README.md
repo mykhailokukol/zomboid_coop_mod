@@ -3,7 +3,8 @@
 Co-op tools for a shared base: a shared checklist of skill books, magazines and VHS
 tapes, map marks shared automatically, pings everyone can see, a shared to-do list, a
 choice of where crafted and removed items land, an Organization skill that makes
-containers hold more, a working concrete mixer, and wear colours behind the hotbar.
+containers hold more, a cart to pull loads home, and wear colours behind the
+hotbar.
 
 Every feature has its own on/off switch in the sandbox options, so you can take only
 the parts you want.
@@ -40,10 +41,6 @@ the parts you want.
 - **Organization skill** — a skill from 0 to 10 replacing the Organized / Disorganized
   traits. It raises the capacity of containers you organise (permanently, for everyone)
   and how fast you move items. Trained by the weight you move through storage.
-- **Concrete mixer** — the mixer standing on building sites does nothing in the base
-  game. Now you can carry it home (30 kg, and only when it is empty), leave it in the
-  rain to fill, keep 30 kg of things in the drum, and mix clay cement out of what is
-  inside it — water, clay, a sandbag or a bundle of grass and a bucket — from one window.
 - **Push a vehicle** — stand at the front or the back of a car or a trailer, press
   **V** and pick **Push**. How fast it rolls depends on what it weighs — up to 10 km/h
   for a trailer or a small car, 7 for an ordinary one, 4 for a van or a truck — and you
@@ -56,6 +53,15 @@ the parts you want.
   and gives you one to eleven lumps of clay depending on your Pottery, plus 10
   Pottery XP. A patch of bank you have dug gives nothing for a week, and everyone on
   the server shares that: two people cannot work the same spot twice.
+- **Cart** — build one out of 5 planks, 10 nails and two tires of the same
+  kind (Carpentry 5, Mechanics 1, with a hammer, a saw and a lug wrench). Right-click it
+  on the ground and **Attach cart**: it takes a slot of its own, so your backpack stays
+  on, and rolls along behind you, where everyone can see it. It weighs nothing itself
+  and holds 50 kg, none of which you carry — but every 20 kg inside slows you down by 15%. While it is attached you
+  cannot climb fences or windows or get into a car; **Detach cart** parks it where you
+  stand, and anyone can open it there. A cart is never carried in your hands or your
+  bags. Parked, the load still counts towards the 50 kg the game allows on one tile of
+  floor, so park it where nothing else is lying.
 - **Hotbar condition colours** — a hotbar slot holding a worn item gets its background
   split into a coloured column per state the item has: condition, head and sharpness,
   green above 75%, yellow down to 25%, red below. An item in good shape draws nothing,
@@ -141,7 +147,6 @@ if you switch it off later.
 | Open the to-do list | **[** (same section) |
 | Choose where items go | The drop-down under the **Craft** button, or under the part lists in the vehicle mechanics window |
 | Organization skill | In the character skills panel, under Crafting |
-| Use a concrete mixer | Right-click it → **Concrete mixer** → *Open* (or *Pick up*) |
 | Push a vehicle | Stand at its front or back → **V** → *Push*. **Esc** to let go |
 | Dig clay | Carry a shovel → right-click the ground within a tile of a river or lake → *Dig for clay* |
 | Turn a feature off | Sandbox options → **CO-OP** |
@@ -200,6 +205,14 @@ are simply ignored once the mod is gone.
   шум — і дає від однієї до одинадцяти грудок глини залежно від гончарства, а також
   10 одиниць досвіду гончарства. Викопана ділянка берега тиждень нічого не дає, і це
   спільне для всього сервера: двоє не викопають одне й те саме місце двічі.
+- **Візок** — збирається з 5 дощок, 10 цвяхів і двох однакових шин (Теслярство 5,
+  Механіка 1, потрібні молоток, пила й балонний ключ). ПКМ по візку на землі →
+  **Причепити візок**: у нього власний слот, тож рюкзак лишається на спині, а візок
+  котиться позаду, і його бачать усі. Сам нічого не важить, вміщує 50 кг, і вантаж ви
+  не несете — зате кожні 20 кг вантажу сповільнюють на 15%. Поки візок причеплений, не можна лізти через паркани й вікна та
+  сідати в машину; **Відчепити візок** ставить його там, де ви стоїте, і тоді відкрити
+  його може будь-хто. У руках чи в сумці візок не носять. На землі вантаж рахується до
+  50 кг, які гра дозволяє на одну клітинку підлоги, тож ставте його там, де нічого не лежить.
 - **Смуги стану на панелі швидкого доступу** — комірка з надягнутим предметом ділить тло
   на кольорові смуги, по одній на кожен стан предмета: міцність, стан голівки та
   гострота, зелений понад 75%, жовтий до 25%, нижче червоний. Справний предмет не малює
@@ -344,6 +357,14 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
   и даёт от одной до одиннадцати горстей глины в зависимости от гончарного дела, плюс
   10 единиц опыта гончарного дела. Выкопанный участок берега неделю ничего не даёт, и
   это общее для всего сервера: двое не выкопают одно и то же место дважды.
+- **Тележка** — собирается из 5 досок, 10 гвоздей и двух одинаковых шин
+  (Плотничество 5, Механика 1, нужны молоток, пила и баллонный ключ). ПКМ по тележке на
+  земле → **Прицепить тележку**: у неё свой слот, так что рюкзак остаётся на спине, а
+  тележка катится сзади, и её видят все. Сама ничего не весит, вмещает 50 кг, и груз вы
+  не несёте — зато каждые 20 кг груза замедляют на 15%. Пока тележка прицеплена, нельзя лезть через заборы и окна и садиться в
+  машину; **Отцепить тележку** ставит её там, где вы стоите, и тогда открыть её может
+  кто угодно. В руках или в сумке тележку не носят. На земле груз считается в те 50 кг,
+  которые игра разрешает на одну клетку пола, так что ставьте её там, где ничего не лежит.
 - **Полосы состояния на панели быстрого доступа** — ячейка с надетым предметом делит фон
   на цветные полосы, по одной на каждое состояние предмета: прочность, состояние головки
   и заточка, зелёный выше 75%, жёлтый до 25%, ниже красный. Исправный предмет не рисует
