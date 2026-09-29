@@ -237,40 +237,130 @@ local function insertRow(_panel, _widget)
     return true
 end
 
+-- The widget for whatever recipe the panel is showing now, or nil when the feature is
+-- off or the recipe has nothing to say. Shared by every panel hooked below.
+local function buildWidget(_panel)
+    if not COOP.featureEnabled(COOP.F_RECIPEINFO) then return nil end
+    if _panel.logic == nil then return nil end
+
+    local recipe = _panel.logic:getRecipe()
+    if recipe == nil then return nil end
+
+    local info = COOPRecipeInfo.forRecipe(recipe)
+    if info == nil then return nil end
+
+    local widget = COOPRecipeInfoWidget:new(0, 0, 10, 10, info)
+    widget:initialise()
+    widget:instantiate()
+    return widget
+end
+
+-- The crafting window (ISCraftRecipePanel, which crafting benches such as the carpentry
+-- workbench also use through ISHandCraftPanel) and the Build window (ISBuildRecipePanel)
+-- are the same shape: a table layout rebuilt from scratch in createDynamicChildren,
+-- ending with the craft control. So one wrapper body serves both.
+local function wrapTablePanel(_original)
+    return function(self)
+        _original(self)
+
+        -- Everything of ours runs inside the pcall, the feature switch included:
+        -- this is vanilla's own createDynamicChildren, and an error escaping here
+        -- takes the whole recipe panel down with it.
+        local ok = pcall(function()
+            if self.rootTable == nil then return end
+
+            local widget = buildWidget(self)
+            if widget == nil then return end
+
+            if insertRow(self, widget) then
+                self.coopRecipeInfo = widget
+                -- the table has a new row, so the panel has to measure again
+                self:xuiRecalculateLayout()
+            end
+        end)
+
+        if not ok then COOP.log("recipeinfo: could not build the row") end
+    end
+end
+
+-- Machines - drying racks, kilns, furnaces, anything whose window is an
+-- ISCraftLogicPanel - show their recipe in ISCraftLogicRecipePanel instead, which is
+-- not a table: createDynamicChildren adds three widgets as plain children, removing
+-- only its own three first, and calculateLayout stacks them at absolute positions. So
+-- the old widget is removed by hand here, and the layout hook below places the new one.
+local function wrapMachineChildren(_original)
+    return function(self)
+        if self.coopRecipeInfo ~= nil then
+            pcall(function() self:removeChild(self.coopRecipeInfo) end)
+            self.coopRecipeInfo = nil
+        end
+
+        _original(self)
+
+        local ok = pcall(function()
+            -- vanilla bailed out before building its widgets
+            if self.outputProgressWidget == nil or self.logic:getRecipe() == nil then
+                return
+            end
+
+            local widget = buildWidget(self)
+            if widget == nil then return end
+
+            self:addChild(widget)
+            self.coopRecipeInfo = widget
+            self:xuiRecalculateLayout()
+        end)
+
+        if not ok then COOP.log("recipeinfo: could not build the machine row") end
+    end
+end
+
+-- Our widget goes under the output/progress block, the panel growing by its height.
+--
+-- The original is asked for the panel minus our block, then the block is added: the
+-- parent table measures the panel with calculateLayout(0, 0) and then lays it out at
+-- the height that returned, so adding on top of whatever height came in would grow the
+-- panel on every pass. Same reasoning as the output picker's row in the craft control.
+local function wrapMachineLayout(_original)
+    return function(self, _preferredWidth, _preferredHeight)
+        local widget = self.coopRecipeInfo
+        if widget == nil or self.outputProgressWidget == nil then
+            return _original(self, _preferredWidth, _preferredHeight)
+        end
+
+        local spacing = self.elementSpacing or 0
+        widget:calculateLayout(0, 0)
+        local extra = widget:getHeight() + spacing
+
+        local result = _original(self,
+                math.max(_preferredWidth or 0, widget:getWidth()),
+                math.max(0, (_preferredHeight or 0) - extra))
+
+        local width = self:getWidth()
+        local top = self:getHeight()
+        widget:calculateLayout(width, 0)
+        widget:setX(0)
+        widget:setY(top + spacing)
+
+        local height = top + extra
+        if self.overlayPanel then self.overlayPanel:setHeight(height) end
+        self:setHeight(height)
+
+        return result
+    end
+end
+
 local function install()
     local any = false
 
-    any = hook(ISCraftRecipePanel, "createDynamicChildren", "recipeInfo", function(_original)
-        return function(self)
-            _original(self)
-
-            -- Everything of ours runs inside the pcall, the feature switch included:
-            -- this is vanilla's own createDynamicChildren, and an error escaping here
-            -- takes the whole recipe panel down with it.
-            local ok = pcall(function()
-                if not COOP.featureEnabled(COOP.F_RECIPEINFO) then return end
-                if self.rootTable == nil or self.logic == nil then return end
-
-                local recipe = self.logic:getRecipe()
-                if recipe == nil then return end
-
-                local info = COOPRecipeInfo.forRecipe(recipe)
-                if info == nil then return end
-
-                local widget = COOPRecipeInfoWidget:new(0, 0, 10, 10, info)
-                widget:initialise()
-                widget:instantiate()
-
-                if insertRow(self, widget) then
-                    self.coopRecipeInfo = widget
-                    -- the table has a new row, so the panel has to measure again
-                    self:xuiRecalculateLayout()
-                end
-            end)
-
-            if not ok then COOP.log("recipeinfo: could not build the row") end
-        end
-    end) or any
+    any = hook(ISCraftRecipePanel, "createDynamicChildren", "recipeInfo",
+            wrapTablePanel) or any
+    any = hook(ISBuildRecipePanel, "createDynamicChildren", "buildInfo",
+            wrapTablePanel) or any
+    any = hook(ISCraftLogicRecipePanel, "createDynamicChildren", "machineInfo",
+            wrapMachineChildren) or any
+    any = hook(ISCraftLogicRecipePanel, "calculateLayout", "machineLayout",
+            wrapMachineLayout) or any
 
     if any then COOP.log("recipe info row installed") end
 end

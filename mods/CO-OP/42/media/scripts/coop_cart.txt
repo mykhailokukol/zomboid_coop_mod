@@ -15,11 +15,17 @@ module COOP
        CanBeEquipped = coop:cart is a body location of its own, registered in
        media/registries.lua, so a cart and a backpack can be worn together.
 
-       ClothingItem = Belt borrows vanilla's invisible clothing (no model, empty
-       texture). A worn item without one has no ItemVisual, and the server's
-       SyncClothing packet dies on it with a NullPointerException - the wear then never
-       reaches the client. What is drawn behind the player is the attached model, not
-       this.
+       ClothingItem = COOPCart is an invisible clothing item of the mod's own (no
+       model, empty texture: media/clothing/clothingItems/COOPCart.xml, registered in
+       media/fileGuidTable.xml). A worn item without one has no ItemVisual, and the
+       server's SyncClothing packet dies on it with a NullPointerException - the wear
+       then never reaches the client. What is drawn behind the player is the attached
+       model, not this.
+
+       It must not be a vanilla clothing item. ScriptManager keeps one
+       clothingToItemMap from clothing item name to item, and the last module loaded
+       wins: borrowing vanilla's Belt handed "Belt" to this cart, so OutfitManager
+       dressed zombies in carts and HumanVisual turned every corpse's belt into one.
 
        Capacity 50 is the engine's ceiling for any container inside an item
        (ItemContainer.getCapacity clamps it in Java), so it is also the most the
@@ -42,7 +48,7 @@ module COOP
         Capacity = 50,
         WeightReduction = 100,
         CanBeEquipped = coop:cart,
-        ClothingItem = Belt,
+        ClothingItem = COOPCart,
         CanHaveHoles = false,
         Icon = COOPCart,
         StaticModel = COOPCartAttached,
