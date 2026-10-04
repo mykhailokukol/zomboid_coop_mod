@@ -1,4 +1,7 @@
 {
     "IGUI_perks_Organization": "Organization",
-    "IGUI_perks_Organization_Description": "Increases how much fits in the containers you organise, and how fast you move items. Trained by moving things in and out of storage."
+    "IGUI_perks_Organization_Description": "Increases how much fits in the containers you organise, and how fast you move items. Trained by moving things in and out of storage.",
+    "IGUI_COOP_Audiobook_Done": "Listened to the end: %1",
+    "IGUI_COOP_Audiobook_WrongLevel": "This volume is not for your skill level",
+    "IGUI_LiteratureUI_RecordedMedia_cds": "Audiobooks"
 }

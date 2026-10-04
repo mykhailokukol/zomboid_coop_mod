@@ -86,5 +86,9 @@
     "UI_COOP_RecipeInfo_DoorDamage": "Урон по дверям",
     "UI_COOP_Cart_NoClimb": "Не с прицепленной тележкой.",
     "UI_COOP_Cart_NoVehicle": "Сначала отцепите тележку.",
-    "UI_COOP_Cart_NoCarry": "Тележку можно только тянуть или поставить."
+    "UI_COOP_Cart_NoCarry": "Тележку можно только тянуть или поставить.",
+    "UI_COOP_Audiobook_Burned": "Записано: %1",
+    "UI_COOP_Audiobook_Erased": "Диск теперь чистый.",
+    "UI_COOP_Audiobook_NoPower": "Компьютер обесточен.",
+    "UI_COOP_Audiobook_Failed": "Не получилось."
 }

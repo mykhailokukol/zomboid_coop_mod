@@ -18,5 +18,12 @@
     "ContextMenu_COOP_Cart_Detach": "Отцепить тележку",
     "ContextMenu_COOP_Cart_AlreadyPulling": "Вы уже тянете тележку.",
     "ContextMenu_COOP_Cart_NotParked": "Тележка должна стоять на земле.",
-    "ContextMenu_COOP_Cart_InVehicle": "Сначала выйдите из машины."
+    "ContextMenu_COOP_Cart_InVehicle": "Сначала выйдите из машины.",
+    "ContextMenu_COOP_Computer": "Компьютер",
+    "ContextMenu_COOP_Audiobook_Burn": "Записать аудиокнигу",
+    "ContextMenu_COOP_Audiobook_Erase": "Стереть диск",
+    "ContextMenu_COOP_Computer_NoPower": "У компьютера нет питания.",
+    "ContextMenu_COOP_Audiobook_NoBook": "С собой нет книги навыка.",
+    "ContextMenu_COOP_Audiobook_NoBlank": "Нужен чистый CD. Любой диск можно стереть на компьютере.",
+    "ContextMenu_COOP_Audiobook_NoDisc": "С собой нет CD."
 }

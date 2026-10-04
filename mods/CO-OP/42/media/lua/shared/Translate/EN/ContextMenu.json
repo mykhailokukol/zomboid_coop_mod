@@ -18,5 +18,12 @@
     "ContextMenu_COOP_Cart_Detach": "Detach cart",
     "ContextMenu_COOP_Cart_AlreadyPulling": "You are already pulling a cart.",
     "ContextMenu_COOP_Cart_NotParked": "The cart has to be on the ground.",
-    "ContextMenu_COOP_Cart_InVehicle": "Get out of the vehicle first."
+    "ContextMenu_COOP_Cart_InVehicle": "Get out of the vehicle first.",
+    "ContextMenu_COOP_Computer": "Computer",
+    "ContextMenu_COOP_Audiobook_Burn": "Burn an audiobook",
+    "ContextMenu_COOP_Audiobook_Erase": "Wipe a CD",
+    "ContextMenu_COOP_Computer_NoPower": "The computer has no power.",
+    "ContextMenu_COOP_Audiobook_NoBook": "You have no skill book with you.",
+    "ContextMenu_COOP_Audiobook_NoBlank": "You need a blank CD. Any CD can be wiped at the computer.",
+    "ContextMenu_COOP_Audiobook_NoDisc": "You have no CD with you."
 }

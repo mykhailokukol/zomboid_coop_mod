@@ -18,5 +18,12 @@
     "ContextMenu_COOP_Cart_Detach": "Відчепити візок",
     "ContextMenu_COOP_Cart_AlreadyPulling": "Ви вже тягнете візок.",
     "ContextMenu_COOP_Cart_NotParked": "Візок має стояти на землі.",
-    "ContextMenu_COOP_Cart_InVehicle": "Спершу вийдіть з машини."
+    "ContextMenu_COOP_Cart_InVehicle": "Спершу вийдіть з машини.",
+    "ContextMenu_COOP_Computer": "Комп'ютер",
+    "ContextMenu_COOP_Audiobook_Burn": "Записати аудіокнигу",
+    "ContextMenu_COOP_Audiobook_Erase": "Стерти диск",
+    "ContextMenu_COOP_Computer_NoPower": "Комп'ютер без живлення.",
+    "ContextMenu_COOP_Audiobook_NoBook": "Із собою немає книги навички.",
+    "ContextMenu_COOP_Audiobook_NoBlank": "Потрібен чистий CD. Будь-який диск можна стерти на комп'ютері.",
+    "ContextMenu_COOP_Audiobook_NoDisc": "Із собою немає CD."
 }

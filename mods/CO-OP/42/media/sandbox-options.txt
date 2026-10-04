@@ -219,3 +219,11 @@ option COOP.Well
     page = COOP,
     translation = COOP_Well,
 }
+
+option COOP.Audiobooks
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Audiobooks,
+}

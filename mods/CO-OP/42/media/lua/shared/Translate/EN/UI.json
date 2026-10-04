@@ -86,5 +86,9 @@
     "UI_COOP_RecipeInfo_DoorDamage": "Door damage",
     "UI_COOP_Cart_NoClimb": "Not with a cart attached.",
     "UI_COOP_Cart_NoVehicle": "Detach the cart first.",
-    "UI_COOP_Cart_NoCarry": "A cart can only be pulled or parked."
+    "UI_COOP_Cart_NoCarry": "A cart can only be pulled or parked.",
+    "UI_COOP_Audiobook_Burned": "Burned: %1",
+    "UI_COOP_Audiobook_Erased": "The CD is blank now.",
+    "UI_COOP_Audiobook_NoPower": "The computer lost power.",
+    "UI_COOP_Audiobook_Failed": "That did not work out."
 }
