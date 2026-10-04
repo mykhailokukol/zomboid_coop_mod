@@ -47,5 +47,7 @@
     "Sandbox_COOP_BatchCraft": "Crafting: batch clothing and bags",
     "Sandbox_COOP_BatchCraft_tooltip": "Puts the quantity box back on recipes that make one thing at a time, chiefly tailoring. Repairs, filter swaps and anything that alters an item you already own are left alone.",
     "Sandbox_COOP_Cart": "Cart",
-    "Sandbox_COOP_Cart_tooltip": "A cart built out of planks, nails and two tires: pulled behind you like a bag, parked on the ground like any container."
+    "Sandbox_COOP_Cart_tooltip": "A cart built out of planks, nails and two tires: pulled behind you like a bag, parked on the ground like any container. Off hides the recipe.",
+    "Sandbox_COOP_Well": "Digging a well",
+    "Sandbox_COOP_Well_tooltip": "A well you dig yourself in the Build window (Outdoors, Masonry 6): the game's own well, with clean water topped up by rain. Off hides the recipe; wells already dug stay."
 }

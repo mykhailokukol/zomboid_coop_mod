@@ -1,3 +1,4 @@
 {
-    "Tooltip_COOP_Cart": "Pulled behind you or parked on the ground, never carried, and worn next to any backpack. Holds 50 kg and weighs nothing itself. You do not carry the load, but every 20 kg in it slows you by 15%%. No fences, windows or cars while it is attached."
+    "Tooltip_COOP_Cart": "Pulled behind you or parked on the ground, never carried, and worn next to any backpack. Holds 50 kg and weighs nothing itself. You do not carry the load, but every 20 kg in it slows you by 15%%. No fences, windows or cars while it is attached.",
+    "Tooltip_COOP_Well": "Dug down to water and lined with stone: an ordinary well, the same as the ones on the map. Holds 10,000 l of clean water and refills only with rain. Your shovel stays with you, and the three sacks come back full of dirt."
 }

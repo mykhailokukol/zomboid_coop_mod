@@ -1,0 +1,81 @@
+module Base
+{
+    /* Digging a well.
+
+       This adds a build recipe to vanilla's own Base.Well (scripts/generated/entities/
+       appliances/workstations/entity_well.txt), so what gets built is the vanilla well
+       itself and not a look-alike: the same 10 000 l of clean water, topped up only by
+       rain. A look-alike is not possible anyway - a sprite can belong to one entity
+       script only (SpriteConfigManager throws "Sprite ... is duplicate").
+
+       Entity script bodies of the same name are merged, not replaced: the entity's
+       reset keeps its component scripts, and each component met again is loaded on top
+       of the one already there. So this body names only what it adds or changes. It
+       must never repeat the SpriteConfig: a second "row = camping_01_16" lands in the
+       same component, which counts it as a duplicate tile and, in debug mode, stops
+       the game from starting. The FluidContainer is left alone the same way, so the
+       well keeps up with vanilla after a game update. The wells already on the map pick
+       up the recipe component too, the same one every vanilla buildable carries.
+
+       Build recipes have no outputs: the three sacks of dirt the digging leaves are
+       handed out by the recipe's OnCreate, COOPWell.onBuilt (lua/server/
+       COOP_WellServer.lua), which ISBuildIsoEntity:create calls once per build. The
+       shovel is kept, everything else goes into the well. Time is three stone walls'
+       worth. */
+    entity Well
+    {
+        component UiConfig
+        {
+            xuiSkin = default,
+            entityStyle = ES_COOP_Well,
+            uiEnabled = false,
+        }
+        component CraftRecipe
+        {
+            timedAction = COOP_DigWell,
+            time = 600,
+            category = Outdoors,
+            Tags = Outdoors,
+            SkillRequired = Masonry:6,
+            xpAward = Masonry:80;Woodwork:15,
+            Tooltip = Tooltip_COOP_Well,
+            OnAddToMenu = COOP_WellInMenu,
+            OnCreate = COOPWell.onBuilt,
+            inputs
+            {
+                item 1 tags[base:diggrave] mode:keep flags[MayDegradeLight;Prop1],
+                item 30 [Base.StoneBlock],
+                item 1 [Base.LongStick],
+                item 2 [Base.SmallHandle],
+                item 1 tags[base:bucket] flags[IsEmpty],
+                item 1 [Base.Rope;Base.Twine;Base.SheetRope],
+                item 3 [Base.EmptySandbag],
+            }
+        }
+    }
+
+    /* The icon in the Build window. Vanilla's ES_Well shows a clay shingle mould; a
+       style of our own leaves vanilla's untouched. Skins of the same name add up, the
+       way vanilla's 250-odd "xuiSkin default" blocks do. */
+    xuiSkin default
+    {
+        entity ES_COOP_Well
+        {
+            LuaWindowClass = ISEntityWindow,
+            DisplayName = Well,
+            Icon = Item_MetalBucket,
+        }
+    }
+
+    /* Digging with the shovel (the Prop1 input) instead of laying bricks. */
+    timedAction COOP_DigWell
+    {
+        metabolics = HeavyWork,
+        actionAnim = DigShovel,
+        sound = Shoveling,
+        completionSound = BuildFenceCairn,
+        muscleStrainFactor = 0.0025,
+        muscleStrainSkill = Strength,
+        muscleStrainParts = Hand_L;ForeArm_L;UpperArm_L;Hand_R;ForeArm_R;UpperArm_R,
+    }
+}
