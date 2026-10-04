@@ -79,7 +79,7 @@ COOPAudiobook.CHAPTER_LINES = 60
 COOPAudiobook.CODES = "CAB+0"
 
 -- Game minutes at the computer.
-COOPAudiobook.BURN_MINUTES = 60
+COOPAudiobook.BURN_MINUTES = 15
 COOPAudiobook.ERASE_MINUTES = 15
 
 -- How far from the computer the player may stand, in tiles; the server allows one more.

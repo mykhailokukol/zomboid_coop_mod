@@ -68,7 +68,7 @@ the parts you want.
   well — 10,000 l of clean water, topped up by rain — plus your shovel back and three
   sacks of dirt. Gives 80 Masonry and 15 Carpentry XP.
 - **Audiobooks** — right-click a desktop computer that has power (the grid or a
-  generator) → **Computer**: burn a skill book onto a blank CD (an in-game hour, the
+  generator) → **Computer**: burn a skill book onto a blank CD (15 minutes, the
   book stays with you), or wipe any CD back to blank (15 minutes). An audiobook plays
   in anything a music CD plays in — a CD player, a radio that takes discs, a car radio
   — and listening to it counts as reading the book: it takes as long as reading would
@@ -268,7 +268,7 @@ are simply ignored once the mod is gone.
   Виходить звичайна ігрова криниця — 10 000 л чистої води, що поповнюється дощем, —
   а ще лопата повертається і три мішки землі. Дає 80 досвіду Мулярства і 15 Теслярства.
 - **Аудіокниги** — ПКМ по комп'ютеру з живленням (мережа чи генератор) → **Комп'ютер**:
-  записати книгу навички на чистий CD (ігрова година, книга лишається у вас) або стерти
+  записати книгу навички на чистий CD (15 хвилин, книга лишається у вас) або стерти
   будь-який CD до чистого (15 хвилин). Аудіокнига грає всюди, де грає звичайний CD, —
   у плеєрі, радіо з дисководом, автомагнітолі, — а прослуховування зараховується як
   читання: триває стільки ж (з урахуванням налаштування *хвилин на сторінку* й рис
@@ -466,7 +466,7 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
   игровой колодец — 10 000 л чистой воды, пополняемой дождём, — а ещё лопата
   возвращается и три мешка земли. Даёт 80 опыта Каменной кладки и 15 Плотничества.
 - **Аудиокниги** — ПКМ по компьютеру с питанием (сеть или генератор) → **Компьютер**:
-  записать книгу навыка на чистый CD (игровой час, книга остаётся у вас) или стереть
+  записать книгу навыка на чистый CD (15 минут, книга остаётся у вас) или стереть
   любой CD до чистого (15 минут). Аудиокнига играет везде, где играет обычный CD, —
   в плеере, радио с дисководом, автомагнитоле, — а прослушивание засчитывается как
   чтение: длится столько же (с учётом настройки *минут на страницу* и черт читателя),
