@@ -15,8 +15,9 @@
 -- OnDeviceText with the device's square, and everyone within HEAR_RANGE on that floor,
 -- indoors or out the same as the device, awake and not deaf, has heard it - the test
 -- vanilla's ISRadioInteractions makes for VHS skill XP. A CD player in someone's hands
--- plays on that player's client only, fires OnDeviceText there with -1 for the square,
--- and the client reports it (CMD_HEARD); it counts for that one player.
+-- is never updated here; in multiplayer its holder's client reports it once a game
+-- minute while it plays (CMD_HEARD), in single player it fires OnDeviceText with -1 for
+-- the square. Either way it counts for that one player.
 --
 -- The listening itself is timed by the gaps between lines, see COOP_Audiobook.lua.
 --
@@ -85,6 +86,7 @@ function COOPAudiobookServer.heard(_player, _book)
 
     if state == nil then
         mine[_book.fullType] = { last = now, carry = 0 }
+        COOP.log("audiobook: " .. COOP.playerName(_player) .. " started listening to " .. _book.fullType)
         return
     end
 

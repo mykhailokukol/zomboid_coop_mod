@@ -11,8 +11,8 @@
 -- and the items again. Like the clay dig, the actions have no `complete` on purpose: a
 -- timed action that defines one is rebuilt on the server and run on both sides.
 --
--- One more client job: a CD player held in the hands plays on its holder's client only,
--- so in multiplayer the lines it plays are reported to the server from here.
+-- One more client job: the server never sees a CD player held in the hands play, so in
+-- multiplayer its holder's client reports it from here while it plays.
 --
 
 if isServer() then return end
@@ -83,26 +83,106 @@ end
 
 Events.OnServerCommand.Add(onServerCommand)
 
--- A held CD player in multiplayer. Radio.AddDeviceText fires the event with -1 for the
--- square and itself as the device, on its holder's client only. World and car radios
--- are the server's business, so their lines are left alone here.
-local function onDeviceText(_guid, _codes, _x, _y, _z, _line, _device)
+-- A held CD player in multiplayer, reported once a game minute while it plays. Its lines
+-- cannot be the signal here: the server never updates a device in someone's hands, and
+-- the holder's client only steps through the lines with headphones plugged in
+-- (DeviceData.updateMediaPlaying), so on the speaker OnDeviceText never fires anywhere.
+-- isPlayingMedia is set on the client by the server's start packet either way. World and
+-- car radios are the server's business, so they are left alone here.
+local function reportHeldPlayers()
     if not isClient() then return end
-    if _codes ~= COOPAudiobook.CODES then return end
-    if not (_x == -1 and _y == -1 and _z == -1) then return end
     if not COOPAudiobook.isEnabled() then return end
 
-    local ok, id, holder = pcall(function()
-        local media = _device:getDeviceData():getMediaData()
-        return media and media:getId() or nil, _device:getPlayer()
-    end)
-    if not ok or id == nil or holder == nil or not holder:isLocalPlayer() then return end
-    if COOPAudiobook.bookForMediaId(id) == nil then return end
-
-    sendClientCommand(holder, COOPAudiobook.MODULE, COOPAudiobook.CMD_HEARD, { media = id })
+    for n = 0, getNumActivePlayers() - 1 do
+        local player = getSpecificPlayer(n)
+        local ok, id = pcall(function()
+            local data = player:getEquipedRadio():getDeviceData()
+            if not (data:getIsTurnedOn() and data:getDeviceVolume() > 0 and data:isPlayingMedia()) then
+                return nil
+            end
+            local media = data:getMediaData()
+            return media and media:getId() or nil
+        end)
+        if ok and id ~= nil and COOPAudiobook.bookForMediaId(id) ~= nil then
+            sendClientCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_HEARD, { media = id })
+        end
+    end
 end
 
-Events.OnDeviceText.Add(onDeviceText)
+Events.EveryOneMinute.Add(reportHeldPlayers)
+
+-- The same CD player on the speaker shows nothing either: the chapter lines and the
+-- talking sound both come from the device stepping through its lines (AddDeviceText
+-- says the line and sets the signal the emitter plays RadioTalk on). So an audiobook is
+-- stepped here instead, the way DeviceData.updateMediaPlaying does it in single player:
+-- the same first wait and the same line length. When the lines run out the disc is
+-- stopped through the server, as the device would do itself. With headphones the client
+-- steps the lines on its own, so those are left alone.
+local LINE_MIN = 60 * 1.5           -- DeviceData.minmod
+local LINE_MAX = 60 * 5.0           -- DeviceData.maxmod
+
+local stepping = {}                 -- player index -> { radio, media, line, counter, done }
+
+-- Java's String.length, near enough: characters, not the bytes Lua counts.
+local function textLength(_text)
+    local _, count = string.gsub(_text, "[^\128-\191]", "")
+    return count
+end
+
+local function playingAudiobook(_player)
+    local ok, radio, data, media = pcall(function()
+        local radio = _player:getEquipedRadio()
+        local data = radio:getDeviceData()
+        if not (data:getIsTurnedOn() and data:isPlayingMedia() and data:getHeadphoneType() < 0) then
+            return nil
+        end
+        return radio, data, data:getMediaData()
+    end)
+    if not ok or media == nil or COOPAudiobook.bookForMediaId(media:getId()) == nil then return nil end
+    return radio, data, media
+end
+
+local function stepHeldPlayers()
+    if not isClient() then return end
+    if not COOPAudiobook.isEnabled() then return end
+
+    for n = 0, getNumActivePlayers() - 1 do
+        local player = getSpecificPlayer(n)
+        local radio, data, media = nil, nil, nil
+        if player ~= nil then radio, data, media = playingAudiobook(player) end
+
+        local state = stepping[n]
+        if radio == nil then
+            stepping[n] = nil
+        else
+            if state == nil or state.radio ~= radio or state.media ~= media:getId() then
+                state = { radio = radio, media = media:getId(), line = 0, counter = LINE_MAX * 0.5 }
+                stepping[n] = state
+            end
+            if not state.done then
+                state.counter = state.counter - 1.25 * getGameTime():getMultiplier()
+                if state.counter <= 0 then
+                    local line = media:getLine(state.line)
+                    if line == nil then
+                        -- isPlayingMedia stays set until the server answers the stop
+                        state.done = true
+                        pcall(function() data:StopPlayMedia() end)
+                    else
+                        local text = line:getTranslatedText() or ""
+                        state.counter = math.max(LINE_MIN, math.min(LINE_MAX, textLength(text) / 10 * 60))
+                        state.line = state.line + 1
+                        pcall(function()
+                            radio:AddDeviceText(text, line:getR(), line:getG(), line:getB(),
+                                    line:getTextGuid(), line:getCodes(), 0)
+                        end)
+                    end
+                end
+            end
+        end
+    end
+end
+
+Events.OnTick.Add(stepHeldPlayers)
 
 -- ---------------------------------------------------------------------------
 -- the action at the computer
