@@ -95,14 +95,16 @@ local function reportHeldPlayers()
 
     for n = 0, getNumActivePlayers() - 1 do
         local player = getSpecificPlayer(n)
-        local ok, id = pcall(function()
-            local data = player:getEquipedRadio():getDeviceData()
+        local radio = player and player:getEquipedRadio()
+        local ok, id = radio ~= nil, nil
+        if ok then ok, id = pcall(function()
+            local data = radio:getDeviceData()
             if not (data:getIsTurnedOn() and data:getDeviceVolume() > 0 and data:isPlayingMedia()) then
                 return nil
             end
             local media = data:getMediaData()
             return media and media:getId() or nil
-        end)
+        end) end
         if ok and id ~= nil and COOPAudiobook.bookForMediaId(id) ~= nil then
             sendClientCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_HEARD, { media = id })
         end
@@ -130,6 +132,8 @@ local function textLength(_text)
 end
 
 local function playingAudiobook(_player)
+    -- pcall still logs what it catches, so the common case of nothing held is checked first
+    if _player:getEquipedRadio() == nil then return nil end
     local ok, radio, data, media = pcall(function()
         local radio = _player:getEquipedRadio()
         local data = radio:getDeviceData()
