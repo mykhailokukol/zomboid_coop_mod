@@ -138,17 +138,17 @@ function COOPOrg.register()
 
     -- Perks.FromString on an unknown name hands back the MAX sentinel, not a new perk,
     -- and AddPerk simply renames whatever it is given - a perk whose id stays "MAX" is
-    -- never tracked on a character, so its level reads 0 forever. Try to hand AddPerk a
-    -- genuinely fresh Perk object instead.
+    -- never tracked on a character, so its level reads 0 forever (hence the level kept
+    -- in mod data, below).
+    --
+    -- Do not try PerkFactory.Perk.new() or Perk.new() for a fresh perk: Lua has no
+    -- constructor for either, and the Java exception that throws leaves Kahlua broken
+    -- even inside a pcall - the next file loaded, vanilla's CCampfireGlobalObject.lua,
+    -- then dies on its first line, CCampfireSystem.instance stays nil, and every
+    -- container window and right-click floods the log with errors.
     local perk = nil
-    local source = "none"
-    pcall(function() perk = PerkFactory.Perk.new(); source = "PerkFactory.Perk.new()" end)
-    if perk == nil then
-        pcall(function() perk = Perk.new(); source = "Perk.new()" end)
-    end
-    if perk == nil then
-        pcall(function() perk = Perks.FromString(COOPOrg.PERK_NAME); source = "Perks.FromString" end)
-    end
+    local source = "Perks.FromString"
+    pcall(function() perk = Perks.FromString(COOPOrg.PERK_NAME) end)
     if perk == nil then
         -- happens on the very first Lua state at boot; the event retries handle it
         return
