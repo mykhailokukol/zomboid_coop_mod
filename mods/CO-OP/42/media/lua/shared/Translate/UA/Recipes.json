@@ -1,3 +1,16 @@
 {
-    "MakeCOOPCart": "Зробити візок"
+    "MakeCOOPCart": "Зробити візок",
+    "MakeCOOPFrontWindow1": "Зробити переднє бічне скло (звичайний)",
+    "MakeCOOPFrontWindow2": "Зробити переднє бічне скло (важкий)",
+    "MakeCOOPFrontWindow3": "Зробити переднє бічне скло (спортивний)",
+    "MakeCOOPRearWindow1": "Зробити заднє бічне скло (звичайний)",
+    "MakeCOOPRearWindow2": "Зробити заднє бічне скло (важкий)",
+    "MakeCOOPRearWindow3": "Зробити заднє бічне скло (спортивний)",
+    "MakeCOOPRearWindshield1": "Зробити заднє скло (звичайний)",
+    "MakeCOOPRearWindshield2": "Зробити заднє скло (важкий)",
+    "MakeCOOPRearWindshield3": "Зробити заднє скло (спортивний)",
+    "MakeCOOPWindshield1": "Зробити лобове скло (звичайний)",
+    "MakeCOOPWindshield2": "Зробити лобове скло (важкий)",
+    "MakeCOOPWindshield3": "Зробити лобове скло (спортивний)",
+    "MakeCOOPHouseWindow": "Зробити дерев'яне вікно"
 }

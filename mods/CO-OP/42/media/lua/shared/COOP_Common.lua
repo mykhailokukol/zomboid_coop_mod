@@ -118,6 +118,7 @@ COOP.F_CLAY = "ClayDigging"
 COOP.F_RECIPEINFO = "RecipeInfo"
 COOP.F_BATCHCRAFT = "BatchCraft"
 COOP.F_CART = "Cart"
+COOP.F_GLASS = "Glassmaking"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()

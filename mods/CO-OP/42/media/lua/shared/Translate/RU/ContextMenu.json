@@ -18,5 +18,9 @@
     "ContextMenu_COOP_Cart_Detach": "Отцепить тележку",
     "ContextMenu_COOP_Cart_AlreadyPulling": "Вы уже тянете тележку.",
     "ContextMenu_COOP_Cart_NotParked": "Тележка должна стоять на земле.",
-    "ContextMenu_COOP_Cart_InVehicle": "Сначала выйдите из машины."
+    "ContextMenu_COOP_Cart_InVehicle": "Сначала выйдите из машины.",
+    "ContextMenu_COOP_Glass_Reglaze": "Застеклить окно",
+    "ContextMenu_COOP_Glass_NoPanes": "Нужно стеклянных панелей: %1.",
+    "ContextMenu_COOP_Glass_NoSkill": "Нужно стеклоделие %1.",
+    "ContextMenu_COOP_Glass_Barricaded": "Сначала снимите баррикаду."
 }

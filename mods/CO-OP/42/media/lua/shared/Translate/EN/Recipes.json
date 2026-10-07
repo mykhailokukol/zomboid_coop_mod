@@ -1,3 +1,16 @@
 {
-    "MakeCOOPCart": "Make Cart"
+    "MakeCOOPCart": "Make Cart",
+    "MakeCOOPFrontWindow1": "Make Front Side Window (Standard)",
+    "MakeCOOPFrontWindow2": "Make Front Side Window (Heavy-Duty)",
+    "MakeCOOPFrontWindow3": "Make Front Side Window (Sports)",
+    "MakeCOOPRearWindow1": "Make Rear Side Window (Standard)",
+    "MakeCOOPRearWindow2": "Make Rear Side Window (Heavy-Duty)",
+    "MakeCOOPRearWindow3": "Make Rear Side Window (Sports)",
+    "MakeCOOPRearWindshield1": "Make Rear Windshield (Standard)",
+    "MakeCOOPRearWindshield2": "Make Rear Windshield (Heavy-Duty)",
+    "MakeCOOPRearWindshield3": "Make Rear Windshield (Sports)",
+    "MakeCOOPWindshield1": "Make Windshield (Standard)",
+    "MakeCOOPWindshield2": "Make Windshield (Heavy-Duty)",
+    "MakeCOOPWindshield3": "Make Windshield (Sports)",
+    "MakeCOOPHouseWindow": "Make Wooden Window"
 }

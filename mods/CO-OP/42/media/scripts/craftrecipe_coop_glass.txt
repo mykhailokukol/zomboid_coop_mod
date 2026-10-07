@@ -1,0 +1,323 @@
+module COOP
+{
+    imports
+    {
+        Base
+    }
+
+    /* Glassmaking: car glass and a house window.
+
+       Twelve car recipes, one per window part and vehicle class - the vanilla items are
+       Windshield/RearWindshield/FrontWindow/RearWindow 1/2/3, where the digit is the
+       VehicleType (1 Standard, 2 Heavy-Duty, 3 Sports) and only a part with the matching
+       mechanicType fits. FrontWindow is the side glass in the front doors, RearWindow the
+       side glass in the middle and rear doors.
+
+       Levels sit on the vanilla Glassmaking ladder (pane 0, drinking glass 2, bottle 3,
+       mirror 4, jar 5, wine and lantern glass 7, champagne glass 9): side glass beside
+       the mirror, the rear windshield a step past the jar, the windshield below the
+       champagne glass. Sports glass is more curved, +1 level; heavy-duty glass is
+       larger but flatter, +1 crucible at the same level. The windshield takes glue for
+       the laminated layer.
+
+       Made like the vanilla Glass Pane and Mirror: crucibles of molten glass poured into
+       the ceramic sheet mold. No NeedToBeLearn - the skill level is the gate.
+
+       Every recipe here, the house window included, is made only at the Advanced
+       Furnace: Tags = AdvancedFurnace is the tag vanilla's Blast_Furnace bench lists in
+       its CraftBench Recipes, and only it does (the Simple and Primitive furnaces list
+       Furnace and PrimitiveFurnace). No AnySurfaceCraft, so they are not in the hand
+       crafting window at all. Like vanilla's furnace recipes they name no timedAction,
+       and like them they burn charcoal: 2 for side glass, 3 for a rear windshield,
+       4 for a windshield, 1 for the house window. The crucibles already paid for
+       melting the glass; this is the furnace's own heat for shaping and annealing.
+
+       OnTest is the sandbox switch (COOPGlass.onTest): with the feature off, no item
+       passes it and the recipe cannot be made. COOP_Glass.lua. */
+
+    craftRecipe MakeCOOPFrontWindow1
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:4,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 3 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.FrontWindow1,
+        }
+    }
+
+    craftRecipe MakeCOOPFrontWindow2
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:4,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 4 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.FrontWindow2,
+        }
+    }
+
+    craftRecipe MakeCOOPFrontWindow3
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:5,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 3 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.FrontWindow3,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindow1
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:4,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 3 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindow1,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindow2
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:4,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 4 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindow2,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindow3
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:5,
+        xpAward = Glassmaking:50,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 3 [Base.CeramicCrucibleWithGlass],
+            item 2 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindow3,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindshield1
+    {
+        time = 450,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:6,
+        xpAward = Glassmaking:70,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 5 [Base.CeramicCrucibleWithGlass],
+            item 3 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindshield1,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindshield2
+    {
+        time = 450,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:6,
+        xpAward = Glassmaking:70,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 6 [Base.CeramicCrucibleWithGlass],
+            item 3 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindshield2,
+        }
+    }
+
+    craftRecipe MakeCOOPRearWindshield3
+    {
+        time = 450,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:7,
+        xpAward = Glassmaking:70,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 5 [Base.CeramicCrucibleWithGlass],
+            item 3 tags[base:charcoal],
+        }
+        outputs
+        {
+            item 1 Base.RearWindshield3,
+        }
+    }
+
+    craftRecipe MakeCOOPWindshield1
+    {
+        time = 600,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:7,
+        xpAward = Glassmaking:90,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 6 [Base.CeramicCrucibleWithGlass],
+            item 4 tags[base:charcoal],
+            item 2 tags[base:glue],
+        }
+        outputs
+        {
+            item 1 Base.Windshield1,
+        }
+    }
+
+    craftRecipe MakeCOOPWindshield2
+    {
+        time = 600,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:7,
+        xpAward = Glassmaking:90,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 7 [Base.CeramicCrucibleWithGlass],
+            item 4 tags[base:charcoal],
+            item 2 tags[base:glue],
+        }
+        outputs
+        {
+            item 1 Base.Windshield2,
+        }
+    }
+
+    craftRecipe MakeCOOPWindshield3
+    {
+        time = 600,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:8,
+        xpAward = Glassmaking:90,
+        OnTest = COOPGlass.onTest,
+        inputs
+        {
+            item 1 [Base.ClaySheetMold] mode:keep,
+            item 1 tags[base:pliers] mode:keep flags[MayDegradeLight],
+            item 6 [Base.CeramicCrucibleWithGlass],
+            item 4 tags[base:charcoal],
+            item 2 tags[base:glue],
+        }
+        outputs
+        {
+            item 1 Base.Windshield3,
+        }
+    }
+
+    /* A whole wooden house window, frame and glass, as a carried item. The output is
+       the moveable vanilla picks up off a wall (fixtures_windows_01_0, "Wooden Window",
+       10 kg), so it goes in with the vanilla Place cursor - into any wall's empty window
+       frame, either facing, with a hammer - and comes out again with a crowbar.
+
+       There is no `outputs` block: a moveable is a Moveables.Moveable item that has read
+       its sprite, which a script output cannot express. COOPGlass.onCreateHouseWindow
+       builds it through ISMoveableSpriteProps, the same call a pickup uses, and hands it
+       to Actions.addOrDropItem - which is still the output picker's redirect at that
+       moment, OnCreate running inside performRecipe. */
+    craftRecipe MakeCOOPHouseWindow
+    {
+        time = 300,
+        Tags = AdvancedFurnace,
+        category = Glassmaking,
+        SkillRequired = Glassmaking:2;Woodwork:3,
+        xpAward = Glassmaking:25;Woodwork:15,
+        Tooltip = Tooltip_COOP_HouseWindow,
+        OnTest = COOPGlass.onTest,
+        OnCreate = COOPGlass.onCreateHouseWindow,
+        inputs
+        {
+            item 1 tags[base:hammer] mode:keep flags[Prop1;MayDegradeVeryLight],
+            item 1 tags[base:saw;base:smallsaw;base:crudesaw] mode:keep flags[MayDegradeLight],
+            item 4 [Base.GlassPanel],
+            item 2 [Base.Plank] flags[Prop2],
+            item 4 [Base.Nails],
+            item 1 tags[base:charcoal],
+        }
+    }
+}

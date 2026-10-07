@@ -3,8 +3,8 @@
 Co-op tools for a shared base: a shared checklist of skill books, magazines and VHS
 tapes, map marks shared automatically, pings everyone can see, a shared to-do list, a
 choice of where crafted and removed items land, an Organization skill that makes
-containers hold more, a cart to pull loads home, and wear colours behind the
-hotbar.
+containers hold more, a cart to pull loads home, car glass and house windows from
+Glassmaking, and wear colours behind the hotbar.
 
 Every feature has its own on/off switch in the sandbox options, so you can take only
 the parts you want.
@@ -76,6 +76,16 @@ the parts you want.
 - **Batch crafting** — the quantity box and the MAX button are back on the clothing and
   bag recipes the base game makes you craft one at a time. Repairs, filter swaps and
   anything else that changes an item you already hold stay one at a time.
+- **Glassmaking: car glass and windows** — the crafting window gains windshields, rear
+  windshields and front and rear side windows for all three vehicle classes (Standard,
+  Heavy-Duty, Sports), made from crucibles of molten glass in the ceramic sheet mold
+  with pliers, at an **Advanced Furnace** only, burning 2 to 4 charcoal. Side glass
+  needs Glassmaking 4, a rear windshield 6, a windshield 7 and glue; Sports glass is one
+  level harder, Heavy-Duty takes one more crucible. You still fit it with Mechanics as
+  usual. Also a **wooden house window** (4 glass panes, 2 planks, 4 nails, 1 charcoal;
+  Glassmaking 2, Carpentry 3; also at the Advanced Furnace) that you place into any
+  empty window frame like one taken off a house, and **Reglaze window** on a smashed
+  window: right-click it with 4 glass panes and Glassmaking 2.
 
 ### Requirements
 
@@ -184,6 +194,7 @@ if you switch it off later.
 | Organization skill | In the character skills panel, under Crafting |
 | Push a vehicle | Stand at its front or back → **V** → *Push*. **Esc** to let go |
 | Dig clay | Carry a shovel → right-click the ground within a tile of a river or lake → *Dig for clay* |
+| Reglaze a smashed window | Carry 4 glass panes → right-click the window → *Reglaze window* |
 | Turn a feature off | Sandbox options → **CO-OP** |
 
 ### Updating
@@ -259,6 +270,16 @@ are simply ignored once the mod is gone.
 - **Крафт партіями** — поле кількості й кнопка MAX повертаються рецептам одягу та сумок,
   які базова гра змушує робити по одній речі. Ремонт, заміна фільтрів і все, що змінює
   вже наявний предмет, лишаються поштучними.
+- **Склярство: автоскло і вікна** — у вікні крафту з'являються лобове і заднє скло та
+  передні й задні бічні стекла для всіх трьох класів машин (звичайний, важкий,
+  спортивний), з тиглів розплавленого скла в керамічній формі для листа, з
+  плоскогубцями, лише біля **просунутої печі**, спалюючи від 2 до 4 деревного вугілля.
+  Бічне скло потребує склярства 4, заднє 6, лобове 7 і клей; спортивне скло на рівень
+  складніше, важке бере на один тигель більше. Ставиться, як і раніше, механікою. А ще
+  **дерев'яне вікно для дому** (4 віконні скла, 2 дошки, 4 цвяхи, 1 деревне вугілля;
+  склярство 2, теслярство 3; теж біля просунутої печі), яке вставляється в будь-який
+  порожній віконний проріз, як зняте з будинку, і **Засклити вікно** на розбитому вікні:
+  ПКМ з 4 віконними склами і склярством 2.
 
 ### Вимоги
 
@@ -368,6 +389,7 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 | Навичка «Організація» | У панелі навичок персонажа, у групі «Створення» |
 | Штовхати машину | Станьте спереду чи ззаду → **V** → *Штовхати*. **Esc**, щоб відпустити |
 | Копати глину | Візьміть лопату → ПКМ по землі за крок від річки чи озера → *Копати глину* |
+| Засклити розбите вікно | Майте 4 віконні скла → ПКМ по вікну → *Засклити вікно* |
 | Вимкнути можливість | Налаштування пісочниці → **CO-OP** |
 
 ### Оновлення
@@ -442,6 +464,16 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 - **Крафт партиями** — поле количества и кнопка MAX возвращаются рецептам одежды и сумок,
   которые базовая игра заставляет делать по одной вещи. Ремонт, замена фильтров и всё,
   что меняет уже имеющийся предмет, остаются поштучными.
+- **Стеклоделие: автостёкла и окна** — в окне крафта появляются лобовое и заднее стекло
+  и передние и задние боковые стёкла для всех трёх классов машин (стандартный, тяжёлый,
+  спортивный), из тиглей расплавленного стекла в керамической форме для листа, с
+  плоскогубцами, только у **продвинутой печи**, сжигая от 2 до 4 древесного угля.
+  Боковое стекло требует стеклоделия 4, заднее 6, лобовое 7 и клей; спортивное стекло на
+  уровень сложнее, тяжёлое берёт на один тигель больше. Устанавливается, как и раньше,
+  механикой. А ещё **деревянное окно для дома** (4 стеклянные панели, 2 доски, 4 гвоздя,
+  1 древесный уголь; стеклоделие 2, столярное дело 3; тоже у продвинутой печи), которое
+  вставляется в любой пустой оконный проём, как снятое с дома, и **Застеклить окно** на
+  разбитом окне: ПКМ с 4 стеклянными панелями и стеклоделием 2.
 
 ### Требования
 
@@ -551,6 +583,7 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 | Навык «Организация» | В панели навыков персонажа, в группе «Создание» |
 | Толкать машину | Встаньте спереди или сзади → **V** → *Толкать*. **Esc**, чтобы отпустить |
 | Копать глину | Возьмите лопату → ПКМ по земле в шаге от реки или озера → *Копать глину* |
+| Застеклить разбитое окно | Имейте 4 стеклянные панели → ПКМ по окну → *Застеклить окно* |
 | Выключить возможность | Настройки песочницы → **CO-OP** |
 
 ### Обновление

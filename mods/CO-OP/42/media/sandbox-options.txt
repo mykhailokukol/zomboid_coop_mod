@@ -211,3 +211,11 @@ option COOP.Cart
     page = COOP,
     translation = COOP_Cart,
 }
+
+option COOP.Glassmaking
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Glassmaking,
+}

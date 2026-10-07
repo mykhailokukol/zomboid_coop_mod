@@ -86,5 +86,6 @@
     "UI_COOP_RecipeInfo_DoorDamage": "Door damage",
     "UI_COOP_Cart_NoClimb": "Not with a cart attached.",
     "UI_COOP_Cart_NoVehicle": "Detach the cart first.",
-    "UI_COOP_Cart_NoCarry": "A cart can only be pulled or parked."
+    "UI_COOP_Cart_NoCarry": "A cart can only be pulled or parked.",
+    "UI_COOP_Glass_AlreadyWhole": "That window already has its glass."
 }

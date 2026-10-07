@@ -86,5 +86,6 @@
     "UI_COOP_RecipeInfo_DoorDamage": "Урон по дверям",
     "UI_COOP_Cart_NoClimb": "Не с прицепленной тележкой.",
     "UI_COOP_Cart_NoVehicle": "Сначала отцепите тележку.",
-    "UI_COOP_Cart_NoCarry": "Тележку можно только тянуть или поставить."
+    "UI_COOP_Cart_NoCarry": "Тележку можно только тянуть или поставить.",
+    "UI_COOP_Glass_AlreadyWhole": "В этом окне уже есть стекло."
 }

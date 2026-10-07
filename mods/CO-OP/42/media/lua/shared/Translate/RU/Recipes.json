@@ -1,3 +1,16 @@
 {
-    "MakeCOOPCart": "Сделать тележку"
+    "MakeCOOPCart": "Сделать тележку",
+    "MakeCOOPFrontWindow1": "Сделать переднее боковое стекло (стандартный)",
+    "MakeCOOPFrontWindow2": "Сделать переднее боковое стекло (тяжёлый)",
+    "MakeCOOPFrontWindow3": "Сделать переднее боковое стекло (спортивный)",
+    "MakeCOOPRearWindow1": "Сделать заднее боковое стекло (стандартный)",
+    "MakeCOOPRearWindow2": "Сделать заднее боковое стекло (тяжёлый)",
+    "MakeCOOPRearWindow3": "Сделать заднее боковое стекло (спортивный)",
+    "MakeCOOPRearWindshield1": "Сделать заднее стекло (стандартный)",
+    "MakeCOOPRearWindshield2": "Сделать заднее стекло (тяжёлый)",
+    "MakeCOOPRearWindshield3": "Сделать заднее стекло (спортивный)",
+    "MakeCOOPWindshield1": "Сделать лобовое стекло (стандартный)",
+    "MakeCOOPWindshield2": "Сделать лобовое стекло (тяжёлый)",
+    "MakeCOOPWindshield3": "Сделать лобовое стекло (спортивный)",
+    "MakeCOOPHouseWindow": "Сделать деревянное окно"
 }

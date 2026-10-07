@@ -18,5 +18,9 @@
     "ContextMenu_COOP_Cart_Detach": "Відчепити візок",
     "ContextMenu_COOP_Cart_AlreadyPulling": "Ви вже тягнете візок.",
     "ContextMenu_COOP_Cart_NotParked": "Візок має стояти на землі.",
-    "ContextMenu_COOP_Cart_InVehicle": "Спершу вийдіть з машини."
+    "ContextMenu_COOP_Cart_InVehicle": "Спершу вийдіть з машини.",
+    "ContextMenu_COOP_Glass_Reglaze": "Засклити вікно",
+    "ContextMenu_COOP_Glass_NoPanes": "Потрібно віконного скла: %1 шт.",
+    "ContextMenu_COOP_Glass_NoSkill": "Потрібне склярство %1.",
+    "ContextMenu_COOP_Glass_Barricaded": "Спершу зніміть барикаду."
 }
