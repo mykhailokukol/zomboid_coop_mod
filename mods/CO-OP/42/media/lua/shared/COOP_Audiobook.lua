@@ -64,6 +64,7 @@ COOPAudiobook.CMD_ERASE = "abErase"        -- client -> server: wipe a CD back t
 COOPAudiobook.CMD_HEARD = "abHeard"        -- client -> server: a held player played a line
 COOPAudiobook.CMD_RESULT = "abResult"      -- server -> client: how a burn or erase went
 COOPAudiobook.CMD_PAGES = "abPages"        -- server -> client: pages heard of a book
+COOPAudiobook.CMD_LINE = "abLine"          -- both ways: a CD player on the speaker said a line
 
 COOPAudiobook.BLANK = "COOP.BlankCD"
 COOPAudiobook.DISC = "Base.Disc_Retail"

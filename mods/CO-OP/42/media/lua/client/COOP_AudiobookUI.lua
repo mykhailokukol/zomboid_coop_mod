@@ -78,7 +78,26 @@ local function onServerCommand(_module, _command, _args)
         end
     elseif _command == COOPAudiobook.CMD_RESULT then
         COOPAudiobookUI.report(_args.what, _args.name, _args.reason)
+    elseif _command == COOPAudiobook.CMD_LINE then
+        COOPAudiobookUI.showLine(_args)
     end
+end
+
+-- Somebody else's CD player said a line we can hear: show it over their head the way the
+-- device shows it over its holder's (Radio.AddDeviceText -> SayRadio), in our language.
+function COOPAudiobookUI.showLine(_args)
+    local holder = getPlayerByOnlineID(tonumber(_args.from) or -1)
+    local book = COOPAudiobook.bookForMediaId(_args.media)
+    if holder == nil or book == nil then return end
+    local media = COOPAudiobook.mediaFor(book)
+    local line = media and media:getLine(tonumber(_args.line) or -1)
+    if line == nil then return end
+    local text = line:getTranslatedText()
+    if text == nil or text == "" then return end
+    local ok = pcall(function()
+        holder:SayRadio(text, line:getR(), line:getG(), line:getB(), UIFont.Medium, 15, 0, "radio")
+    end)
+    if not ok then pcall(function() holder:Say(text) end) end
 end
 
 Events.OnServerCommand.Add(onServerCommand)
@@ -96,17 +115,19 @@ local function reportHeldPlayers()
     for n = 0, getNumActivePlayers() - 1 do
         local player = getSpecificPlayer(n)
         local radio = player and player:getEquipedRadio()
-        local ok, id = radio ~= nil, nil
-        if ok then ok, id = pcall(function()
+        local ok, id, speaker = radio ~= nil, nil, false
+        if ok then ok, id, speaker = pcall(function()
             local data = radio:getDeviceData()
             if not (data:getIsTurnedOn() and data:getDeviceVolume() > 0 and data:isPlayingMedia()) then
                 return nil
             end
             local media = data:getMediaData()
-            return media and media:getId() or nil
+            return media and media:getId() or nil, data:getHeadphoneType() < 0
         end) end
         if ok and id ~= nil and COOPAudiobook.bookForMediaId(id) ~= nil then
-            sendClientCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_HEARD, { media = id })
+            -- on the speaker the people around hear it too; the server works out who
+            sendClientCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_HEARD,
+                    { media = id, speaker = speaker == true })
         end
     end
 end
@@ -117,9 +138,9 @@ Events.EveryOneMinute.Add(reportHeldPlayers)
 -- talking sound both come from the device stepping through its lines (AddDeviceText
 -- says the line and sets the signal the emitter plays RadioTalk on). So an audiobook is
 -- stepped here instead, the way DeviceData.updateMediaPlaying does it in single player:
--- the same first wait and the same line length. When the lines run out the disc is
--- stopped through the server, as the device would do itself. With headphones the client
--- steps the lines on its own, so those are left alone.
+-- the same first wait and the same line length. When the lines run out the disc starts
+-- over, because it is shorter than the book; the player turns it off. With headphones the
+-- client steps the lines on its own, so those are left alone (and stop at the end).
 local LINE_MIN = 60 * 1.5           -- DeviceData.minmod
 local LINE_MAX = 60 * 5.0           -- DeviceData.maxmod
 
@@ -167,6 +188,12 @@ local function stepHeldPlayers()
                 state.counter = state.counter - 1.25 * getGameTime():getMultiplier()
                 if state.counter <= 0 then
                     local line = media:getLine(state.line)
+                    if line == nil and state.line > 0 then
+                        -- The disc is shorter than the book, so it starts over rather
+                        -- than stop: a player stopping by itself mid-book reads as a bug.
+                        state.line = 0
+                        line = media:getLine(0)
+                    end
                     if line == nil then
                         -- isPlayingMedia stays set until the server answers the stop
                         state.done = true
@@ -174,11 +201,17 @@ local function stepHeldPlayers()
                     else
                         local text = line:getTranslatedText() or ""
                         state.counter = math.max(LINE_MIN, math.min(LINE_MAX, textLength(text) / 10 * 60))
-                        state.line = state.line + 1
                         pcall(function()
                             radio:AddDeviceText(text, line:getR(), line:getG(), line:getB(),
                                     line:getTextGuid(), line:getCodes(), 0)
                         end)
+                        -- the bubble is drawn on this client alone; the server passes it
+                        -- on to whoever can hear the speaker. Silent lines are not sent.
+                        if text ~= "" then
+                            sendClientCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_LINE,
+                                    { media = state.media, line = state.line })
+                        end
+                        state.line = state.line + 1
                     end
                 end
             end

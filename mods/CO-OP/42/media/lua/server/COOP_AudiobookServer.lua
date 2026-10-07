@@ -160,6 +160,51 @@ local function bookOfDevice(_device)
     return COOPAudiobook.bookForMediaId(id)
 end
 
+-- A CD player on its speaker is heard by the people around its holder, not only by the
+-- holder. In a vehicle that means the others in the same vehicle; on foot, the same box
+-- and the same indoors-or-out test a world radio gets, with nobody inside a car.
+local function listenersAround(_holder)
+    local found = {}
+    local vehicle = _holder:getVehicle()
+    local square = _holder:getSquare()
+    local players = getOnlinePlayers()
+    for i = 0, players:size() - 1 do
+        local player = players:get(i)
+        if player ~= nil and player ~= _holder then
+            local hears
+            if vehicle ~= nil or player:getVehicle() ~= nil then
+                hears = player:getVehicle() == vehicle and canHear(player, nil)
+            else
+                hears = inRange(player, _holder:getX(), _holder:getY(), _holder:getZ())
+                        and canHear(player, square)
+            end
+            if hears then table.insert(found, player) end
+        end
+    end
+    return found
+end
+
+local function heardAround(_holder, _book)
+    for _, player in ipairs(listenersAround(_holder)) do
+        COOPAudiobookServer.heard(player, _book)
+    end
+end
+
+-- A line the holder's client just showed above its holder's head. Only that client steps
+-- the disc, so nobody else would ever see it; the people who can hear the CD player get
+-- it passed on, as a line index rather than text so each client shows its own language.
+local function relayLine(_holder, _args)
+    local book = COOPAudiobook.bookForMediaId(_args and _args.media)
+    local line = tonumber(_args and _args.line)
+    if book == nil or line == nil or line < 0 then return end
+    local listeners = listenersAround(_holder)
+    if #listeners == 0 then return end
+    local payload = { from = _holder:getOnlineID(), media = book.mediaId, line = math.floor(line) }
+    for _, player in ipairs(listeners) do
+        sendServerCommand(player, COOPAudiobook.MODULE, COOPAudiobook.CMD_LINE, payload)
+    end
+end
+
 -- On the server: world and car radios. In single player: every device, the held CD
 -- player included (it reports -1 for the square, meaning whoever holds it).
 local function onDeviceText(_guid, _codes, _x, _y, _z, _line, _device)
@@ -317,6 +362,11 @@ local function onClientCommand(_module, _command, _player, _args)
         if book ~= nil and canHear(_player, nil) then
             COOPAudiobookServer.heard(_player, book)
         end
+        if book ~= nil and _args.speaker == true then
+            heardAround(_player, book)
+        end
+    elseif _command == COOPAudiobook.CMD_LINE then
+        relayLine(_player, _args)
     end
 end
 
