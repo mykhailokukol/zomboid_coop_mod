@@ -4,7 +4,8 @@ Co-op tools for a shared base: a shared checklist of skill books, magazines and 
 tapes, map marks shared automatically, pings everyone can see, a shared to-do list, a
 choice of where crafted and removed items land, an Organization skill that makes
 containers hold more, a cart to pull loads home, car glass and house windows from
-Glassmaking, and wear colours behind the hotbar.
+Glassmaking, an AFK button that freezes your character while you are away, and wear
+colours behind the hotbar.
 
 Every feature has its own on/off switch in the sandbox options, so you can take only
 the parts you want.
@@ -100,6 +101,13 @@ the parts you want.
   Glassmaking 2, Carpentry 3; also at the Advanced Furnace) that you place into any
   empty window frame like one taken off a house, and **Reglaze window** on a smashed
   window: right-click it with 4 glass panes and Glassmaking 2.
+- **AFK** — a moon button at the bottom of the sidebar, under the heart. Press it and
+  keep still for 10 seconds: your character is frozen until you do anything at all —
+  hunger, thirst, tiredness, moods, wounds, bandages, illness and infection stop where
+  they were, the TV and the radio stop teaching you, and other players cannot treat,
+  wake or trade with you. Everyone sees **AFK** over your head and a line in chat.
+  Moving, aiming, or any action (moving items, eating, reading...) brings you back at
+  once; so does getting hurt — zombies are not stopped, so go AFK somewhere safe.
 
 ### Requirements
 
@@ -211,6 +219,7 @@ if you switch it off later.
 | Dig a well | Build window → *Outdoors* → *Well* |
 | Burn an audiobook | Right-click a computer with power → *Computer* → *Burn an audiobook* |
 | Reglaze a smashed window | Carry 4 glass panes → right-click the window → *Reglaze window* |
+| Go AFK | The moon button at the bottom of the sidebar, then keep still for 10 seconds. Do anything to come back |
 | Turn a feature off | Sandbox options → **CO-OP** |
 
 ### Updating
@@ -309,6 +318,13 @@ are simply ignored once the mod is gone.
   склярство 2, теслярство 3; теж біля просунутої печі), яке вставляється в будь-який
   порожній віконний проріз, як зняте з будинку, і **Засклити вікно** на розбитому вікні:
   ПКМ з 4 віконними склами і склярством 2.
+- **АФК** — кнопка з місяцем унизу бічної панелі, під сердечком. Натисніть і
+  постійте нерухомо 10 секунд: персонаж завмре до першої вашої дії — голод, спрага,
+  втома, настрій, рани, пов'язки, хвороби й зараження зупиняються, телевізор і радіо
+  перестають навчати, а інші гравці не можуть лікувати, будити вас чи торгувати з вами.
+  Усі бачать **АФК** над вашою головою і рядок у чаті. Рух, прицілювання чи будь-яка
+  дія (перекласти речі, поїсти, читати...) одразу повертають вас; поранення теж —
+  зомбі не зупиняються, тож ідіть в АФК у безпечному місці.
 
 ### Вимоги
 
@@ -421,6 +437,7 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 | Викопати криницю | Вікно будівництва → *Outdoors* → *Криниця* |
 | Записати аудіокнигу | ПКМ по комп'ютеру з живленням → *Комп'ютер* → *Записати аудіокнигу* |
 | Засклити розбите вікно | Майте 4 віконні скла → ПКМ по вікну → *Засклити вікно* |
+| Піти в АФК | Кнопка з місяцем унизу бічної панелі, потім 10 секунд не рухатися. Будь-яка дія повертає |
 | Вимкнути можливість | Налаштування пісочниці → **CO-OP** |
 
 ### Оновлення
@@ -518,6 +535,13 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
   1 древесный уголь; стеклоделие 2, столярное дело 3; тоже у продвинутой печи), которое
   вставляется в любой пустой оконный проём, как снятое с дома, и **Застеклить окно** на
   разбитом окне: ПКМ с 4 стеклянными панелями и стеклоделием 2.
+- **АФК** — кнопка с луной внизу боковой панели, под сердечком. Нажмите и постойте
+  неподвижно 10 секунд: персонаж замрёт до первого вашего действия — голод, жажда,
+  усталость, настроение, раны, повязки, болезни и заражение останавливаются, телевизор
+  и радио перестают обучать, а другие игроки не могут лечить, будить вас или торговать
+  с вами. Все видят **АФК** над вашей головой и строку в чате. Движение, прицеливание
+  или любое действие (переложить вещи, поесть, читать...) сразу возвращают вас; ранение
+  тоже — зомби не останавливаются, так что уходите в АФК в безопасном месте.
 
 ### Требования
 
@@ -630,6 +654,7 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 | Выкопать колодец | Окно постройки → *Наружное* → *Колодец* |
 | Записать аудиокнигу | ПКМ по компьютеру с питанием → *Компьютер* → *Записать аудиокнигу* |
 | Застеклить разбитое окно | Имейте 4 стеклянные панели → ПКМ по окну → *Застеклить окно* |
+| Уйти в АФК | Кнопка с луной внизу боковой панели, потом 10 секунд не двигаться. Любое действие возвращает |
 | Выключить возможность | Настройки песочницы → **CO-OP** |
 
 ### Обновление

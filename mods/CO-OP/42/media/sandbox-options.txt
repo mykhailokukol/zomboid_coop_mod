@@ -235,3 +235,21 @@ option COOP.Glassmaking
     page = COOP,
     translation = COOP_Glassmaking,
 }
+
+option COOP.Afk
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Afk,
+}
+
+option COOP.AfkDelay
+{
+    type = integer,
+    min = 3,
+    max = 60,
+    default = 10,
+    page = COOP,
+    translation = COOP_AfkDelay,
+}

@@ -25,6 +25,7 @@
 if isClient() then return end
 
 require "COOP_Audiobook"
+require "COOP_Afk"
 
 COOPAudiobookServer = {}
 
@@ -77,6 +78,8 @@ end
 function COOPAudiobookServer.heard(_player, _book)
     if _player == nil or _book == nil then return end
     if not COOPAudiobook.isEnabled() then return end
+    -- an AFK player hears nothing: the pages wait for them, as the TV's lessons do
+    if COOPAfk ~= nil and COOPAfk.isAfk(_player) then return end
 
     local key = playerKey(_player)
     local mine = listening[key]

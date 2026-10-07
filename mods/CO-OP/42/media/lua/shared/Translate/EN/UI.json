@@ -91,5 +91,18 @@
     "UI_COOP_Audiobook_Erased": "The CD is blank now.",
     "UI_COOP_Audiobook_NoPower": "The computer lost power.",
     "UI_COOP_Audiobook_Failed": "That did not work out.",
-    "UI_COOP_Glass_AlreadyWhole": "That window already has its glass."
+    "UI_COOP_Glass_AlreadyWhole": "That window already has its glass.",
+    "UI_COOP_Afk_Tooltip": "AFK: keep still for %1 seconds and your character is frozen - hunger, wounds, illness and the TV all wait for you. Anything you do brings you back.",
+    "UI_COOP_Afk_Arming": "AFK in %1 seconds - keep still",
+    "UI_COOP_Afk_On": "You are AFK",
+    "UI_COOP_Afk_Back": "Back from AFK",
+    "UI_COOP_Afk_Cancelled": "AFK cancelled",
+    "UI_COOP_Afk_Hurt": "Hurt - no longer AFK",
+    "UI_COOP_Afk_Refused": "Can't go AFK right now",
+    "UI_COOP_Afk_Asleep": "Not while asleep",
+    "UI_COOP_Afk_Busy": "Finish what you are doing first",
+    "UI_COOP_Afk_IsAfk": "%1 is AFK",
+    "UI_COOP_Afk_ChatOn": "%1 is AFK.",
+    "UI_COOP_Afk_ChatOff": "%1 is back.",
+    "UI_COOP_Afk_Badge": "AFK"
 }

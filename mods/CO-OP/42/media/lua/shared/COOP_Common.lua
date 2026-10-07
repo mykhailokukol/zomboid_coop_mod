@@ -121,6 +121,7 @@ COOP.F_CART = "Cart"
 COOP.F_WELL = "Well"
 COOP.F_AUDIOBOOKS = "Audiobooks"
 COOP.F_GLASS = "Glassmaking"
+COOP.F_AFK = "Afk"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()

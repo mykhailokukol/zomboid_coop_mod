@@ -91,5 +91,18 @@
     "UI_COOP_Audiobook_Erased": "Диск теперь чистый.",
     "UI_COOP_Audiobook_NoPower": "Компьютер обесточен.",
     "UI_COOP_Audiobook_Failed": "Не получилось.",
-    "UI_COOP_Glass_AlreadyWhole": "В этом окне уже есть стекло."
+    "UI_COOP_Glass_AlreadyWhole": "В этом окне уже есть стекло.",
+    "UI_COOP_Afk_Tooltip": "АФК: постойте неподвижно %1 сек., и персонаж замрёт - голод, раны, болезни и телевизор подождут вас. Любое действие возвращает обратно.",
+    "UI_COOP_Afk_Arming": "АФК через %1 сек. - не двигайтесь",
+    "UI_COOP_Afk_On": "Вы АФК",
+    "UI_COOP_Afk_Back": "Вы вернулись",
+    "UI_COOP_Afk_Cancelled": "АФК отменён",
+    "UI_COOP_Afk_Hurt": "Ранение - АФК снят",
+    "UI_COOP_Afk_Refused": "Сейчас нельзя уйти в АФК",
+    "UI_COOP_Afk_Asleep": "Не во сне",
+    "UI_COOP_Afk_Busy": "Сначала закончите начатое",
+    "UI_COOP_Afk_IsAfk": "%1 сейчас АФК",
+    "UI_COOP_Afk_ChatOn": "%1 отошёл (АФК).",
+    "UI_COOP_Afk_ChatOff": "%1 вернулся.",
+    "UI_COOP_Afk_Badge": "АФК"
 }

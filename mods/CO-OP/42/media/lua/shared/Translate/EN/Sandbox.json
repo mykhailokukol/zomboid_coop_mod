@@ -53,5 +53,9 @@
     "Sandbox_COOP_Audiobooks": "Audiobooks",
     "Sandbox_COOP_Audiobooks_tooltip": "Skill books burned onto CDs at a powered computer. Listening to one counts as reading the book: the same time, the same pages, the same XP multiplier. Off hides the computer menu and stops the counting; discs already burned still play.",
     "Sandbox_COOP_Glassmaking": "Glassmaking: car glass and windows",
-    "Sandbox_COOP_Glassmaking_tooltip": "Recipes for windshields and side windows for all three vehicle classes and for a wooden house window, and reglazing a smashed window with glass panes."
+    "Sandbox_COOP_Glassmaking_tooltip": "Recipes for windshields and side windows for all three vehicle classes and for a wooden house window, and reglazing a smashed window with glass panes.",
+    "Sandbox_COOP_Afk": "AFK button",
+    "Sandbox_COOP_Afk_tooltip": "A button in the sidebar: keep still for a few seconds and the character is frozen until you do anything - hunger, thirst, wounds, illness, infection and TV or radio lessons all wait, and other players cannot treat or trade with you. Getting hurt ends it.",
+    "Sandbox_COOP_AfkDelay": "AFK: seconds to keep still",
+    "Sandbox_COOP_AfkDelay_tooltip": "How long a player has to do nothing after pressing AFK before the freeze starts."
 }
