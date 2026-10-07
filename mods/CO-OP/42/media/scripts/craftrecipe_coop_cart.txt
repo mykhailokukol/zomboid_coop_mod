@@ -19,6 +19,7 @@ module COOP
         SkillRequired = Woodwork:5;Mechanics:1,
         xpAward = Woodwork:25;Mechanics:10,
         Tooltip = Tooltip_COOP_Cart,
+        OnAddToMenu = COOP_CartInMenu,
         inputs
         {
             item 1 tags[base:hammer] mode:keep flags[MayDegradeVeryLight],

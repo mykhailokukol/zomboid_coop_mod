@@ -107,6 +107,12 @@ function COOPCart.isEnabled()
     return COOP.featureEnabled(COOP.F_CART)
 end
 
+-- The OnAddToMenu of MakeCOOPCart: with the option off the recipe is not listed. It
+-- must be a plain global - callLuaBool finds it with a raw get on the global table.
+function COOP_CartInMenu(_params)
+    return COOPCart.isEnabled()
+end
+
 function COOPCart.isCart(_item)
     if _item == nil then return false end
     local ok, fullType = pcall(function() return _item:getFullType() end)

@@ -1,0 +1,24 @@
+module COOP
+{
+    imports
+    {
+        Base
+    }
+
+    /* A CD with nothing on it, for burning an audiobook at a computer
+       (COOP_Audiobook.lua). Vanilla has no blank disc - every Base.Disc_Retail is
+       given a recording when it spawns - so this is the one item audiobooks add; the
+       audiobook itself is a Disc_Retail. No MediaCategory: an item that has one is
+       given random media on spawn, and deleted when there is none for its category.
+       It never spawns either way, it only comes out of wiping a CD. */
+    item BlankCD
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        DisplayName = Blank CD,
+        Weight = 0.3,
+        Icon = Disc,
+        WorldStaticModel = Disk,
+        Tooltip = Tooltip_COOP_BlankCD,
+    }
+}

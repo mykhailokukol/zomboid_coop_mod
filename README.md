@@ -62,6 +62,20 @@ the parts you want.
   stand, and anyone can open it there. A cart is never carried in your hands or your
   bags. Parked, the load still counts towards the 50 kg the game allows on one tile of
   floor, so park it where nothing else is lying.
+- **Digging a well** — in the Build window under Outdoors, at Masonry 6: 30 stone
+  blocks, a long stick, two small handles, any empty bucket, a rope (or twine, or a
+  sheet rope) and three empty sacks, with any shovel. What you get is the game's own
+  well — 10,000 l of clean water, topped up by rain — plus your shovel back and three
+  sacks of dirt. Gives 80 Masonry and 15 Carpentry XP.
+- **Audiobooks** — right-click a desktop computer that has power (the grid or a
+  generator) → **Computer**: burn a skill book onto a blank CD (15 minutes, the
+  book stays with you), or wipe any CD back to blank (15 minutes). An audiobook plays
+  in anything a music CD plays in — a CD player, a radio that takes discs, a car radio
+  — and listening to it counts as reading the book: it takes as long as reading would
+  (the *minutes per page* sandbox setting and the reader traits included), the pages
+  heard go onto that book's page count, and the XP multiplier grows with them. Everyone
+  within five tiles of a radio hears it; a CD player in your hands is just for you. The
+  volume has to suit your level, as with the book.
 - **Hotbar condition colours** — a hotbar slot holding a worn item gets its background
   split into a coloured column per state the item has: condition, head and sharpness,
   green above 75%, yellow down to 25%, red below. An item in good shape draws nothing,
@@ -194,6 +208,8 @@ if you switch it off later.
 | Organization skill | In the character skills panel, under Crafting |
 | Push a vehicle | Stand at its front or back → **V** → *Push*. **Esc** to let go |
 | Dig clay | Carry a shovel → right-click the ground within a tile of a river or lake → *Dig for clay* |
+| Dig a well | Build window → *Outdoors* → *Well* |
+| Burn an audiobook | Right-click a computer with power → *Computer* → *Burn an audiobook* |
 | Reglaze a smashed window | Carry 4 glass panes → right-click the window → *Reglaze window* |
 | Turn a feature off | Sandbox options → **CO-OP** |
 
@@ -257,6 +273,19 @@ are simply ignored once the mod is gone.
   сідати в машину; **Відчепити візок** ставить його там, де ви стоїте, і тоді відкрити
   його може будь-хто. У руках чи в сумці візок не носять. На землі вантаж рахується до
   50 кг, які гра дозволяє на одну клітинку підлоги, тож ставте його там, де нічого не лежить.
+- **Криниця** — у вікні будівництва, розділ Outdoors, з Мулярством 6: 30 кам'яних
+  блоків, довга палиця, дві короткі руків'я, будь-яке порожнє відро, мотузка (або
+  бечівка, або мотузка з простирадл) і три порожні мішки, плюс будь-яка лопата.
+  Виходить звичайна ігрова криниця — 10 000 л чистої води, що поповнюється дощем, —
+  а ще лопата повертається і три мішки землі. Дає 80 досвіду Мулярства і 15 Теслярства.
+- **Аудіокниги** — ПКМ по комп'ютеру з живленням (мережа чи генератор) → **Комп'ютер**:
+  записати книгу навички на чистий CD (15 хвилин, книга лишається у вас) або стерти
+  будь-який CD до чистого (15 хвилин). Аудіокнига грає всюди, де грає звичайний CD, —
+  у плеєрі, радіо з дисководом, автомагнітолі, — а прослуховування зараховується як
+  читання: триває стільки ж (з урахуванням налаштування *хвилин на сторінку* й рис
+  читача), прослухані сторінки додаються до лічильника цієї книги, і разом із ними росте
+  множник досвіду. Радіо чують усі в радіусі п'яти клітинок; плеєр у руках — лише ви.
+  Том має відповідати вашому рівню, як і книга.
 - **Смуги стану на панелі швидкого доступу** — комірка з надягнутим предметом ділить тло
   на кольорові смуги, по одній на кожен стан предмета: міцність, стан голівки та
   гострота, зелений понад 75%, жовтий до 25%, нижче червоний. Справний предмет не малює
@@ -389,6 +418,8 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 | Навичка «Організація» | У панелі навичок персонажа, у групі «Створення» |
 | Штовхати машину | Станьте спереду чи ззаду → **V** → *Штовхати*. **Esc**, щоб відпустити |
 | Копати глину | Візьміть лопату → ПКМ по землі за крок від річки чи озера → *Копати глину* |
+| Викопати криницю | Вікно будівництва → *Outdoors* → *Криниця* |
+| Записати аудіокнигу | ПКМ по комп'ютеру з живленням → *Комп'ютер* → *Записати аудіокнигу* |
 | Засклити розбите вікно | Майте 4 віконні скла → ПКМ по вікну → *Засклити вікно* |
 | Вимкнути можливість | Налаштування пісочниці → **CO-OP** |
 
@@ -451,6 +482,19 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
   машину; **Отцепить тележку** ставит её там, где вы стоите, и тогда открыть её может
   кто угодно. В руках или в сумке тележку не носят. На земле груз считается в те 50 кг,
   которые игра разрешает на одну клетку пола, так что ставьте её там, где ничего не лежит.
+- **Колодец** — в окне постройки, раздел «Наружное», с Каменной кладкой 6: 30 каменных
+  блоков, длинная палка, две короткие рукояти, любое пустое ведро, верёвка (или бечёвка,
+  или тряпичная верёвка) и три пустых мешка, плюс любая лопата. Получается обычный
+  игровой колодец — 10 000 л чистой воды, пополняемой дождём, — а ещё лопата
+  возвращается и три мешка земли. Даёт 80 опыта Каменной кладки и 15 Плотничества.
+- **Аудиокниги** — ПКМ по компьютеру с питанием (сеть или генератор) → **Компьютер**:
+  записать книгу навыка на чистый CD (15 минут, книга остаётся у вас) или стереть
+  любой CD до чистого (15 минут). Аудиокнига играет везде, где играет обычный CD, —
+  в плеере, радио с дисководом, автомагнитоле, — а прослушивание засчитывается как
+  чтение: длится столько же (с учётом настройки *минут на страницу* и черт читателя),
+  прослушанные страницы прибавляются к счётчику этой книги, и вместе с ними растёт
+  множитель опыта. Радио слышат все в пяти клетках; плеер в руках — только вы. Том
+  должен подходить вашему уровню, как и книга.
 - **Полосы состояния на панели быстрого доступа** — ячейка с надетым предметом делит фон
   на цветные полосы, по одной на каждое состояние предмета: прочность, состояние головки
   и заточка, зелёный выше 75%, жёлтый до 25%, ниже красный. Исправный предмет не рисует
@@ -583,6 +627,8 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 | Навык «Организация» | В панели навыков персонажа, в группе «Создание» |
 | Толкать машину | Встаньте спереди или сзади → **V** → *Толкать*. **Esc**, чтобы отпустить |
 | Копать глину | Возьмите лопату → ПКМ по земле в шаге от реки или озера → *Копать глину* |
+| Выкопать колодец | Окно постройки → *Наружное* → *Колодец* |
+| Записать аудиокнигу | ПКМ по компьютеру с питанием → *Компьютер* → *Записать аудиокнигу* |
 | Застеклить разбитое окно | Имейте 4 стеклянные панели → ПКМ по окну → *Застеклить окно* |
 | Выключить возможность | Настройки песочницы → **CO-OP** |
 

@@ -87,5 +87,9 @@
     "UI_COOP_Cart_NoClimb": "Не з причепленим візком.",
     "UI_COOP_Cart_NoVehicle": "Спершу відчепіть візок.",
     "UI_COOP_Cart_NoCarry": "Візок можна лише тягнути або поставити.",
+    "UI_COOP_Audiobook_Burned": "Записано: %1",
+    "UI_COOP_Audiobook_Erased": "Диск тепер чистий.",
+    "UI_COOP_Audiobook_NoPower": "Комп'ютер знеструмлено.",
+    "UI_COOP_Audiobook_Failed": "Не вийшло.",
     "UI_COOP_Glass_AlreadyWhole": "У цьому вікні вже є скло."
 }
