@@ -1,0 +1,312 @@
+<title>CO-OP Build Picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a sticky workbench bar (tabs, search, picked count) over a dense grid of tile cards; a side sheet opens with one object's recipe. */
+:root {
+  --bg: #eef0ea;
+  --panel: #f8f9f5;
+  --well: #dfe3d8;
+  --line: #c9cfc0;
+  --fg: #1f241c;
+  --muted: #5d6656;
+  --accent: #b5651d;
+  --accent-ink: #ffffff;
+  --picked: #2f7d4a;
+  --picked-soft: #d8ecd9;
+  --chip: #e6e9df;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171a15; --panel: #20241d; --well: #2b3027; --line: #3a4135; --fg: #e5e9de;
+    --muted: #9aa48f; --accent: #e08a3c; --accent-ink: #1a1208; --picked: #5cbf7c;
+    --picked-soft: #1f3a27; --chip: #2a2f25; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171a15; --panel: #20241d; --well: #2b3027; --line: #3a4135; --fg: #e5e9de;
+  --muted: #9aa48f; --accent: #e08a3c; --accent-ink: #1a1208; --picked: #5cbf7c;
+  --picked-soft: #1f3a27; --chip: #2a2f25; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 14px; }
+.wrap { padding-inline: 16px; padding-block: 0 48px; max-width: 1500px; margin: 0 auto; }
+header.top { padding-block: 20px 8px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+h1 { font-family: var(--display); font-weight: 700; font-size: 34px; letter-spacing: .01em; margin: 0; text-wrap: balance; }
+h1 small { font-weight: 500; color: var(--muted); font-size: 20px; margin-left: 8px; }
+.lede { color: var(--muted); max-width: 70ch; margin: 4px 0 0; line-height: 1.5; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab { font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: .02em; border: 1px solid var(--line); background: var(--panel); color: var(--fg); padding: 5px 12px; border-radius: 4px; cursor: pointer; }
+.tab b { font-weight: 500; color: var(--muted); margin-left: 4px; font-variant-numeric: tabular-nums; }
+.tab[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.tab[aria-pressed="true"] b { color: var(--bg); opacity: .7; }
+.tab.picks { border-color: var(--picked); }
+.tab.picks[aria-pressed="true"] { background: var(--picked); border-color: var(--picked); color: var(--accent-ink); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+input[type=search], select { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); color: var(--fg); }
+input[type=search] { flex: 1 1 260px; min-width: 0; }
+.btn { font: inherit; font-weight: 500; padding: 7px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.status { color: var(--muted); font-size: 13px; }
+.status.warn { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 14px; }
+.card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; text-align: left; font: inherit; color: inherit; min-width: 0; }
+.card:hover { border-color: var(--muted); }
+.card.on { border-color: var(--picked); box-shadow: inset 0 0 0 1px var(--picked); background: var(--picked-soft); }
+.thumb { height: 128px; background-color: var(--well); border-radius: 4px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+.thumb i { display: block; width: 96px; height: 128px; background-repeat: no-repeat; }
+.thumb.none { align-items: center; color: var(--muted); font-size: 12px; }
+.name { font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+.set { font-family: var(--mono); font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip { font-size: 11.5px; padding: 1px 6px; border-radius: 3px; background: var(--chip); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chip.skill { font-weight: 600; }
+.tick { position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); background: var(--panel); display: grid; place-items: center; font-size: 13px; color: transparent; }
+.card.on .tick { background: var(--picked); border-color: var(--picked); color: var(--accent-ink); }
+.more { margin: 20px auto 0; display: block; }
+.empty { color: var(--muted); padding: 40px 0; text-align: center; }
+
+.sheet { position: fixed; inset: 0 0 0 auto; width: min(460px, 100%); background: var(--panel); border-left: 1px solid var(--line); z-index: 10; overflow-y: auto; padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 32px; display: flex; flex-direction: column; gap: 16px; box-shadow: -8px 0 30px rgba(0,0,0,.18); }
+.sheet h2 { font-family: var(--display); font-size: 28px; margin: 0; line-height: 1.1; padding-right: 40px; }
+.sheet .close { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 14px); right: 14px; }
+.sheet h3 { font-family: var(--display); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.big { height: 200px; background: var(--well); border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; }
+.big i { width: 96px; height: 128px; transform: scale(1.5); transform-origin: bottom center; background-repeat: no-repeat; }
+table.kv { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+table.kv td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.kv td:first-child { color: var(--muted); width: 40%; padding-right: 10px; }
+.faces { font-family: var(--mono); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+textarea { font: inherit; width: 100%; min-height: 80px; padding: 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--fg); resize: vertical; }
+.note-hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.formula { color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+@media (prefers-reduced-motion: no-preference) { .card { transition: border-color .12s, background .12s; } }
+@media (max-width: 480px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } h1 { font-size: 28px; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>CO-OP Build Picker <small id="total"></small></h1>
+      <p class="lede">Every placeable object in Build 42 that the vanilla Build menu cannot make. Tick the ones you want craftable; the recipe on each card is the proposed formula, and a note on any item overrides it.</p>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" id="tabs" role="toolbar" aria-label="Category"></div>
+    <div class="row">
+      <input type="search" id="q" placeholder="Search name, tileset or sprite (e.g. fridge, walls_exterior_house_01)" aria-label="Search">
+      <select id="skill" aria-label="Skill">
+        <option value="">Any skill</option>
+        <option value="Woodwork">Carpentry</option>
+        <option value="MetalWelding">Metalworking</option>
+        <option value="Glassmaking">Glassmaking</option>
+        <option value="Electricity">Electrical</option>
+        <option value="Masonry">Masonry</option>
+      </select>
+      <select id="size" aria-label="Size">
+        <option value="">Any size</option>
+        <option value="1">Single tile</option>
+        <option value="2">Multi-tile</option>
+      </select>
+      <button class="btn primary" id="copy" type="button">Copy picked list</button>
+    </div>
+    <div class="status" id="status">Connecting to the shared pick list…</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Nothing matches. Clear the search or pick another category.</p>
+  <button class="btn more" id="more" type="button" hidden>Show more</button>
+</div>
+
+<aside class="sheet" id="sheet" hidden aria-label="Object details"></aside>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const RAW = JSON.parse(document.getElementById('data').textContent);
+const O = RAW.map(r => ({ id: r[0], name: r[1], set: r[2], cat: r[3], faces: r[4], tiles: r[5], kg: r[6], mats: r[7],
+  skills: r[8], tools: r[9], inputs: r[10], xp: r[11], time: r[12], thumb: r[13], pickup: r[14] }));
+const BY_ID = new Map(O.map(o => [o.id, o]));
+const CATS = [
+  ['windows', 'Windows'], ['frames', 'Window frames'], ['walls', 'Walls'], ['furniture', 'Furniture'],
+  ['metal', 'Metal'], ['appliances', 'Appliances'], ['lighting', 'Lighting'], ['plants', 'Plants'], ['other', 'Decor & other'], ['picked', 'Picked']];
+const SKILL = { Woodwork: 'Carpentry', MetalWelding: 'Metalworking', Glassmaking: 'Glassmaking', Electricity: 'Electrical', Masonry: 'Masonry' };
+const ITEM = { 'Base.Plank': 'Plank', 'Base.Nails': 'Nails', 'Base.Screws': 'Screws', 'Base.SheetMetal': 'Sheet metal',
+  'Base.SmallSheetMetal': 'Small sheet metal', 'Base.MetalBar': 'Metal bar', 'Base.MetalPipe': 'Metal pipe',
+  'Base.ScrapMetal': 'Scrap metal', 'Base.AluminumScrap': 'Aluminum scrap', 'Base.ElectronicsScrap': 'Electronics scrap',
+  'Base.ElectricWire': 'Electric wire', 'Base.Sheet': 'Sheet', 'Base.Thread': 'Thread', 'Base.LeatherStrips': 'Leather strips',
+  'Base.GlassPanel': 'Glass pane', 'Base.ClayBrick': 'Clay brick', 'Base.SheetPaper2': 'Paper', 'Base.Glue': 'Glue',
+  'Base.Plasticbag': 'Plastic bag', 'Base.Twigs': 'Twigs' };
+const TOOL = { Hammer: 'Hammer', Saw: 'Saw', BlowTorch: 'Blowtorch', WeldingRods: 'Welding rods', Screwdriver: 'Screwdriver', Trowel: 'Trowel' };
+const FACE = { N: 'north', S: 'south', E: 'east', W: 'west', '-': 'one facing' };
+
+let cat = 'windows', page = 1;
+const PAGE = 240;
+let picks = new Map();          // id -> {note}
+let db = null, dbState = 'pending';
+const LS = 'coop-build-picks';
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function thumbStyle(o) {
+  if (!o.thumb) return '';
+  const [sheet, k] = o.thumb;
+  return `background-image:url(sheets/sheet${sheet}.webp);background-position:-${(k % 16) * 96}px -${Math.floor(k / 16) * 128}px`;
+}
+const skillText = o => o.skills.map(([s, l]) => `${SKILL[s] || s} ${l}`);
+
+function matches(o) {
+  const q = $('#q').value.trim().toLowerCase();
+  const sk = $('#skill').value, sz = $('#size').value;
+  if (cat === 'picked' ? !picks.has(o.id) : o.cat !== cat) return false;
+  if (sk && !o.skills.some(s => s[0] === sk)) return false;
+  if (sz === '1' && o.tiles !== 1) return false;
+  if (sz === '2' && o.tiles < 2) return false;
+  if (q) {
+    const hay = (o.name + ' ' + o.set + ' ' + o.id + ' ' + Object.values(o.faces).flat().map(f => f[1]).join(' ')).toLowerCase();
+    if (!q.split(/\s+/).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function renderTabs() {
+  const counts = {};
+  for (const o of O) counts[o.cat] = (counts[o.cat] || 0) + 1;
+  counts.picked = picks.size;
+  $('#tabs').innerHTML = CATS.map(([k, label]) =>
+    `<button class="tab${k === 'picked' ? ' picks' : ''}" type="button" data-cat="${k}" aria-pressed="${k === cat}">${label}<b>${counts[k] || 0}</b></button>`).join('');
+}
+
+function card(o) {
+  const on = picks.has(o.id);
+  return `<button class="card${on ? ' on' : ''}" type="button" data-id="${esc(o.id)}" aria-pressed="${on}">
+    <span class="tick" aria-hidden="true">✓</span>
+    <span class="thumb${o.thumb ? '' : ' none'}">${o.thumb ? `<i style="${thumbStyle(o)}"></i>` : 'no preview'}</span>
+    <span class="name">${esc(o.name)}</span>
+    <span class="set">${esc(o.id)}</span>
+    <span class="chips">${skillText(o).map(s => `<span class="chip skill">${esc(s)}</span>`).join('')}
+      <span class="chip">${o.kg} kg</span>${o.tiles > 1 ? `<span class="chip">${o.tiles} tiles</span>` : ''}</span>
+  </button>`;
+}
+
+function render() {
+  renderTabs();
+  const list = O.filter(matches);
+  const shown = list.slice(0, page * PAGE);
+  $('#grid').innerHTML = shown.map(card).join('');
+  $('#empty').hidden = list.length > 0;
+  $('#more').hidden = shown.length >= list.length;
+  $('#more').textContent = `Show more (${list.length - shown.length} left)`;
+  $('#total').textContent = `${O.length.toLocaleString()} objects`;
+}
+
+function detail(id) {
+  const o = BY_ID.get(id); if (!o) return;
+  const on = picks.has(id), note = (picks.get(id) || {}).note || '';
+  const faces = Object.entries(o.faces).map(([f, list]) =>
+    `<div><b>${FACE[f] || f}</b>: ${list.map(([p, s]) => esc(s) + (o.tiles > 1 ? ` <span style="color:var(--muted)">(${p.join(',')})</span>` : '')).join(', ')}</div>`).join('');
+  const pickup = o.pickup[0] || o.pickup[1] ? `${o.pickup[0] || 'bare hands'}${o.pickup[1] ? ', level ' + o.pickup[1] : ''}` : '—';
+  $('#sheet').innerHTML = `
+    <button class="btn close" type="button" data-close>Close</button>
+    <h2>${esc(o.name)}</h2>
+    <div class="big">${o.thumb ? `<i style="${thumbStyle(o)}"></i>` : ''}</div>
+    <div class="row"><button class="btn ${on ? '' : 'primary'}" type="button" data-toggle="${esc(id)}">${on ? 'Remove from picks' : 'Pick this object'}</button></div>
+    <section><h3>Proposed recipe</h3><table class="kv">
+      <tr><td>Skill</td><td>${skillText(o).map(esc).join(', ')}</td></tr>
+      <tr><td>Consumed</td><td>${o.inputs.map(([i, n]) => `${n} × ${esc(ITEM[i] || i)}`).join('<br>')}</td></tr>
+      <tr><td>Tools</td><td>${o.tools.map(t => TOOL[t] || t).join(', ')}</td></tr>
+      <tr><td>XP / time</td><td>${o.xp} XP · ${o.time} ticks</td></tr>
+      <tr><td>Weight</td><td>${o.kg} kg${o.tiles > 1 ? ` across ${o.tiles} tiles` : ''}</td></tr>
+      <tr><td>Materials (tile data)</td><td>${o.mats.map(esc).join(', ')}</td></tr>
+      <tr><td>Vanilla pickup</td><td>${esc(pickup)}</td></tr>
+    </table></section>
+    <section><h3>Note or override</h3>
+      <textarea id="note" placeholder="e.g. cheaper, Carpentry 6, only the north-facing one">${esc(note)}</textarea>
+      <div class="note-hint" id="noteHint">${on ? 'Saved with the pick when you leave the box.' : 'Pick the object to save a note with it.'}</div>
+    </section>
+    <section><h3>Sprites</h3><div class="faces">${faces}</div></section>
+    <p class="formula">Level = vanilla pickup level + size (under 10 kg +0, under 30 +1, under 60 +2, more +3), +1 when multi-tile, capped at 10. Materials are about ¾ of the object's weight, split across its material slots. Electrical uses the vanilla pickup level.</p>`;
+  $('#sheet').hidden = false;
+  $('#sheet').dataset.id = id;
+  const ta = $('#note');
+  ta.addEventListener('change', () => { if (picks.has(id)) save(id, true, ta.value.trim()); });
+}
+
+// --- storage ---------------------------------------------------------------------
+function loadLocal() {
+  try { const v = JSON.parse(localStorage.getItem(LS) || '{}'); for (const [k, n] of Object.entries(v)) if (BY_ID.has(k)) picks.set(k, { note: n }); } catch (e) {}
+}
+function saveLocal() {
+  try { localStorage.setItem(LS, JSON.stringify(Object.fromEntries([...picks].map(([k, v]) => [k, v.note || ''])))); } catch (e) {}
+}
+function setStatus(text, warn) { const s = $('#status'); s.textContent = text; s.classList.toggle('warn', !!warn); }
+
+const pending = new Map();
+async function save(id, on, note) {
+  const o = BY_ID.get(id);
+  if (on) picks.set(id, { note: note || '' }); else picks.delete(id);
+  render(); if (!$('#sheet').hidden && $('#sheet').dataset.id === id) detail(id);
+  if (!db) { saveLocal(); return; }
+  // one write at a time per document
+  const prev = pending.get(id) || Promise.resolve();
+  const next = prev.then(async () => {
+    const ref = db.collection('picks').doc(id);
+    try {
+      if (on) await ref.set({ name: o.name, cat: o.cat, set: o.set, note: note || '', at: new Date().toISOString() });
+      else await ref.delete();
+    } catch (e) {
+      setStatus(e && e.code === 'invalid_argument' ? 'You can view this list but not change it.' : 'Could not save that change. Try again in a moment.', true);
+    }
+  });
+  pending.set(id, next);
+}
+
+async function connect() {
+  loadLocal(); render();
+  try { db = await window.claude?.use?.('db'); } catch (e) { db = null; }
+  if (!db) {
+    dbState = 'local';
+    setStatus('Picks are saved in this browser only. Use “Copy picked list” and paste it into the chat.', true);
+    return;
+  }
+  db.collection('picks').onSnapshot(snap => {
+    picks = new Map();
+    for (const d of snap.docs) { const v = d.data() || {}; if (BY_ID.has(d.id)) picks.set(d.id, { note: v.note || '' }); }
+    dbState = 'live';
+    setStatus(`${picks.size} picked · saved to the shared list Claude reads.`);
+    render();
+    if (!$('#sheet').hidden && document.activeElement?.id !== 'note') detail($('#sheet').dataset.id);
+  }, () => { db = null; setStatus('Lost the shared list; picks are kept in this browser for now.', true); });
+}
+
+// --- events ----------------------------------------------------------------------
+$('#tabs').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; cat = b.dataset.cat; page = 1; render(); });
+for (const id of ['#q', '#skill', '#size']) $(id).addEventListener('input', () => { page = 1; render(); });
+$('#more').addEventListener('click', () => { page++; render(); });
+$('#grid').addEventListener('click', e => {
+  const c = e.target.closest('.card'); if (!c) return;
+  if (e.target.closest('.tick')) { const id = c.dataset.id; save(id, !picks.has(id), (picks.get(id) || {}).note); return; }
+  detail(c.dataset.id);
+});
+$('#grid').addEventListener('dblclick', e => { const c = e.target.closest('.card'); if (c) save(c.dataset.id, !picks.has(c.dataset.id)); });
+$('#sheet').addEventListener('click', e => {
+  if (e.target.closest('[data-close]')) { $('#sheet').hidden = true; return; }
+  const t = e.target.closest('[data-toggle]');
+  if (t) { const id = t.dataset.toggle; save(id, !picks.has(id), $('#note') ? $('#note').value.trim() : ''); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('#sheet').hidden = true; });
+$('#copy').addEventListener('click', async () => {
+  const lines = [...picks].map(([id, v]) => `${id}\t${BY_ID.get(id)?.name || ''}${v.note ? '\t' + v.note : ''}`);
+  const text = lines.length ? lines.join('\n') : '(nothing picked yet)';
+  try { await navigator.clipboard.writeText(text); setStatus(`Copied ${lines.length} picks.`); }
+  catch (e) { setStatus('Copy was blocked. Open the Picked tab and copy the names from there.', true); }
+});
+
+connect();
+</script>

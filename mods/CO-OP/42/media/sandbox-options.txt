@@ -236,6 +236,14 @@ option COOP.Glassmaking
     translation = COOP_Glassmaking,
 }
 
+option COOP.Buildables
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Buildables,
+}
+
 option COOP.Afk
 {
     type = boolean,

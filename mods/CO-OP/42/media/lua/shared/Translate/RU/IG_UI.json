@@ -4,5 +4,14 @@
     "IGUI_perks_Организация_Description": "Увеличивает вместимость контейнеров, которые вы разбираете, и скорость перекладывания вещей. Растёт, когда вы перекладываете вещи в хранилища и из них.",
     "IGUI_COOP_Audiobook_Done": "Прослушано до конца: %1",
     "IGUI_COOP_Audiobook_WrongLevel": "Этот том не для вашего уровня навыка",
-    "IGUI_LiteratureUI_RecordedMedia_cds": "Аудиокниги"
+    "IGUI_LiteratureUI_RecordedMedia_cds": "Аудиокниги",
+    "IGUI_CraftingCategories_COOPAppliances": "[mod] Техника",
+    "IGUI_CraftingCategories_COOPDecor": "[mod] Декор",
+    "IGUI_CraftingCategories_COOPFurniture": "[mod] Мебель",
+    "IGUI_CraftingCategories_COOPLighting": "[mod] Освещение",
+    "IGUI_CraftingCategories_COOPMetal": "[mod] Металл",
+    "IGUI_CraftingCategories_COOPPlants": "[mod] Растения",
+    "IGUI_CraftingCategories_COOPWalls": "[mod] Стены",
+    "IGUI_CraftingCategories_COOPWindowFrames": "[mod] Оконные рамы",
+    "IGUI_CraftingCategories_COOPWindows": "[mod] Окна"
 }

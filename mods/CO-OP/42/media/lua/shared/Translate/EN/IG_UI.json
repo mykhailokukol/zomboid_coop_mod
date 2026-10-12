@@ -3,5 +3,14 @@
     "IGUI_perks_Organization_Description": "Increases how much fits in the containers you organise, and how fast you move items. Trained by moving things in and out of storage.",
     "IGUI_COOP_Audiobook_Done": "Listened to the end: %1",
     "IGUI_COOP_Audiobook_WrongLevel": "This volume is not for your skill level",
-    "IGUI_LiteratureUI_RecordedMedia_cds": "Audiobooks"
+    "IGUI_LiteratureUI_RecordedMedia_cds": "Audiobooks",
+    "IGUI_CraftingCategories_COOPAppliances": "[mod] Appliances",
+    "IGUI_CraftingCategories_COOPDecor": "[mod] Decor",
+    "IGUI_CraftingCategories_COOPFurniture": "[mod] Furniture",
+    "IGUI_CraftingCategories_COOPLighting": "[mod] Lighting",
+    "IGUI_CraftingCategories_COOPMetal": "[mod] Metal",
+    "IGUI_CraftingCategories_COOPPlants": "[mod] Plants",
+    "IGUI_CraftingCategories_COOPWalls": "[mod] Walls",
+    "IGUI_CraftingCategories_COOPWindowFrames": "[mod] Window Frames",
+    "IGUI_CraftingCategories_COOPWindows": "[mod] Windows"
 }

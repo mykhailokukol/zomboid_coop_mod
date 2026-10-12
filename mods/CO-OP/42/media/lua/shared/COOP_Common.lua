@@ -122,6 +122,7 @@ COOP.F_WELL = "Well"
 COOP.F_AUDIOBOOKS = "Audiobooks"
 COOP.F_GLASS = "Glassmaking"
 COOP.F_AFK = "Afk"
+COOP.F_BUILD = "Buildables"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()

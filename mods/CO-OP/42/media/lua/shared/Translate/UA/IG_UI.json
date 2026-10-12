@@ -4,5 +4,14 @@
     "IGUI_perks_Організація_Description": "Збільшує місткість контейнерів, які ви впорядковуєте, та швидкість перекладання речей. Зростає, коли ви перекладаєте речі у сховища та з них.",
     "IGUI_COOP_Audiobook_Done": "Прослухано до кінця: %1",
     "IGUI_COOP_Audiobook_WrongLevel": "Цей том не для вашого рівня навички",
-    "IGUI_LiteratureUI_RecordedMedia_cds": "Аудіокниги"
+    "IGUI_LiteratureUI_RecordedMedia_cds": "Аудіокниги",
+    "IGUI_CraftingCategories_COOPAppliances": "[mod] Техніка",
+    "IGUI_CraftingCategories_COOPDecor": "[mod] Декор",
+    "IGUI_CraftingCategories_COOPFurniture": "[mod] Меблі",
+    "IGUI_CraftingCategories_COOPLighting": "[mod] Освітлення",
+    "IGUI_CraftingCategories_COOPMetal": "[mod] Метал",
+    "IGUI_CraftingCategories_COOPPlants": "[mod] Рослини",
+    "IGUI_CraftingCategories_COOPWalls": "[mod] Стіни",
+    "IGUI_CraftingCategories_COOPWindowFrames": "[mod] Віконні рами",
+    "IGUI_CraftingCategories_COOPWindows": "[mod] Вікна"
 }

@@ -57,5 +57,7 @@
     "Sandbox_COOP_Afk": "AFK button",
     "Sandbox_COOP_Afk_tooltip": "A button in the sidebar: keep still for a few seconds and the character is frozen until you do anything - hunger, thirst, wounds, illness, infection and TV or radio lessons all wait, and other players cannot treat or trade with you. Getting hurt ends it.",
     "Sandbox_COOP_AfkDelay": "AFK: seconds to keep still",
-    "Sandbox_COOP_AfkDelay_tooltip": "How long a player has to do nothing after pressing AFK before the freeze starts."
+    "Sandbox_COOP_AfkDelay_tooltip": "How long a player has to do nothing after pressing AFK before the freeze starts.",
+    "Sandbox_COOP_Buildables": "Building vanilla objects",
+    "Sandbox_COOP_Buildables_tooltip": "Build recipes for furniture, appliances, lamps, windows, window frames and decor the game has but never lets you build, in the Build window under the [mod] categories. Off hides the recipes; what was already built stays."
 }
