@@ -19,6 +19,7 @@ local entries = {}
 
 local GONE_CHECK_TICKS = 60
 local ticks = 0
+local foodTicks = 0
 
 local function vehicleOf(_player)
     local vehicle = nil
@@ -84,7 +85,9 @@ function COOPAfkServer.start(_player)
         x = _player:getX(), y = _player:getY(), z = _player:getZ(),
         vehicle = vehicleOf(_player),
         autoDrink = setAutoDrink(_player, false),
+        foodAges = {},
     }
+    COOPAfk.holdFood(_player, entries[name].foodAges)
     COOPAfk.names[name] = true
     announce(name, true, nil)
     COOP.log(name .. " is AFK")
@@ -154,6 +157,10 @@ local function onTick()
         end
     end
 
+    foodTicks = foodTicks + 1
+    local holdFood = foodTicks >= COOPAfk.FOOD_HOLD_TICKS
+    if holdFood then foodTicks = 0 end
+
     for name, entry in pairs(entries) do
         local player = entry.player
         local ok, err = pcall(function()
@@ -166,6 +173,7 @@ local function onTick()
                 COOPAfkServer.stop(name, COOPAfk.R_HURT)
             else
                 COOPAfk.restore(player, entry.snap)
+                if holdFood then COOPAfk.holdFood(player, entry.foodAges) end
             end
         end)
         if not ok then

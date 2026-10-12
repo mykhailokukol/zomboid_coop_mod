@@ -313,6 +313,43 @@ function COOPAfk.restore(_player, _snap)
 end
 
 -- ---------------------------------------------------------------------------
+-- food in the inventory
+--
+-- Food rots by its own clock, not the character's: Food.updateAge adds the world hours
+-- since its lastAged stamp to its age. So the body freeze above does nothing for the
+-- sandwich in the backpack. The ages are held the same way the body is - remembered the
+-- first time an item is seen and written back while the AFK lasts. lastAged keeps
+-- moving, so nothing catches up when the AFK ends. _ages is the caller's table,
+-- item id -> age, and starts empty.
+-- ---------------------------------------------------------------------------
+
+COOPAfk.FOOD_HOLD_TICKS = 10
+
+local function isFood(_item)
+    return instanceof(_item, "Food")
+end
+
+function COOPAfk.holdFood(_player, _ages)
+    if _player == nil or _ages == nil then return end
+    local items = nil
+    pcall(function() items = _player:getInventory():getAllEvalRecurse(isFood, ArrayList.new()) end)
+    if items == nil then return end
+    for i = 0, items:size() - 1 do
+        local item = items:get(i)
+        pcall(function()
+            local id = item:getID()
+            local age = item:getAge()
+            local want = _ages[id]
+            if want == nil then
+                _ages[id] = age
+            elseif age ~= want then
+                item:setAge(want)
+            end
+        end)
+    end
+end
+
+-- ---------------------------------------------------------------------------
 -- TV, radio and CDs
 --
 -- Every broadcast line goes through ISRadioInteractions' checkPlayer, which applies its

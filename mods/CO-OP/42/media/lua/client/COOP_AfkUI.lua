@@ -365,6 +365,24 @@ end
 
 local buttonTicks = 0
 
+-- The server holds the food in a multiplayer inventory, but the client keeps its own
+-- copy of each item and ages it too, so the same hold runs here for what the player
+-- sees. In single player the server file already does it in this Lua state.
+local foodAges = nil
+local foodTicks = 0
+
+local function holdFood(_player)
+    if not isClient() or state ~= ON then
+        foodAges = nil
+        return
+    end
+    foodTicks = foodTicks + 1
+    if foodAges ~= nil and foodTicks < COOPAfk.FOOD_HOLD_TICKS then return end
+    foodTicks = 0
+    if foodAges == nil then foodAges = {} end
+    COOPAfk.holdFood(_player, foodAges)
+end
+
 local function onTick()
     buttonTicks = buttonTicks + 1
     if buttonTicks >= 30 then
@@ -380,10 +398,11 @@ local function onTick()
         end
     end
 
-    if state == OFF then return end
+    if state == OFF then foodAges = nil; return end
 
     local player = me()
     if player == nil then state = OFF; setAutoDrinkBlocked(false); return end
+    holdFood(player)
 
     if not COOPAfk.isEnabled() then
         if state == ARMING then cancelArming() else comeBack() end
@@ -416,8 +435,9 @@ Events.OnCreatePlayer.Add(onCreatePlayer)
 -- ---------------------------------------------------------------------------
 -- the badge over the head
 --
--- Drawn from OnPostUIDraw like the ping labels, for every AFK player this client can
--- see, including the local one.
+-- Drawn from OnPreUIDraw, for every AFK player this client can see, including the
+-- local one: after the world, before the UI, so inventory and loot windows cover it
+-- rather than the badge sitting on top of them.
 -- ---------------------------------------------------------------------------
 
 local badgeTexture = nil
@@ -485,7 +505,7 @@ local function drawBadges()
     COOPAfk.eachPlayer(consider)
 end
 
-Events.OnPostUIDraw.Add(drawBadges)
+Events.OnPreUIDraw.Add(drawBadges)
 
 -- ---------------------------------------------------------------------------
 -- hands off an AFK player
