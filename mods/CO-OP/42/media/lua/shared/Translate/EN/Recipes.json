@@ -333,5 +333,7 @@
     "COOPB_walls_logs_18": "Wall (logs) 2",
     "COOPB_walls_logs_26": "Wall (logs) 3",
     "COOPB_walls_logs_32": "Wall (logs) 4",
-    "COOPB_walls_logs_4": "Wall (logs) 5"
+    "COOPB_walls_logs_4": "Wall (logs) 5",
+    "COOPB_walls_logs_12": "Log wall end",
+    "COOPB_walls_logs_10": "Door frame (logs)"
 }

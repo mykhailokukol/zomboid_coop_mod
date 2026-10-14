@@ -322,3 +322,5 @@ walls_logs_18
 walls_logs_26
 walls_logs_32
 walls_logs_4
+walls_logs_12
+walls_logs_10

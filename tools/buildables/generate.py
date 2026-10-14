@@ -105,10 +105,13 @@ def save_json(path, data):
 def names_for(o, moveables):
     """(EN, RU, UA). Vanilla's own moveable names, from Moveables.json, so a built
     object is called what the same object is called when you pick it up."""
+    if "names" in o:
+        return o["names"]
     if o["cat"] == "frames":
         return FRAME_NAME.get(o.get("frame"), FRAME_NAME["wood"])
     if o["cat"] == "walls":
-        return tuple(f"{w} ({m})" for w, m in zip(("Wall", "Стена", "Стіна"),
+        what = ("Door frame", "Дверная рама", "Дверна рама") if o.get("doorframe")             else ("Wall", "Стена", "Стіна")
+        return tuple(f"{w} ({m})" for w, m in zip(what,
                                                   WALL_MAT_NAME.get("logs" if o["set"] == "walls_logs" else o["wall"],
                                                                 WALL_MAT_NAME["wood"])))
     key = o.get("vkey", o["name"]).replace(" ", "_")
@@ -173,6 +176,9 @@ def entity(o):
         # edge. (previousStage = WoodenWallFrame would demand a built wall frame first.)
         out += ["            skillBaseHealth = 20,",
                 "            health = 450,"]
+        if o.get("doorframe"):
+            # as vanilla's door frames: zombies go for the door, not the frame
+            out.append("            isThumpable = false,")
     else:
         out += ["            isProp = true,",
                 "            OnIsValid = COOP_BuildIsValid,"]
@@ -192,6 +198,8 @@ def entity(o):
             "            OnAddToMenu = COOP_BuildInMenu,"]
     if o["cat"] == "windows":
         out.append("            Tooltip = Tooltip_COOPB_Window,")
+    if o.get("endpost"):
+        out.append("            Tooltip = Tooltip_COOPB_LogWallEnd,")
     out += ["            inputs", "            {"]
     out += [f"                {line}," for line in inputs]
     out += ["            }", "        }", "    }", ""]

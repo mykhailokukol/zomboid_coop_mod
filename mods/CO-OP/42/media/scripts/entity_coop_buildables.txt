@@ -14683,4 +14683,86 @@ module Base
         }
     }
 
+    entity COOPB_walls_logs_12
+    {
+        component SpriteConfig
+        {
+            skillBaseHealth = 20,
+            health = 450,
+            face W
+            {
+                layer
+                {
+                    row = walls_logs_12,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = walls_logs_13,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallHammer,
+            time = 60,
+            category = COOPWalls,
+            Tags = Carpentry,
+            SkillRequired = Woodwork:3,
+            xpAward = Woodwork:20,
+            OnAddToMenu = COOP_BuildInMenu,
+            Tooltip = Tooltip_COOPB_LogWallEnd,
+            inputs
+            {
+                item 1 tags[base:hammer] mode:keep flags[Prop1;MayDegradeVeryLight],
+                item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+                item 1 [Base.Plank],
+                item 2 [Base.Nails],
+            }
+        }
+    }
+
+    entity COOPB_walls_logs_10
+    {
+        component SpriteConfig
+        {
+            skillBaseHealth = 20,
+            health = 450,
+            isThumpable = false,
+            face W
+            {
+                layer
+                {
+                    row = walls_logs_10,
+                }
+            }
+            face N
+            {
+                layer
+                {
+                    row = walls_logs_11,
+                }
+            }
+        }
+        component CraftRecipe
+        {
+            timedAction = BuildWallHammer,
+            time = 110,
+            category = COOPWalls,
+            Tags = Carpentry,
+            SkillRequired = Woodwork:3,
+            xpAward = Woodwork:45,
+            OnAddToMenu = COOP_BuildInMenu,
+            inputs
+            {
+                item 1 tags[base:hammer] mode:keep flags[Prop1;MayDegradeVeryLight],
+                item 1 tags[base:saw] mode:keep flags[MayDegradeLight],
+                item 4 [Base.Plank],
+                item 8 [Base.Nails],
+            }
+        }
+    }
+
 }

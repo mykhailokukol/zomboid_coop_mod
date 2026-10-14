@@ -25,7 +25,7 @@ import math
 import os
 import re
 
-GAME = "/mnt/c/Program Files (x86)/Steam/steamapps/common/ProjectZomboid/media"
+GAME = os.environ.get("PZ_MEDIA", "/mnt/c/Program Files (x86)/Steam/steamapps/common/ProjectZomboid/media")
 TILE_DUMP = GAME + "/newtiledefinitions.tiles.txt"
 
 
@@ -429,7 +429,49 @@ def build(tiles=None):
             "mats": [mt], "pickup": [None, 0],
             "recipe": price({"_wallmat": WALL_MAT.get(mt, "wood")}, 30, 1, "walls"),
         })
+    # door frames: DoorWallW/N wall tiles from the walls_* sets, a W piece with the N
+    # piece right after it; a door is hung in them the same as in vanilla's frames
+    for name in candidates_door(tiles):
+        north = f"{tileset(name)}_{idx(name) + 1}"
+        sprites = [name, north]
+        if any(s in vanilla for s in sprites):
+            continue
+        mt = (tiles[name].get("Material") or "Wood")
+        objects.append({
+            "id": name, "name": "Door frame", "doorframe": True, "set": tileset(name),
+            "cat": "walls", "wall": mt.lower(),
+            "faces": collections.OrderedDict((("W", [[[0, 0], name]]), ("N", [[[0, 0], north]]))),
+            "tiles": 1, "kg": 30, "mats": [mt], "pickup": [None, 0],
+            "recipe": price({"_wallmat": WALL_MAT.get(mt, "wood")}, 30, 1, "walls"),
+        })
+    # The log walls draw their log ends at the north/west end only (walls_logs_4/5), so
+    # corner wall - doorway - corner wall comes out lopsided. The end post walls_logs_12/13
+    # is the same log ends on their own: built on the square past the south/east end of a
+    # plain log wall, where vanilla's corner pillar goes, it gives that end the ends too.
+    # (A wall-plus-post entity cannot reuse walls_logs_0/1: a sprite has one entity.)
+    objects.append({
+        "id": "walls_logs_12", "name": "Wall (logs), log ends", "set": "walls_logs",
+        "cat": "walls", "wall": "wood", "endpost": True,
+        "names": ("Log wall end", "Торец бревенчатой стены", "Торець зрубної стіни"),
+        "faces": collections.OrderedDict((("W", [[[0, 0], "walls_logs_12"]]),
+                                          ("N", [[[0, 0], "walls_logs_13"]]))),
+        "tiles": 1, "kg": 10, "mats": ["Log"], "pickup": [None, 0],
+        "recipe": dict(price({"_wallmat": "wood"}, 10, 1, "walls"),
+                       inputs=[["Base.Plank", 1], ["Base.Nails", 2]], time=60, xp=20),
+    })
     return objects
+
+
+def candidates_door(tiles):
+    """W door-frame pieces of the walls_* sets whose N piece is the next tile."""
+    out = []
+    for k in sorted((k for k in tiles if k.startswith("walls_")
+                     and not any(x in k for x in ("roofs", "burnt", "damaged"))),
+                    key=lambda n: (tileset(n), idx(n))):
+        north = f"{tileset(k)}_{idx(k) + 1}"
+        if "DoorWallW" in tiles[k] and "DoorWallN" in (tiles.get(north) or {}):
+            out.append(k)
+    return out
 
 
 if __name__ == "__main__":
