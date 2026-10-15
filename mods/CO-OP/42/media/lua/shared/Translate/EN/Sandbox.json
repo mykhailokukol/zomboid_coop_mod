@@ -59,5 +59,7 @@
     "Sandbox_COOP_AfkDelay": "AFK: seconds to keep still",
     "Sandbox_COOP_AfkDelay_tooltip": "How long a player has to do nothing after pressing AFK before the freeze starts.",
     "Sandbox_COOP_Buildables": "Building vanilla objects",
-    "Sandbox_COOP_Buildables_tooltip": "Build recipes for furniture, appliances, lamps, windows, window frames and decor the game has but never lets you build, in the Build window under the [mod] categories. Off hides the recipes; what was already built stays."
+    "Sandbox_COOP_Buildables_tooltip": "Build recipes for furniture, appliances, lamps, windows, window frames and decor the game has but never lets you build, in the Build window under the [mod] categories. Off hides the recipes; what was already built stays.",
+    "Sandbox_COOP_Holograms": "Build holograms",
+    "Sandbox_COOP_Holograms_tooltip": "A Build Hologram button in the Build window: places a light-blue plan of any build that every player sees. Nothing blocks on it; building anything on its squares removes it, and anyone can delete it from its right-click menu. Off hides the button and the holograms."
 }

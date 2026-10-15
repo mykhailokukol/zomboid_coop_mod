@@ -29,5 +29,8 @@
     "ContextMenu_COOP_Glass_Reglaze": "Reglaze window",
     "ContextMenu_COOP_Glass_NoPanes": "You need %1 glass panes.",
     "ContextMenu_COOP_Glass_NoSkill": "Requires Glassmaking %1.",
-    "ContextMenu_COOP_Glass_Barricaded": "Remove the barricade first."
+    "ContextMenu_COOP_Glass_Barricaded": "Remove the barricade first.",
+    "ContextMenu_COOP_Holo": "Hologram: %1",
+    "ContextMenu_COOP_Holo_Build": "Build this",
+    "ContextMenu_COOP_Holo_Delete": "Delete"
 }

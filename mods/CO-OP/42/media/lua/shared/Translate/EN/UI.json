@@ -104,5 +104,8 @@
     "UI_COOP_Afk_IsAfk": "%1 is AFK",
     "UI_COOP_Afk_ChatOn": "%1 is AFK.",
     "UI_COOP_Afk_ChatOff": "%1 is back.",
-    "UI_COOP_Afk_Badge": "AFK"
+    "UI_COOP_Afk_Badge": "AFK",
+    "UI_COOP_Holo_Button": "Build Hologram",
+    "UI_COOP_Holo_Missing": "You can't build this yet: materials, tools or skills are missing.",
+    "UI_COOP_Holo_Blocked": "Something is in the way."
 }

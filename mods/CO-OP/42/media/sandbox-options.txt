@@ -244,6 +244,14 @@ option COOP.Buildables
     translation = COOP_Buildables,
 }
 
+option COOP.Holograms
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Holograms,
+}
+
 option COOP.Afk
 {
     type = boolean,

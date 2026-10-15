@@ -104,5 +104,8 @@
     "UI_COOP_Afk_IsAfk": "%1 зараз АФК",
     "UI_COOP_Afk_ChatOn": "%1 відійшов (АФК).",
     "UI_COOP_Afk_ChatOff": "%1 повернувся.",
-    "UI_COOP_Afk_Badge": "АФК"
+    "UI_COOP_Afk_Badge": "АФК",
+    "UI_COOP_Holo_Button": "Збудувати голограму",
+    "UI_COOP_Holo_Missing": "Поки не збудувати: бракує матеріалів, інструментів або навичок.",
+    "UI_COOP_Holo_Blocked": "Щось заважає."
 }
