@@ -4,5 +4,6 @@
     "Tooltip_COOP_BlankCD": "A CD with nothing on it. Burn a skill book onto it at a computer with power.",
     "Tooltip_COOP_HouseWindow": "A whole window, frame and glass. Place it into an empty window frame in any wall with a hammer, the same way as a window taken off a house.",
     "Tooltip_COOPB_Window": "Goes into an empty window frame, like a window taken off a house. A window several walls wide needs a frame in each of them, side by side.",
-    "Tooltip_COOPB_LogWallEnd": "The log ends a corner log wall has at one end, on their own. Build it on the square just past the south or east end of a plain log wall, to give that end log ends too."
+    "Tooltip_COOPB_LogWallEnd": "The log ends a corner log wall has at one end, on their own. Build it on the square just past the south or east end of a plain log wall, to give that end log ends too.",
+    "Tooltip_COOP_Boombox": "Plays music from YouTube while you hold it in your hands, and everyone around you hears it. Right-click it to choose a song. Hearing it needs the Boombox speaker app running next to the game."
 }

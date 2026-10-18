@@ -107,5 +107,21 @@
     "UI_COOP_Afk_Badge": "AFK",
     "UI_COOP_Holo_Button": "Build Hologram",
     "UI_COOP_Holo_Missing": "You can't build this yet: materials, tools or skills are missing.",
-    "UI_COOP_Holo_Blocked": "Something is in the way."
+    "UI_COOP_Holo_Blocked": "Something is in the way.",
+    "UI_COOP_Boombox_Title": "Boombox",
+    "UI_COOP_Boombox_SpeakerOn": "Speaker app is running.",
+    "UI_COOP_Boombox_SpeakerOff": "Speaker app is not running - you will not hear the music. See the mod's README.",
+    "UI_COOP_Boombox_Link": "YouTube link",
+    "UI_COOP_Boombox_Play": "Play",
+    "UI_COOP_Boombox_Pause": "Pause",
+    "UI_COOP_Boombox_Resume": "Resume",
+    "UI_COOP_Boombox_Stop": "Stop",
+    "UI_COOP_Boombox_Silent": "Nothing playing",
+    "UI_COOP_Boombox_Paused": "paused",
+    "UI_COOP_Boombox_Volume": "Volume: %1",
+    "UI_COOP_Boombox_HoldIt": "Hold the boombox in your hands to play it.",
+    "UI_COOP_Boombox_NotHeld": "The boombox has to be in your hands.",
+    "UI_COOP_Boombox_BadLink": "That is not a YouTube link.",
+    "UI_COOP_Boombox_SpeakerFailed": "Your speaker could not play this: %1",
+    "UI_COOP_Boombox_Hearing": "%1's boombox: %2"
 }

@@ -1,0 +1,50 @@
+module COOP
+{
+    imports
+    {
+        Base
+    }
+
+    /* The boombox (COOP_Boombox.lua): plays a YouTube link that everyone near its
+       holder hears, through the Boombox speaker program each player runs next to the
+       game. It plays only while held in the hands.
+
+       A plain item, not a radio: a base:radio item comes with DeviceData and the vanilla
+       radio window, and this has its own window instead. The looks are the black
+       portable radio's. Vanilla radios have no StaticModel, so nothing is drawn in the
+       hands; neither is this. */
+    item Boombox
+    {
+        DisplayCategory = Communications,
+        ItemType = base:normal,
+        DisplayName = Boombox,
+        Weight = 2.0,
+        Icon = RadioBlack,
+        WorldStaticModel = RadioBlack_Ground,
+        Tooltip = Tooltip_COOP_Boombox,
+    }
+
+    /* A portable radio for the box and the speakers, a CD player for the electronics
+       that do the playing. Electrical 2, a screwdriver. OnTest is the sandbox switch. */
+    craftRecipe MakeCOOPBoombox
+    {
+        timedAction = DismantleElectrical,
+        time = 150,
+        Tags = AnySurfaceCraft;Electrical,
+        category = Electrical,
+        SkillRequired = Electricity:2,
+        xpAward = Electricity:15,
+        OnTest = COOPBoombox.onTest,
+        inputs
+        {
+            item 1 [Base.RadioBlack;Base.RadioRed;Base.RadioMakeShift] flags[NoBrokenItems],
+            item 1 [Base.CDplayer] flags[NoBrokenItems],
+            item 1 [Base.ElectricWire] flags[NoBrokenItems],
+            item 1 tags[base:screwdriver] mode:keep flags[NoBrokenItems],
+        }
+        outputs
+        {
+            item 1 COOP.Boombox,
+        }
+    }
+}

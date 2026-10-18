@@ -32,5 +32,6 @@
     "ContextMenu_COOP_Glass_Barricaded": "Спершу зніміть барикаду.",
     "ContextMenu_COOP_Holo": "Голограма: %1",
     "ContextMenu_COOP_Holo_Build": "Збудувати",
-    "ContextMenu_COOP_Holo_Delete": "Видалити"
+    "ContextMenu_COOP_Holo_Delete": "Видалити",
+    "ContextMenu_COOP_Boombox_Open": "Бумбокс..."
 }

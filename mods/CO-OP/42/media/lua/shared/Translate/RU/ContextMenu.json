@@ -32,5 +32,6 @@
     "ContextMenu_COOP_Glass_Barricaded": "Сначала снимите баррикаду.",
     "ContextMenu_COOP_Holo": "Голограмма: %1",
     "ContextMenu_COOP_Holo_Build": "Построить",
-    "ContextMenu_COOP_Holo_Delete": "Удалить"
+    "ContextMenu_COOP_Holo_Delete": "Удалить",
+    "ContextMenu_COOP_Boombox_Open": "Бумбокс..."
 }

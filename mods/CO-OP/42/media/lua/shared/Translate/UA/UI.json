@@ -107,5 +107,21 @@
     "UI_COOP_Afk_Badge": "АФК",
     "UI_COOP_Holo_Button": "Збудувати голограму",
     "UI_COOP_Holo_Missing": "Поки не збудувати: бракує матеріалів, інструментів або навичок.",
-    "UI_COOP_Holo_Blocked": "Щось заважає."
+    "UI_COOP_Holo_Blocked": "Щось заважає.",
+    "UI_COOP_Boombox_Title": "Бумбокс",
+    "UI_COOP_Boombox_SpeakerOn": "Програма-колонка працює.",
+    "UI_COOP_Boombox_SpeakerOff": "Програма-колонка не запущена - ви не почуєте музику. Див. README мода.",
+    "UI_COOP_Boombox_Link": "Посилання на YouTube",
+    "UI_COOP_Boombox_Play": "Грати",
+    "UI_COOP_Boombox_Pause": "Пауза",
+    "UI_COOP_Boombox_Resume": "Далі",
+    "UI_COOP_Boombox_Stop": "Стоп",
+    "UI_COOP_Boombox_Silent": "Нічого не грає",
+    "UI_COOP_Boombox_Paused": "пауза",
+    "UI_COOP_Boombox_Volume": "Гучність: %1",
+    "UI_COOP_Boombox_HoldIt": "Візьміть бумбокс у руки, щоб він грав.",
+    "UI_COOP_Boombox_NotHeld": "Бумбокс має бути у вас у руках.",
+    "UI_COOP_Boombox_BadLink": "Це не посилання на YouTube.",
+    "UI_COOP_Boombox_SpeakerFailed": "Ваша колонка не змогла це відтворити: %1",
+    "UI_COOP_Boombox_Hearing": "Бумбокс %1: %2"
 }

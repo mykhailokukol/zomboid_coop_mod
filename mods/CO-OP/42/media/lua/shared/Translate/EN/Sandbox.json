@@ -61,5 +61,11 @@
     "Sandbox_COOP_Buildables": "Building vanilla objects",
     "Sandbox_COOP_Buildables_tooltip": "Build recipes for furniture, appliances, lamps, windows, window frames and decor the game has but never lets you build, in the Build window under the [mod] categories. Off hides the recipes; what was already built stays.",
     "Sandbox_COOP_Holograms": "Build holograms",
-    "Sandbox_COOP_Holograms_tooltip": "A Build Hologram button in the Build window: places a light-blue plan of any build that every player sees. Nothing blocks on it; building anything on its squares removes it, and anyone can delete it from its right-click menu. Off hides the button and the holograms."
+    "Sandbox_COOP_Holograms_tooltip": "A Build Hologram button in the Build window: places a light-blue plan of any build that every player sees. Nothing blocks on it; building anything on its squares removes it, and anyone can delete it from its right-click menu. Off hides the button and the holograms.",
+    "Sandbox_COOP_Boombox": "Boombox",
+    "Sandbox_COOP_Boombox_tooltip": "A craftable boombox that plays YouTube links for everyone near the player holding it. Each player hears it through the Boombox speaker app. Off hides its menu, stops all music and blocks the recipe.",
+    "Sandbox_COOP_BoomboxRange": "Boombox range (tiles)",
+    "Sandbox_COOP_BoomboxRange_tooltip": "How far a boombox at full volume can be heard. A quieter boombox carries less far.",
+    "Sandbox_COOP_BoomboxNoise": "Boombox attracts zombies",
+    "Sandbox_COOP_BoomboxNoise_tooltip": "A playing boombox makes noise zombies hear, over the same range players hear it, like a radio or a TV."
 }

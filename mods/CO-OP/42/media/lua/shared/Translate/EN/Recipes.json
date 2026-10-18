@@ -335,5 +335,6 @@
     "COOPB_walls_logs_32": "Wall (logs) 4",
     "COOPB_walls_logs_4": "Wall (logs) 5",
     "COOPB_walls_logs_12": "Log wall end",
-    "COOPB_walls_logs_10": "Door frame (logs)"
+    "COOPB_walls_logs_10": "Door frame (logs)",
+    "MakeCOOPBoombox": "Make Boombox"
 }

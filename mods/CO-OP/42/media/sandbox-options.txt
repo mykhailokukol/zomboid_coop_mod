@@ -269,3 +269,29 @@ option COOP.AfkDelay
     page = COOP,
     translation = COOP_AfkDelay,
 }
+
+option COOP.Boombox
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_Boombox,
+}
+
+option COOP.BoomboxRange
+{
+    type = integer,
+    min = 5,
+    max = 60,
+    default = 20,
+    page = COOP,
+    translation = COOP_BoomboxRange,
+}
+
+option COOP.BoomboxNoise
+{
+    type = boolean,
+    default = true,
+    page = COOP,
+    translation = COOP_BoomboxNoise,
+}
