@@ -32,6 +32,5 @@
     "ContextMenu_COOP_Glass_Barricaded": "Remove the barricade first.",
     "ContextMenu_COOP_Holo": "Hologram: %1",
     "ContextMenu_COOP_Holo_Build": "Build this",
-    "ContextMenu_COOP_Holo_Delete": "Delete",
-    "ContextMenu_COOP_Boombox_Open": "Boombox..."
+    "ContextMenu_COOP_Holo_Delete": "Delete"
 }

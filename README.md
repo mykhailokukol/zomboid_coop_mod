@@ -108,15 +108,6 @@ the parts you want.
   wake or trade with you. Everyone sees **AFK** over your head and a line in chat.
   Moving, aiming, or any action (moving items, eating, reading...) brings you back at
   once; so does getting hurt — zombies are not stopped, so go AFK somewhere safe.
-- **Boombox** — music from YouTube that everyone around you hears. Make one in the
-  crafting window (Electrical): a portable radio, a CD player and an electric wire, with
-  a screwdriver, at Electrical 2. Hold it in your hands, right-click it → **Boombox...**,
-  paste a YouTube link and press **Play**. Pause, Stop and a volume bar like the TV's are
-  in the same window. Everyone near you hears the same moment of the song, fading with
-  distance — up to 20 tiles at full volume, less when it is quieter, muffled through
-  walls and floors. It plays only while it is in your hands: put it away and the music
-  stops. Zombies hear it too. **Every player who wants to hear it runs the Boombox
-  speaker app** (see below) — the game itself cannot play anything from the internet.
 
 ### Requirements
 
@@ -196,25 +187,6 @@ That writes `Mods=CO-OP` into `Zomboid/Server/<name>.ini`, which you can also ed
 hand. For a dedicated server: put the folder in the server's `Zomboid/mods/`, add
 `CO-OP` to the `Mods=` line, restart.
 
-### The Boombox speaker
-
-Project Zomboid cannot stream audio from the internet, so the music of a boombox is
-played by a small program next to the game, on every PC that should hear it. It is in
-the [`boombox`](boombox/) folder of this repository (not in the mod folder).
-
-1. Download `boombox/CoopBoombox.cmd` and `boombox/CoopBoombox.ps1` into one folder
-   (they come with the ZIP of the repository too).
-2. Double-click **`CoopBoombox.cmd`**. The first time it offers to install
-   [mpv](https://mpv.io) (the player) and [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-   (it finds the audio on YouTube) with winget — answer **Y**. If it then says they are
-   still not found, close the window and start it again.
-3. Keep the window open while you play. Close it to stop.
-
-The boombox window in the game says whether the speaker is running. The speaker only
-reads and writes two text files in `Zomboid\Lua\` (`coop_boombox.txt` and
-`coop_boombox_speaker.txt`), and plays only YouTube links. If YouTube stops working one
-day, update yt-dlp: `winget upgrade yt-dlp.yt-dlp`. Windows only for now.
-
 ### Settings
 
 Everything is in the sandbox options, on a **CO-OP** page of their own: in a solo game
@@ -248,7 +220,6 @@ if you switch it off later.
 | Burn an audiobook | Right-click a computer with power → *Computer* → *Burn an audiobook* |
 | Reglaze a smashed window | Carry 4 glass panes → right-click the window → *Reglaze window* |
 | Go AFK | The moon button at the bottom of the sidebar, then keep still for 10 seconds. Do anything to come back |
-| Play music | Hold the boombox → right-click it → *Boombox...* → paste a YouTube link → *Play*. Run the Boombox speaker to hear it |
 | Turn a feature off | Sandbox options → **CO-OP** |
 
 ### Updating
@@ -354,15 +325,6 @@ are simply ignored once the mod is gone.
   Усі бачать **АФК** над вашою головою і рядок у чаті. Рух, прицілювання чи будь-яка
   дія (перекласти речі, поїсти, читати...) одразу повертають вас; поранення теж —
   зомбі не зупиняються, тож ідіть в АФК у безпечному місці.
-- **Бумбокс** — музика з YouTube, яку чують усі довкола. Збирається у вікні крафту
-  (Електрика): портативне радіо, CD-плеєр і електричний дріт, з викруткою, електрика 2.
-  Візьміть його в руки, ПКМ → **Бумбокс...**, вставте посилання на YouTube і натисніть
-  **Грати**. Пауза, Стоп і шкала гучності, як у телевізора, — у тому ж вікні. Усі поруч
-  чують той самий момент пісні, тихіше з відстанню — до 20 клітинок на повній гучності,
-  менше, коли тихіше, приглушено крізь стіни й поверхи. Грає, лише поки він у руках:
-  приберіть його — і музика стихне. Зомбі його теж чують. **Кожен гравець, який хоче
-  його чути, запускає програму-колонку Boombox** (див. нижче) — сама гра нічого з
-  інтернету відтворити не може.
 
 ### Вимоги
 
@@ -443,25 +405,6 @@ Project Zomboid **Build 42**. Працює в одиночній грі, на «
 вручну. Для виділеного сервера: покладіть теку в `Zomboid/mods/` сервера, додайте
 `CO-OP` до рядка `Mods=`, перезапустіть.
 
-### Колонка Boombox
-
-Project Zomboid не вміє відтворювати звук з інтернету, тож музику бумбокса грає
-невелика програма поруч із грою, на кожному ПК, де її мають чути. Вона в теці
-[`boombox`](boombox/) цього репозиторію (не в теці мода).
-
-1. Завантажте `boombox/CoopBoombox.cmd` і `boombox/CoopBoombox.ps1` в одну теку
-   (вони є і в ZIP-архіві репозиторію).
-2. Двічі клацніть **`CoopBoombox.cmd`**. Першого разу програма запропонує встановити
-   через winget [mpv](https://mpv.io) (плеєр) і [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-   (знаходить звук на YouTube) — відповідайте **Y**. Якщо потім вона пише, що їх
-   усе ще не знайдено, закрийте вікно й запустіть знову.
-3. Тримайте вікно відкритим, поки граєте. Закрийте, щоб зупинити.
-
-Вікно бумбокса в грі показує, чи працює колонка. Колонка лише читає й пише два
-текстові файли в `Zomboid\Lua\` (`coop_boombox.txt` і `coop_boombox_speaker.txt`) і
-грає лише посилання з YouTube. Якщо YouTube колись перестане працювати, оновіть yt-dlp:
-`winget upgrade yt-dlp.yt-dlp`. Поки що лише для Windows.
-
 ### Налаштування
 
 Усе живе в пісочниці (sandbox), на власній сторінці **CO-OP**: в одиночній грі — на
@@ -495,7 +438,6 @@ Project Zomboid не вміє відтворювати звук з інтерн�
 | Записати аудіокнигу | ПКМ по комп'ютеру з живленням → *Комп'ютер* → *Записати аудіокнигу* |
 | Засклити розбите вікно | Майте 4 віконні скла → ПКМ по вікну → *Засклити вікно* |
 | Піти в АФК | Кнопка з місяцем унизу бічної панелі, потім 10 секунд не рухатися. Будь-яка дія повертає |
-| Увімкнути музику | Візьміть бумбокс у руки → ПКМ → *Бумбокс...* → вставте посилання на YouTube → *Грати*. Щоб чути, запустіть колонку Boombox |
 | Вимкнути можливість | Налаштування пісочниці → **CO-OP** |
 
 ### Оновлення
@@ -600,15 +542,6 @@ Project Zomboid не вміє відтворювати звук з інтерн�
   с вами. Все видят **АФК** над вашей головой и строку в чате. Движение, прицеливание
   или любое действие (переложить вещи, поесть, читать...) сразу возвращают вас; ранение
   тоже — зомби не останавливаются, так что уходите в АФК в безопасном месте.
-- **Бумбокс** — музыка с YouTube, которую слышат все вокруг. Собирается в окне крафта
-  (Электрика): портативное радио, CD-плеер и электрический провод, с отвёрткой,
-  электрика 2. Возьмите его в руки, ПКМ → **Бумбокс...**, вставьте ссылку на YouTube и
-  нажмите **Играть**. Пауза, Стоп и шкала громкости, как у телевизора, — в том же окне.
-  Все рядом слышат один и тот же момент песни, тише с расстоянием — до 20 клеток на
-  полной громкости, меньше, когда тише, приглушённо сквозь стены и этажи. Играет, только
-  пока он в руках: уберите его — и музыка стихнет. Зомби его тоже слышат. **Каждый
-  игрок, который хочет его слышать, запускает программу-колонку Boombox** (см. ниже) —
-  сама игра ничего из интернета воспроизвести не может.
 
 ### Требования
 
@@ -689,25 +622,6 @@ Project Zomboid **Build 42**. Работает в одиночной игре, �
 вручную. Для выделенного сервера: положите папку в `Zomboid/mods/` сервера, добавьте
 `CO-OP` в строку `Mods=`, перезапустите.
 
-### Колонка Boombox
-
-Project Zomboid не умеет воспроизводить звук из интернета, поэтому музыку бумбокса
-играет небольшая программа рядом с игрой, на каждом ПК, где её должны слышать. Она в
-папке [`boombox`](boombox/) этого репозитория (не в папке мода).
-
-1. Скачайте `boombox/CoopBoombox.cmd` и `boombox/CoopBoombox.ps1` в одну папку
-   (они есть и в ZIP-архиве репозитория).
-2. Дважды щёлкните **`CoopBoombox.cmd`**. В первый раз программа предложит установить
-   через winget [mpv](https://mpv.io) (плеер) и [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-   (находит звук на YouTube) — отвечайте **Y**. Если потом она пишет, что их всё ещё
-   не нашла, закройте окно и запустите снова.
-3. Держите окно открытым, пока играете. Закройте, чтобы остановить.
-
-Окно бумбокса в игре показывает, работает ли колонка. Колонка только читает и пишет два
-текстовых файла в `Zomboid\Lua\` (`coop_boombox.txt` и `coop_boombox_speaker.txt`) и
-играет только ссылки с YouTube. Если YouTube однажды перестанет работать, обновите
-yt-dlp: `winget upgrade yt-dlp.yt-dlp`. Пока только для Windows.
-
 ### Настройки
 
 Всё находится в песочнице (sandbox), на отдельной странице **CO-OP**: в одиночной игре —
@@ -741,7 +655,6 @@ yt-dlp: `winget upgrade yt-dlp.yt-dlp`. Пока только для Windows.
 | Записать аудиокнигу | ПКМ по компьютеру с питанием → *Компьютер* → *Записать аудиокнигу* |
 | Застеклить разбитое окно | Имейте 4 стеклянные панели → ПКМ по окну → *Застеклить окно* |
 | Уйти в АФК | Кнопка с луной внизу боковой панели, потом 10 секунд не двигаться. Любое действие возвращает |
-| Включить музыку | Возьмите бумбокс в руки → ПКМ → *Бумбокс...* → вставьте ссылку на YouTube → *Играть*. Чтобы слышать, запустите колонку Boombox |
 | Выключить возможность | Настройки песочницы → **CO-OP** |
 
 ### Обновление

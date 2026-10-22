@@ -124,7 +124,6 @@ COOP.F_GLASS = "Glassmaking"
 COOP.F_AFK = "Afk"
 COOP.F_BUILD = "Buildables"
 COOP.F_HOLO = "Holograms"
-COOP.F_BOOMBOX = "Boombox"
 
 function COOP.option(_name, _default)
     local ok, value = pcall(function()
